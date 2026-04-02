@@ -105,6 +105,9 @@ struct SalmaTextField: View {
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(errorMessage != nil ? "\(label), \(errorMessage!)" : label)
+        .accessibilityValue(text)
         .animation(AppAnimations.fadeIn, value: errorMessage)
         .onChange(of: errorMessage) { newValue in
             if newValue != nil {

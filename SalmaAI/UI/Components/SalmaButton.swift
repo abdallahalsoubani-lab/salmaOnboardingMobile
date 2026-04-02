@@ -54,6 +54,8 @@ struct SalmaButton: View {
         .disabled(isDisabled || isLoading)
         .opacity(isDisabled ? 0.5 : 1.0)
         .pressAnimation()
+        .accessibilityLabel(isLoading ? "\(title), \(String(localized: "loading"))" : title)
+        .accessibilityAddTraits(.isButton)
     }
 
     private var spinnerColor: Color {

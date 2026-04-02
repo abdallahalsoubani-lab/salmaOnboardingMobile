@@ -108,7 +108,7 @@ enum FieldType: String, Codable, CaseIterable {
     }
 }
 
-enum CaptureSource {
+enum CaptureSource: Equatable {
     case cameraOnly
     case galleryOnly
     case cameraAndGallery

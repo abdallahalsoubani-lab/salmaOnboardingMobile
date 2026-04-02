@@ -20,6 +20,7 @@ struct CameraBottomBar: View {
                             .foregroundColor(.white)
                     )
             }
+            .accessibilityLabel(String(localized: "close_camera"))
 
             Spacer()
 
@@ -45,6 +46,7 @@ struct CameraBottomBar: View {
                 }
             }
             .pressAnimation()
+            .accessibilityLabel(String(localized: "capture"))
 
             Spacer()
 
@@ -64,6 +66,7 @@ struct CameraBottomBar: View {
                                 .foregroundColor(isTorchOn ? .yellow : .white)
                         )
                 }
+                .accessibilityLabel(isTorchOn ? String(localized: "torch_on") : String(localized: "torch_off"))
             } else {
                 Color.clear.frame(width: 44, height: 44)
             }

@@ -1685,6 +1685,62 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "دقة القراءة" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "OCR Accuracy" } }
       }
+    },
+    "double_tap_to_select" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اضغط مرتين للاختيار" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Double tap to select" } }
+      }
+    },
+    "double_tap_to_toggle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اضغط مرتين للتبديل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Double tap to toggle" } }
+      }
+    },
+    "checked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "محدد" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Checked" } }
+      }
+    },
+    "unchecked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "غير محدد" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unchecked" } }
+      }
+    },
+    "close_camera" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "إغلاق الكاميرا" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close camera" } }
+      }
+    },
+    "torch_on" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الفلاش مفعّل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Flash on" } }
+      }
+    },
+    "torch_off" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الفلاش معطّل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Flash off" } }
+      }
+    },
+    "copy_submission_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "نسخ رقم الطلب" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy submission ID" } }
+      }
     }
   },
   "version" : "1.0"
