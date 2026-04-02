@@ -1,6 +1,8 @@
 import Foundation
 
-protocol NetworkServiceProtocol {
-    func request<T: Codable>(_ endpoint: APIEndpoint) async throws -> T
-    func upload(data: Data, to endpoint: APIEndpoint, fieldName: String, fileName: String, mimeType: String) async throws -> ApiResponse<String>
+protocol NetworkServiceProtocol: Actor {
+    func get<T: Codable>(_ endpoint: APIEndpoint, queryParams: [String: String]?) async throws -> T
+    func post<T: Codable, B: Codable>(_ endpoint: APIEndpoint, body: B) async throws -> T
+    func upload<T: Codable>(_ endpoint: APIEndpoint, fields: [String: String], files: [MultipartFile]) async throws -> T
+    func submitVerification(journeyId: String, fields: [String: String], files: [MultipartFile]) async throws -> SubmissionResult
 }

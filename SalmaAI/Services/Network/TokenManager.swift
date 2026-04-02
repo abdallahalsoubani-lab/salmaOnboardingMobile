@@ -1,69 +1,89 @@
 import Foundation
 import Security
 
-final class TokenManager {
-    private let tokenKey = "com.salmaai.onboarding.jwt"
-    private let refreshTokenKey = "com.salmaai.onboarding.refreshToken"
+actor TokenManager {
+    static let shared = TokenManager()
 
-    var token: String? {
-        get { readKeychain(key: tokenKey) }
-        set {
-            if let value = newValue {
-                saveKeychain(key: tokenKey, value: value)
-            } else {
-                deleteKeychain(key: tokenKey)
-            }
-        }
+    private let accessTokenKey = "com.salmaai.accessToken"
+    private let refreshTokenKey = "com.salmaai.refreshToken"
+    private let tokenExpiryKey = "com.salmaai.tokenExpiry"
+
+    // MARK: - Save Tokens
+
+    func saveTokens(accessToken: String, refreshToken: String, expiresAt: Date) {
+        saveToKeychain(key: accessTokenKey, value: accessToken)
+        saveToKeychain(key: refreshTokenKey, value: refreshToken)
+        UserDefaults.standard.set(expiresAt.timeIntervalSince1970, forKey: tokenExpiryKey)
     }
 
-    var refreshToken: String? {
-        get { readKeychain(key: refreshTokenKey) }
-        set {
-            if let value = newValue {
-                saveKeychain(key: refreshTokenKey, value: value)
-            } else {
-                deleteKeychain(key: refreshTokenKey)
-            }
-        }
+    // MARK: - Read Tokens
+
+    func getAccessToken() -> String? {
+        readFromKeychain(key: accessTokenKey)
     }
 
-    var hasToken: Bool {
-        token != nil
+    func getRefreshToken() -> String? {
+        readFromKeychain(key: refreshTokenKey)
     }
 
-    func clearAll() {
-        token = nil
-        refreshToken = nil
+    // MARK: - Token Validity
+
+    func isAccessTokenValid() -> Bool {
+        guard getAccessToken() != nil else { return false }
+        let expiry = UserDefaults.standard.double(forKey: tokenExpiryKey)
+        guard expiry > 0 else { return false }
+        let expiryDate = Date(timeIntervalSince1970: expiry)
+        // Buffer: consider expired 60s early
+        return expiryDate.addingTimeInterval(-60) > Date()
     }
 
-    // MARK: - Keychain Helpers
+    func hasRefreshToken() -> Bool {
+        getRefreshToken() != nil
+    }
 
-    private func saveKeychain(key: String, value: String) {
+    // MARK: - Clear (Logout)
+
+    func clearTokens() {
+        deleteFromKeychain(key: accessTokenKey)
+        deleteFromKeychain(key: refreshTokenKey)
+        UserDefaults.standard.removeObject(forKey: tokenExpiryKey)
+    }
+
+    // MARK: - Keychain Operations
+
+    private func saveToKeychain(key: String, value: String) {
         guard let data = value.data(using: .utf8) else { return }
-        let query: [String: Any] = [
+
+        let deleteQuery: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key
+        ]
+        SecItemDelete(deleteQuery as CFDictionary)
+
+        let addQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecValueData as String: data,
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         ]
-        SecItemDelete(query as CFDictionary)
-        SecItemAdd(query as CFDictionary, nil)
+        SecItemAdd(addQuery as CFDictionary, nil)
     }
 
-    private func readKeychain(key: String) -> String? {
+    private func readFromKeychain(key: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecReturnData as String: true,
             kSecMatchLimit as String: kSecMatchLimitOne
         ]
+
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
         guard status == errSecSuccess, let data = result as? Data else { return nil }
         return String(data: data, encoding: .utf8)
     }
 
-    private func deleteKeychain(key: String) {
+    private func deleteFromKeychain(key: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key

@@ -6,9 +6,18 @@ struct AuthRequest: Codable {
 }
 
 struct AuthResponse: Codable {
-    let token: String
-    let refreshToken: String?
-    let expiresIn: Int?
+    let accessToken: String
+    let refreshToken: String
+    let expiresAt: String
+    let user: UserInfo?
+}
+
+struct UserInfo: Codable {
+    let id: String
+    let email: String?
+    let fullName: String?
+    let phoneNumber: String?
+    let role: String?
 }
 
 struct RefreshTokenRequest: Codable {

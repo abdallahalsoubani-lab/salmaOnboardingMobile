@@ -1,32 +1,36 @@
 import Foundation
 
-final class StorageService: StorageServiceProtocol {
-    private let defaults: UserDefaults
+class StorageService: StorageServiceProtocol {
+    private let defaults = UserDefaults.standard
 
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-    }
-
-    func save<T: Codable>(_ value: T, forKey key: String) {
-        if let data = try? JSONEncoder().encode(value) {
-            defaults.set(data, forKey: key)
+    var selectedLanguage: AppLanguage? {
+        get {
+            guard let raw = defaults.string(forKey: "selected_language") else { return nil }
+            return AppLanguage(rawValue: raw)
+        }
+        set {
+            defaults.set(newValue?.rawValue, forKey: "selected_language")
         }
     }
 
-    func load<T: Codable>(forKey key: String) -> T? {
-        guard let data = defaults.data(forKey: key) else { return nil }
-        return try? JSONDecoder().decode(T.self, from: data)
+    var hasCompletedOnboarding: Bool {
+        get { defaults.bool(forKey: "completed_onboarding") }
+        set { defaults.set(newValue, forKey: "completed_onboarding") }
     }
 
-    func remove(forKey key: String) {
-        defaults.removeObject(forKey: key)
+    var lastSubmissionId: String? {
+        get { defaults.string(forKey: "last_submission_id") }
+        set { defaults.set(newValue, forKey: "last_submission_id") }
     }
 
-    func getString(forKey key: String) -> String? {
-        defaults.string(forKey: key)
+    var apiBaseURL: String {
+        get { defaults.string(forKey: "api_base_url") ?? Configuration.apiBaseURL }
+        set { defaults.set(newValue, forKey: "api_base_url") }
     }
 
-    func setString(_ value: String, forKey key: String) {
-        defaults.set(value, forKey: key)
+    func clearAll() {
+        if let domain = Bundle.main.bundleIdentifier {
+            defaults.removePersistentDomain(forName: domain)
+        }
     }
 }

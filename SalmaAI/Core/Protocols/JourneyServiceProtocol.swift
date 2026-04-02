@@ -1,5 +1,6 @@
 import Foundation
 
-protocol JourneyServiceProtocol {
-    func fetchActiveJourney() async throws -> JourneyDetail
+protocol JourneyServiceProtocol: Actor {
+    func getActiveJourney(forceRefresh: Bool) async throws -> JourneyDetail
+    func clearCache()
 }

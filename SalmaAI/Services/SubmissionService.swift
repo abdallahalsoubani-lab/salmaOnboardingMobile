@@ -1,26 +1,64 @@
 import Foundation
+import UIKit
 
-final class SubmissionService: SubmissionServiceProtocol {
-    private let apiClient: NetworkServiceProtocol
+actor SubmissionService: SubmissionServiceProtocol {
+    private let apiClient: APIClient
 
-    init(apiClient: NetworkServiceProtocol) {
+    init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
 
-    func submitData(_ fields: [String: Any], images: [String: Data]) async throws -> SubmissionResult {
-        // Will be fully implemented in Prompt 10 (Submission flow)
-        let response: ApiResponse<SubmissionResult> = try await apiClient.request(.submitData)
-        guard let result = response.data else {
-            throw APIError.noData
+    func submitVerification(
+        journeyId: String,
+        fields: [String: String],
+        images: [CapturedImage]
+    ) async throws -> SubmissionResult {
+        let files = images.compactMap { image -> MultipartFile? in
+            guard let jpegData = compressImage(image.imageData, maxSizeKB: 1024) else { return nil }
+            return MultipartFile(
+                fieldName: image.fieldId,
+                fileName: "\(image.fieldId).jpg",
+                mimeType: "image/jpeg",
+                data: jpegData
+            )
         }
-        return result
+
+        return try await apiClient.submitVerification(
+            journeyId: journeyId,
+            fields: fields,
+            files: files
+        )
     }
 
-    func checkStatus(submissionId: String) async throws -> SubmissionStatus {
-        let response: ApiResponse<SubmissionStatus> = try await apiClient.request(.submissionStatus(id: submissionId))
-        guard let status = response.data else {
-            throw APIError.noData
+    func getSubmissionStatus(id: String) async throws -> SubmissionStatus {
+        try await apiClient.get(.getSubmissionStatus(id: id))
+    }
+
+    private func compressImage(_ imageData: Data, maxSizeKB: Int) -> Data? {
+        guard let uiImage = UIImage(data: imageData) else { return nil }
+
+        var compression: CGFloat = 0.9
+        var data = uiImage.jpegData(compressionQuality: compression)
+
+        while let d = data, d.count > maxSizeKB * 1024, compression > 0.1 {
+            compression -= 0.1
+            data = uiImage.jpegData(compressionQuality: compression)
         }
-        return status
+
+        return data
+    }
+}
+
+struct CapturedImage {
+    let fieldId: String
+    let imageData: Data
+    let type: CaptureType
+
+    enum CaptureType {
+        case idFront
+        case idBack
+        case selfie
+        case photo
+        case signature
     }
 }

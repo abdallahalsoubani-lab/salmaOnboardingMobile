@@ -6,6 +6,7 @@ struct SalmaAIApp: App {
     @StateObject private var container = DependencyContainer()
     @StateObject private var languageManager = LanguageManager.shared
     @StateObject private var navigationRouter = NavigationRouter()
+    @StateObject private var connectivity = ConnectivityMonitor.shared
 
     var body: some Scene {
         WindowGroup {
@@ -15,6 +16,7 @@ struct SalmaAIApp: App {
                 .environmentObject(navigationRouter)
                 .environment(\.layoutDirection, languageManager.layoutDirection)
                 .environment(\.locale, languageManager.currentLanguage.locale)
+                .environmentObject(connectivity)
         }
     }
 }

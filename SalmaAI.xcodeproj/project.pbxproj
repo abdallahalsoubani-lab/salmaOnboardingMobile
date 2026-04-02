@@ -94,6 +94,7 @@
 		3D97D945224F1921B1E75D16 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B7E11F08C8940CEE31B0D3 /* ShimmerModifier.swift */; };
 		C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */; };
 		DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */; };
+		A1688F88BF0B1BDBF0BE41F2 /* ConnectivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEDF6ED857C11A23504AF30 /* ConnectivityMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +187,7 @@
 		A0B7E11F08C8940CEE31B0D3 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
 		8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
 		9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFlashModifier.swift; sourceTree = "<group>"; };
+		7AEDF6ED857C11A23504AF30 /* ConnectivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -448,6 +450,7 @@
 				FE80A761CCD89B30F0E30C29 /* APIEndpoints.swift */,
 				E28C307842F836A05D8B7911 /* APIError.swift */,
 				8989B0EAEB9B1BC7914E186B /* TokenManager.swift */,
+				7AEDF6ED857C11A23504AF30 /* ConnectivityMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				3D97D945224F1921B1E75D16 /* ShimmerModifier.swift in Sources */,
 				C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */,
 				DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */,
+				A1688F88BF0B1BDBF0BE41F2 /* ConnectivityMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

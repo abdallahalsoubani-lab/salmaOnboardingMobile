@@ -9,20 +9,20 @@ struct Configuration {
 @MainActor
 class DependencyContainer: ObservableObject {
     let languageManager: LanguageManager
-    let networkService: NetworkServiceProtocol
-    let journeyService: JourneyServiceProtocol
-    let submissionService: SubmissionServiceProtocol
-    let storageService: StorageServiceProtocol
+    let tokenManager: TokenManager
+    let apiClient: APIClient
+    let journeyService: JourneyService
+    let submissionService: SubmissionService
+    let storageService: StorageService
 
     init() {
         self.languageManager = LanguageManager.shared
+        self.tokenManager = TokenManager.shared
+        self.storageService = StorageService()
 
-        let tokenManager = TokenManager()
-        let apiClient = APIClient(baseURL: Configuration.apiBaseURL, tokenManager: tokenManager)
-
-        self.networkService = apiClient
+        let baseURL = storageService.apiBaseURL
+        self.apiClient = APIClient(baseURL: baseURL, tokenManager: TokenManager.shared)
         self.journeyService = JourneyService(apiClient: apiClient)
         self.submissionService = SubmissionService(apiClient: apiClient)
-        self.storageService = StorageService()
     }
 }
