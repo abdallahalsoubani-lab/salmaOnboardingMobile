@@ -1286,6 +1286,76 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "الحد الأقصى" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Max" } }
       }
+    },
+    "checkbox_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يجب الموافقة على الشروط" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You must agree to the terms" } }
+      }
+    },
+    "invalid_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "البريد الإلكتروني غير صحيح" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid email address" } }
+      }
+    },
+    "invalid_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "التاريخ غير صحيح" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid date" } }
+      }
+    },
+    "invalid_selection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الاختيار غير صحيح" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid selection" } }
+      }
+    },
+    "phone_digits_only" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "رقم الهاتف يجب أن يحتوي على أرقام فقط" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Phone number must contain digits only" } }
+      }
+    },
+    "phone_too_short" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "رقم الهاتف قصير جداً" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Phone number is too short" } }
+      }
+    },
+    "date_must_be_past" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "التاريخ يجب أن يكون في الماضي" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date must be in the past" } }
+      }
+    },
+    "date_must_be_future" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "التاريخ يجب أن يكون في المستقبل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date must be in the future" } }
+      }
+    },
+    "fix_errors_before_continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يرجى تصحيح الأخطاء قبل المتابعة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please fix errors before continuing" } }
+      }
+    },
+    "all_pages_valid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "جميع البيانات صحيحة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All data is valid" } }
+      }
     }
   },
   "version" : "1.0"

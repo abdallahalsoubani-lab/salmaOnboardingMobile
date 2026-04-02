@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct FormPageView: View {
     let pageIndex: Int
@@ -6,19 +7,28 @@ struct FormPageView: View {
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var languageManager: LanguageManager
+    @StateObject private var viewModel: FormPageViewModel
 
     @State private var showPhotoPicker = false
     @State private var showDocumentPicker = false
     @State private var showImagePreview = false
     @State private var activeMediaFieldId: String?
 
+    init(pageIndex: Int) {
+        self.pageIndex = pageIndex
+        self._viewModel = StateObject(wrappedValue: FormPageViewModel(pageIndex: pageIndex))
+    }
+
+    private var currentPage: JourneyPage? {
+        let pages = flowState.sortedPages
+        return pages.indices.contains(pageIndex) ? pages[pageIndex] : nil
+    }
+
     var body: some View {
         let pages = flowState.sortedPages
-        let page = pages.indices.contains(pageIndex) ? pages[pageIndex] : nil
         let isLast = pageIndex == pages.count - 1
 
         VStack(spacing: 0) {
-            // Progress bar
             ProgressStepBar(
                 currentStep: pageIndex + 1,
                 totalSteps: pages.count
@@ -26,8 +36,7 @@ struct FormPageView: View {
             .padding(.horizontal, SalmaDesign.Spacing.md)
             .padding(.top, SalmaDesign.Spacing.sm)
 
-            // Page title
-            if let page = page {
+            if let page = currentPage {
                 Text(languageManager.localizedTitle(for: page))
                     .font(SalmaDesign.Typography.title2)
                     .foregroundColor(SalmaDesign.Colors.textPrimary)
@@ -37,27 +46,32 @@ struct FormPageView: View {
                     .padding(.bottom, SalmaDesign.Spacing.md)
             }
 
-            // Scrollable fields
-            ScrollView {
-                VStack(spacing: SalmaDesign.Spacing.lg) {
-                    if let page = page {
-                        let sortedFields = page.fields.sorted(by: { $0.order < $1.order })
-                        ForEach(Array(sortedFields.enumerated()), id: \.element.id) { index, field in
-                            if shouldShowField(field) {
-                                makeFieldView(for: field)
-                                    .staggeredAppear(index: index)
-                                    .transition(.opacity.combined(with: .move(edge: .top)))
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: SalmaDesign.Spacing.lg) {
+                        if let page = currentPage {
+                            let sortedFields = page.fields.sorted(by: { $0.order < $1.order })
+                            ForEach(Array(sortedFields.enumerated()), id: \.element.id) { index, field in
+                                if shouldShowField(field) {
+                                    makeFieldView(for: field)
+                                        .id(field.id)
+                                        .modifier(ShakeEffect(trigger: viewModel.shakeFieldId == field.id))
+                                        .staggeredAppear(index: index)
+                                }
                             }
                         }
                     }
+                    .padding(.horizontal, SalmaDesign.Spacing.md)
+                    .padding(.bottom, 120)
                 }
-                .padding(.horizontal, SalmaDesign.Spacing.md)
-                .padding(.bottom, 120)
+                .onChange(of: viewModel.shakeFieldId) { fieldId in
+                    if let fieldId = fieldId {
+                        withAnimation { proxy.scrollTo(fieldId, anchor: .center) }
+                    }
+                }
             }
 
             Spacer(minLength: 0)
-
-            // Bottom buttons
             bottomButtons(isLast: isLast)
         }
         .background(SalmaDesign.Colors.background)
@@ -74,22 +88,15 @@ struct FormPageView: View {
         }
         .dismissKeyboardOnTap()
         .onAppear { flowState.currentPageIndex = pageIndex }
-        // Photo picker
         .sheet(isPresented: $showPhotoPicker) {
             PhotoPickerView(
                 selectedImage: .constant(nil),
-                onImageSelected: { image in handleGalleryImage(image) },
+                onImageSelected: { handleGalleryImage($0) },
                 onCancel: { showPhotoPicker = false }
             )
         }
-        // Document picker
-        .sheet(isPresented: $showDocumentPicker) {
-            documentPickerSheet
-        }
-        // Image preview
-        .fullScreenCover(isPresented: $showImagePreview) {
-            imagePreviewCover
-        }
+        .sheet(isPresented: $showDocumentPicker) { documentPickerSheet }
+        .fullScreenCover(isPresented: $showImagePreview) { imagePreviewCover }
     }
 
     // MARK: - Field View Builder
@@ -98,19 +105,32 @@ struct FormPageView: View {
     private func makeFieldView(for field: PageField) -> some View {
         let valueBinding = Binding<String>(
             get: { flowState.getValue(for: field.id) },
-            set: { flowState.setValue($0, for: field.id) }
+            set: { newValue in
+                flowState.setValue(newValue, for: field.id)
+                viewModel.validateField(
+                    field: field, value: newValue,
+                    capturedImage: flowState.getCapturedImage(for: field.id),
+                    language: languageManager.currentLanguage
+                )
+            }
         )
 
         let imageBinding = Binding<CapturedImage?>(
             get: { flowState.getCapturedImage(for: field.id) },
-            set: { if let img = $0 { flowState.setCapturedImage(img, for: field.id) } }
+            set: { newImage in
+                if let img = newImage { flowState.setCapturedImage(img, for: field.id) }
+                viewModel.validateField(
+                    field: field, value: flowState.getValue(for: field.id),
+                    capturedImage: newImage, language: languageManager.currentLanguage
+                )
+            }
         )
 
         FieldFactory.makeField(
             for: field,
             value: valueBinding,
             capturedImage: imageBinding,
-            errorMessage: nil,
+            errorMessage: viewModel.error(for: field.id),
             languageManager: languageManager,
             onCameraCapture: { handleCameraCapture($0) },
             onGalleryPick: { handleGalleryPick($0) },
@@ -123,21 +143,7 @@ struct FormPageView: View {
     // MARK: - Conditional Visibility
 
     private func shouldShowField(_ field: PageField) -> Bool {
-        guard let condition = field.validationRules?.condition else { return true }
-        let watchedValue = flowState.getValue(for: condition.field)
-
-        switch condition.operator {
-        case "equals":
-            return watchedValue == (condition.value ?? "")
-        case "not_equals":
-            return watchedValue != (condition.value ?? "")
-        case "contains":
-            return watchedValue.contains(condition.value ?? "")
-        case "not_empty":
-            return !watchedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        default:
-            return true
-        }
+        PageValidator.isFieldVisible(field, allFieldValues: flowState.fieldValues)
     }
 
     // MARK: - Media Handlers
@@ -145,16 +151,11 @@ struct FormPageView: View {
     private func handleCameraCapture(_ field: PageField) {
         activeMediaFieldId = field.id
         let fieldType = FieldType(rawValue: field.type) ?? .photo
-
         switch fieldType {
-        case .idScan:
-            router.presentFullScreen(.idCapture(fieldId: field.id, side: .front))
-        case .selfie:
-            router.presentFullScreen(.selfieCapture(fieldId: field.id))
-        case .photo:
-            router.presentFullScreen(.photoCapture(fieldId: field.id))
-        default:
-            break
+        case .idScan: router.presentFullScreen(.idCapture(fieldId: field.id, side: .front))
+        case .selfie: router.presentFullScreen(.selfieCapture(fieldId: field.id))
+        case .photo: router.presentFullScreen(.photoCapture(fieldId: field.id))
+        default: break
         }
     }
 
@@ -175,12 +176,15 @@ struct FormPageView: View {
 
     private func handleImageRemove(_ field: PageField) {
         flowState.removeCapturedImage(for: field.id)
+        if viewModel.hasAttemptedNext, let f = findField(by: field.id) {
+            viewModel.validateField(field: f, value: flowState.getValue(for: field.id),
+                                    capturedImage: nil, language: languageManager.currentLanguage)
+        }
     }
 
     private func handleGalleryImage(_ image: UIImage) {
         guard let fieldId = activeMediaFieldId,
               let data = image.jpegData(compressionQuality: 0.85) else { return }
-
         let fieldType = findField(by: fieldId).flatMap { FieldType(rawValue: $0.type) } ?? .photo
         let captureType: CapturedImage.CaptureType
         switch fieldType {
@@ -188,37 +192,39 @@ struct FormPageView: View {
         case .selfie: captureType = .selfie
         default: captureType = .photo
         }
-
-        flowState.setCapturedImage(
-            CapturedImage(fieldId: fieldId, imageData: data, type: captureType),
-            for: fieldId
-        )
+        let captured = CapturedImage(fieldId: fieldId, imageData: data, type: captureType)
+        flowState.setCapturedImage(captured, for: fieldId)
+        if viewModel.hasAttemptedNext, let f = findField(by: fieldId) {
+            viewModel.validateField(field: f, value: flowState.getValue(for: fieldId),
+                                    capturedImage: captured, language: languageManager.currentLanguage)
+        }
     }
 
     private func handlePickedDocuments(_ docs: [PickedDocument], fieldId: String) {
         guard let doc = docs.first else { return }
-        flowState.setCapturedImage(
-            CapturedImage(fieldId: fieldId, imageData: doc.data, type: .document),
-            for: fieldId
-        )
+        let captured = CapturedImage(fieldId: fieldId, imageData: doc.data, type: .document)
+        flowState.setCapturedImage(captured, for: fieldId)
+        if viewModel.hasAttemptedNext, let f = findField(by: fieldId) {
+            viewModel.validateField(field: f, value: flowState.getValue(for: fieldId),
+                                    capturedImage: captured, language: languageManager.currentLanguage)
+        }
     }
 
     private func findField(by id: String) -> PageField? {
         flowState.journey?.pages.flatMap { $0.fields }.first { $0.id == id }
     }
 
-    // MARK: - Sheet/Cover Builders
+    // MARK: - Sheets/Covers
 
     @ViewBuilder
     private var documentPickerSheet: some View {
-        if let fieldId = activeMediaFieldId,
-           let field = findField(by: fieldId) {
+        if let fieldId = activeMediaFieldId, let field = findField(by: fieldId) {
             let formats = (field.validationRules?.acceptedFormats ?? ["pdf", "jpg", "png"])
                 .compactMap { $0.utType }
             DocumentPickerView(
                 allowedTypes: formats.isEmpty ? [.pdf, .jpeg, .png] : formats,
                 allowMultiple: field.validationRules?.allowMultiple ?? false,
-                onDocumentsPicked: { docs in handlePickedDocuments(docs, fieldId: fieldId) },
+                onDocumentsPicked: { handlePickedDocuments($0, fieldId: fieldId) },
                 onCancel: { showDocumentPicker = false }
             )
         }
@@ -230,12 +236,8 @@ struct FormPageView: View {
            let captured = flowState.getCapturedImage(for: fieldId),
            let uiImage = UIImage(data: captured.imageData) {
             ImagePreviewOverlay(
-                image: uiImage,
-                isPresented: $showImagePreview,
-                onRetake: {
-                    flowState.removeCapturedImage(for: fieldId)
-                    showImagePreview = false
-                },
+                image: uiImage, isPresented: $showImagePreview,
+                onRetake: { flowState.removeCapturedImage(for: fieldId); showImagePreview = false },
                 onUse: { showImagePreview = false }
             )
         }
@@ -248,29 +250,17 @@ struct FormPageView: View {
         HStack(spacing: SalmaDesign.Spacing.md) {
             if pageIndex > 0 {
                 SalmaButton(
-                    title: String(localized: "previous"),
-                    style: .secondary,
-                    size: .medium,
+                    title: String(localized: "previous"), style: .secondary, size: .medium,
                     icon: languageManager.currentLanguage == .arabic ? "chevron.right" : "chevron.left",
-                    iconPosition: .leading,
-                    action: { router.pop() }
+                    iconPosition: .leading, action: { router.pop() }
                 )
             }
 
             SalmaButton(
-                title: isLast
-                    ? String(localized: "review_and_submit")
-                    : String(localized: "next"),
+                title: isLast ? String(localized: "review_and_submit") : String(localized: "next"),
                 size: .medium,
                 icon: languageManager.currentLanguage == .arabic ? "chevron.left" : "chevron.right",
-                iconPosition: .trailing,
-                action: {
-                    if isLast {
-                        router.push(.review)
-                    } else {
-                        router.push(.formPage(pageIndex: pageIndex + 1))
-                    }
-                }
+                iconPosition: .trailing, action: { handleNext(isLast: isLast) }
             )
         }
         .padding(.horizontal, SalmaDesign.Spacing.md)
@@ -280,5 +270,17 @@ struct FormPageView: View {
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: -4)
                 .mask(Rectangle().padding(.top, -20))
         )
+    }
+
+    private func handleNext(isLast: Bool) {
+        guard let page = currentPage else { return }
+        let isValid = viewModel.validateBeforeNext(
+            page: page, fieldValues: flowState.fieldValues,
+            capturedImages: flowState.capturedImages,
+            language: languageManager.currentLanguage
+        )
+        guard isValid else { return }
+        if isLast { router.push(.review) }
+        else { router.push(.formPage(pageIndex: pageIndex + 1)) }
     }
 }
