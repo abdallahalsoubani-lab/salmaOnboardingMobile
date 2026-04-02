@@ -1202,6 +1202,83 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "اختر..." } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Select..." } }
       }
+    },
+    "camera_not_available" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الكاميرا غير متاحة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Camera not available" } }
+      }
+    },
+    "camera_config_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "حدث خطأ في إعداد الكاميرا" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Camera configuration error" } }
+      }
+    },
+    "camera_permission_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "صلاحية الكاميرا مطلوبة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Camera permission required" } }
+      }
+    },
+    "camera_permission_explanation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يحتاج التطبيق للوصول إلى الكاميرا لتصوير بطاقة الهوية والتقاط صورة شخصية" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The app needs camera access to photograph your ID card and take a selfie" } }
+      }
+    },
+    "photo_library_permission_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "صلاحية المعرض مطلوبة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Photo library permission required" } }
+      }
+    },
+    "photo_library_permission_explanation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يحتاج التطبيق للوصول إلى المعرض لاختيار الصور" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The app needs photo library access to select images" } }
+      }
+    },
+    "selfie_ready" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "ممتاز!" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Perfect!" } }
+      }
+    },
+    "image_too_dark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الصورة مظلمة جداً. تأكد من الإضاءة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Image is too dark. Check the lighting" } }
+      }
+    },
+    "image_too_bright" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الصورة ساطعة جداً" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Image is too bright" } }
+      }
+    },
+    "image_blurry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الصورة غير واضحة. ثبّت الكاميرا" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Image is blurry. Hold the camera steady" } }
+      }
+    },
+    "image_quality_checking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "جاري فحص جودة الصورة..." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Checking image quality..." } }
+      }
     }
   },
   "version" : "1.0"

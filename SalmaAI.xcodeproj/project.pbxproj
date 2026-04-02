@@ -109,6 +109,13 @@
 		2010B92A76915277B14D82E6 /* CaptureSourceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */; };
 		4CF69CFA15F939A8B89FEA78 /* SalmaSignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */; };
 		916369DF55779FBD4DE4F41E /* ImagePreviewOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */; };
+		166984408C2A34A4E7B4E6D8 /* CameraPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BF7C056BDEA84620B7A7A2 /* CameraPermissionHandler.swift */; };
+		C47364FA4E5D2ADB9DF14600 /* PermissionDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94042A9B6677CD0FBF0F3FAB /* PermissionDeniedView.swift */; };
+		D3BEC013399C5890BD04FF33 /* CameraSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94679452373DA420AA09EC /* CameraSessionManager.swift */; };
+		D0DE8E0A157F6B344DC8A168 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA1A8D305FA3133D0ABC9D /* CameraPreviewView.swift */; };
+		CD3AC61EC3681B49BC8049FD /* CameraBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0077C61BCF10AA79A7254 /* CameraBottomBar.swift */; };
+		C10DD62FFFEE0342E7D25D76 /* ImageQualityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CBA880491719BB68F8799 /* ImageQualityChecker.swift */; };
+		365979A930606EF6BE516575 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C2139690D301545984D01 /* PhotoPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +223,13 @@
 		5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSourceSheet.swift; sourceTree = "<group>"; };
 		C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaSignaturePad.swift; sourceTree = "<group>"; };
 		FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewOverlay.swift; sourceTree = "<group>"; };
+		A4BF7C056BDEA84620B7A7A2 /* CameraPermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPermissionHandler.swift; sourceTree = "<group>"; };
+		94042A9B6677CD0FBF0F3FAB /* PermissionDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDeniedView.swift; sourceTree = "<group>"; };
+		BC94679452373DA420AA09EC /* CameraSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionManager.swift; sourceTree = "<group>"; };
+		18FA1A8D305FA3133D0ABC9D /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		E2D0077C61BCF10AA79A7254 /* CameraBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBottomBar.swift; sourceTree = "<group>"; };
+		8F9CBA880491719BB68F8799 /* ImageQualityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQualityChecker.swift; sourceTree = "<group>"; };
+		A06C2139690D301545984D01 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -343,6 +357,10 @@
 			children = (
 				B4F44494D277BAE1CED89071 /* IDCapture */,
 				B8128C299452E43792675FBE /* Selfie */,
+				BC94679452373DA420AA09EC /* CameraSessionManager.swift */,
+				18FA1A8D305FA3133D0ABC9D /* CameraPreviewView.swift */,
+				E2D0077C61BCF10AA79A7254 /* CameraBottomBar.swift */,
+				8F9CBA880491719BB68F8799 /* ImageQualityChecker.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -375,6 +393,7 @@
 			children = (
 				1993A9923ACBAA006AF423D7 /* DocumentPickerView.swift */,
 				6F389BA214E9ACECC8E2E589 /* DocumentPickerViewModel.swift */,
+				A06C2139690D301545984D01 /* PhotoPickerView.swift */,
 			);
 			path = FileUpload;
 			sourceTree = "<group>";
@@ -476,6 +495,7 @@
 				AB1EEC0DDC110BFD1CF004D4 /* JourneyService.swift */,
 				304837E545127D4F22657E01 /* SubmissionService.swift */,
 				A578110E11425BB76C3A3DEE /* StorageService.swift */,
+				A4BF7C056BDEA84620B7A7A2 /* CameraPermissionHandler.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -521,6 +541,7 @@
 				5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */,
 				C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */,
 				FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */,
+				94042A9B6677CD0FBF0F3FAB /* PermissionDeniedView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -730,6 +751,13 @@
 				2010B92A76915277B14D82E6 /* CaptureSourceSheet.swift in Sources */,
 				4CF69CFA15F939A8B89FEA78 /* SalmaSignaturePad.swift in Sources */,
 				916369DF55779FBD4DE4F41E /* ImagePreviewOverlay.swift in Sources */,
+				166984408C2A34A4E7B4E6D8 /* CameraPermissionHandler.swift in Sources */,
+				C47364FA4E5D2ADB9DF14600 /* PermissionDeniedView.swift in Sources */,
+				D3BEC013399C5890BD04FF33 /* CameraSessionManager.swift in Sources */,
+				D0DE8E0A157F6B344DC8A168 /* CameraPreviewView.swift in Sources */,
+				CD3AC61EC3681B49BC8049FD /* CameraBottomBar.swift in Sources */,
+				C10DD62FFFEE0342E7D25D76 /* ImageQualityChecker.swift in Sources */,
+				365979A930606EF6BE516575 /* PhotoPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

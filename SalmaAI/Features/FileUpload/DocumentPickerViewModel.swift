@@ -1,9 +1,37 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
-// Will be implemented in a future prompt
-@MainActor
-class DocumentPickerViewModel: ObservableObject {
-    @Published var selectedFileURL: URL?
-    @Published var selectedFileName: String?
-    @Published var error: String?
+// Document picker is now handled via DocumentPickerView (UIViewControllerRepresentable)
+// This file provides helper utilities for file validation
+
+struct FileValidator {
+    static func validate(
+        document: PickedDocument,
+        maxSizeMB: Int? = nil,
+        acceptedFormats: [String]? = nil
+    ) -> String? {
+        // Check file size
+        if let maxMB = maxSizeMB {
+            let maxBytes = maxMB * 1_048_576
+            if document.fileSize > maxBytes {
+                return String(localized: "file_too_large")
+            }
+        }
+
+        // Check format
+        if let formats = acceptedFormats, !formats.isEmpty {
+            if !formats.contains(document.fileExtension.lowercased()) {
+                return String(localized: "unsupported_format")
+            }
+        }
+
+        return nil
+    }
+
+    static func allowedUTTypes(from formats: [String]?) -> [UTType] {
+        guard let formats = formats, !formats.isEmpty else {
+            return SalmaDesign.FileUpload.allAllowedFormats.compactMap { $0.utType }
+        }
+        return formats.compactMap { $0.utType }
+    }
 }
