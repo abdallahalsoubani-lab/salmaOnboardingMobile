@@ -69,6 +69,8 @@ struct SalmaDatePicker: View {
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
+        .accessibilityLabel(label)
+        .accessibilityValue(selectedDate != nil ? formattedDate : String(localized: "no_date_selected"))
         .animation(AppAnimations.fadeIn, value: errorMessage)
         .sheet(isPresented: $showPicker) {
             datePickerSheet

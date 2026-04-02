@@ -48,6 +48,8 @@ struct MediaFieldButton: View {
                 .foregroundColor(SalmaDesign.Colors.danger)
             }
         }
+        .accessibilityLabel(label)
+        .accessibilityValue(capturedImage != nil ? String(localized: "captured") : (capturedFileName ?? String(localized: "empty")))
         .confirmationDialog(
             String(localized: "choose_source"),
             isPresented: $showSourceSheet,

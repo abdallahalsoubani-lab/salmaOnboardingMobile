@@ -285,8 +285,8 @@ struct ReviewView: View {
 
             SalmaButton(
                 title: String(localized: "submit"), size: .large,
-                icon: "paperplane", iconPosition: .trailing,
                 isDisabled: !validationErrors.isEmpty,
+                icon: "paperplane", iconPosition: .trailing,
                 action: { showSubmitConfirm = true }
             )
             .padding(.horizontal, SalmaDesign.Spacing.md)

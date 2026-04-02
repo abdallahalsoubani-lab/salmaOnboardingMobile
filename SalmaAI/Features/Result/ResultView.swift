@@ -222,7 +222,7 @@ struct ResultView: View {
                     }
                 }
                 SalmaButton(title: String(localized: "check_status"), style: .outline, size: .medium,
-                            icon: "arrow.clockwise", isLoading: isPolling, action: { pollStatusOnce() })
+                            isLoading: isPolling, icon: "arrow.clockwise", action: { pollStatusOnce() })
                 SalmaButton(title: String(localized: "done"), size: .large, action: { finishFlow() })
             }
         }

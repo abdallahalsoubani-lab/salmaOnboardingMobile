@@ -108,7 +108,7 @@ struct SDKContainerView: View {
             PhotoCaptureView(fieldId: fieldId)
         case .signaturePad(let fieldId):
             SignaturePadView(fieldId: fieldId)
-        case .imagePreview(let fieldId, let data):
+        case .imagePreview(_, let data):
             if let img = UIImage(data: data) {
                 ImagePreviewOverlay(
                     image: img, isPresented: .constant(true),

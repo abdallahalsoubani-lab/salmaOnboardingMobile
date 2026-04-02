@@ -12,6 +12,7 @@ struct StatusBadge: View {
             .padding(.vertical, size == .small ? 2 : 4)
             .background(statusColor.opacity(0.15))
             .cornerRadius(SalmaDesign.Radius.full)
+            .accessibilityLabel(displayLabel)
     }
 
     private var statusColor: Color {

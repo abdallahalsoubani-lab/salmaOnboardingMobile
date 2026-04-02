@@ -8,7 +8,7 @@ options:
 
 settings:
   base:
-    SWIFT_VERSION: "5.0"
+    SWIFT_VERSION: "5.9"
     TARGETED_DEVICE_FAMILY: "1,2"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
@@ -21,53 +21,49 @@ targets:
       - path: SalmaAI
         excludes:
           - "**/.DS_Store"
+          - "Resources/Info.plist"
     resources:
       - path: SalmaAI/Resources/Assets.xcassets
       - path: SalmaAI/Resources/Localizable.xcstrings
     settings:
       base:
-        INFOPLIST_FILE: SalmaAI/Resources/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.onboarding
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-    info:
-      path: SalmaAI/Resources/Info.plist
-      properties:
-        CFBundleDisplayName: "Salma AI"
-        CFBundleShortVersionString: "1.0.0"
-        CFBundleVersion: "1"
-        UILaunchScreen: {}
-        UISupportedInterfaceOrientations:
-          - UIInterfaceOrientationPortrait
-        NSCameraUsageDescription: "Salma AI needs camera access to photograph your ID card and take a selfie for identity verification"
-        NSPhotoLibraryUsageDescription: "Salma AI needs photo library access to select images for upload"
-        API_BASE_URL: "http://localhost:5001/api/v1"
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_CFBundleDisplayName: "Salma AI"
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_NSCameraUsageDescription: "Salma AI needs camera access to photograph your ID card and take a selfie for identity verification"
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Salma AI needs photo library access to select images for upload"
 
   SalmaAITests:
     type: bundle.unit-test
     platform: iOS
     sources:
       - path: SalmaAITests
+        excludes:
+          - "**/.DS_Store"
     dependencies:
       - target: SalmaAI
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
 
   SalmaAIDemo:
     type: application
     platform: iOS
     sources:
       - path: SalmaAIDemo
+        excludes:
+          - "**/.DS_Store"
     dependencies:
       - target: SalmaAI
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.demo
-        INFOPLIST_FILE: ""
-    info:
-      properties:
-        CFBundleDisplayName: "Salma AI Demo"
-        CFBundleShortVersionString: "1.0.0"
-        CFBundleVersion: "1"
-        UILaunchScreen: {}
-        UISupportedInterfaceOrientations:
-          - UIInterfaceOrientationPortrait
-        NSCameraUsageDescription: "Camera access needed for identity verification demo"
-        NSPhotoLibraryUsageDescription: "Photo library access needed for image upload demo"
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_CFBundleDisplayName: "Salma AI Demo"
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_NSCameraUsageDescription: "Camera access needed for identity verification demo"
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Photo library access needed for image upload demo"

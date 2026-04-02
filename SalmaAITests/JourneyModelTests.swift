@@ -37,19 +37,19 @@ final class JourneyModelTests: XCTestCase {
     }
 
     func test_anyCodableValue_decodesInt() throws {
-        let json = """{"field":"x","operator":"lt","value":18}""".data(using: .utf8)!
+        let json = #"{"field":"x","operator":"lt","value":18}"#.data(using: .utf8)!
         let condition = try JSONDecoder().decode(RuleCondition.self, from: json)
         XCTAssertEqual(condition.value?.intValue, 18)
     }
 
     func test_anyCodableValue_decodesString() throws {
-        let json = """{"field":"x","operator":"eq","value":"test"}""".data(using: .utf8)!
+        let json = #"{"field":"x","operator":"eq","value":"test"}"#.data(using: .utf8)!
         let condition = try JSONDecoder().decode(RuleCondition.self, from: json)
         XCTAssertEqual(condition.value?.stringValue, "test")
     }
 
     func test_anyCodableValue_decodesBool() throws {
-        let json = """{"field":"x","operator":"eq","value":true}""".data(using: .utf8)!
+        let json = #"{"field":"x","operator":"eq","value":true}"#.data(using: .utf8)!
         let condition = try JSONDecoder().decode(RuleCondition.self, from: json)
         XCTAssertEqual(condition.value?.boolValue, true)
     }
