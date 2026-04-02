@@ -105,6 +105,10 @@
 		EBFF60878D0719968F902D37 /* SubmissionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656404E67F58145EF196163 /* SubmissionProgressView.swift */; };
 		7B0F24A1474546DE1629A1A7 /* FieldInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543E74B4F5A316FB84FAED2 /* FieldInfoSheet.swift */; };
 		2A987BCA0A18ADBC4FD514A4 /* NoInternetBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF782359911CF577CDFD117 /* NoInternetBanner.swift */; };
+		FD52F26D07F5F6F5263AC31A /* MediaFieldButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1441BB6841097E9B84116D /* MediaFieldButton.swift */; };
+		2010B92A76915277B14D82E6 /* CaptureSourceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */; };
+		4CF69CFA15F939A8B89FEA78 /* SalmaSignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */; };
+		916369DF55779FBD4DE4F41E /* ImagePreviewOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -208,6 +212,10 @@
 		9656404E67F58145EF196163 /* SubmissionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionProgressView.swift; sourceTree = "<group>"; };
 		B543E74B4F5A316FB84FAED2 /* FieldInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoSheet.swift; sourceTree = "<group>"; };
 		6EF782359911CF577CDFD117 /* NoInternetBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetBanner.swift; sourceTree = "<group>"; };
+		0C1441BB6841097E9B84116D /* MediaFieldButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFieldButton.swift; sourceTree = "<group>"; };
+		5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSourceSheet.swift; sourceTree = "<group>"; };
+		C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaSignaturePad.swift; sourceTree = "<group>"; };
+		FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -509,6 +517,10 @@
 				F780E88E8A8B2D911A414523 /* ProgressStepBar.swift */,
 				E512A1F2835AB580111D9890 /* StatusBadge.swift */,
 				6EF782359911CF577CDFD117 /* NoInternetBanner.swift */,
+				0C1441BB6841097E9B84116D /* MediaFieldButton.swift */,
+				5D888A06CAFB51C195A2F259 /* CaptureSourceSheet.swift */,
+				C762D049F1F1DA7774334F16 /* SalmaSignaturePad.swift */,
+				FA39CFD6875A28A7C33F1FC6 /* ImagePreviewOverlay.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -714,6 +726,10 @@
 				EBFF60878D0719968F902D37 /* SubmissionProgressView.swift in Sources */,
 				7B0F24A1474546DE1629A1A7 /* FieldInfoSheet.swift in Sources */,
 				2A987BCA0A18ADBC4FD514A4 /* NoInternetBanner.swift in Sources */,
+				FD52F26D07F5F6F5263AC31A /* MediaFieldButton.swift in Sources */,
+				2010B92A76915277B14D82E6 /* CaptureSourceSheet.swift in Sources */,
+				4CF69CFA15F939A8B89FEA78 /* SalmaSignaturePad.swift in Sources */,
+				916369DF55779FBD4DE4F41E /* ImagePreviewOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

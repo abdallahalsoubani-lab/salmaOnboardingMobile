@@ -1139,6 +1139,69 @@
           }
         }
       }
+    },
+    "tap_to_capture" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اضغط لالتقاط صورة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to capture" } }
+      }
+    },
+    "tap_to_choose" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اضغط لاختيار ملف" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to choose a file" } }
+      }
+    },
+    "choose_source" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اختر المصدر" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose Source" } }
+      }
+    },
+    "change" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تغيير" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Change" } }
+      }
+    },
+    "remove" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "حذف" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove" } }
+      }
+    },
+    "clear_signature" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "مسح التوقيع" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Signature" } }
+      }
+    },
+    "sign_here" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "وقّع هنا" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sign here" } }
+      }
+    },
+    "select_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اختر التاريخ" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select date" } }
+      }
+    },
+    "select" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اختر..." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select..." } }
+      }
     }
   },
   "version" : "1.0"

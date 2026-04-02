@@ -1,34 +1,59 @@
 import SwiftUI
 
-// Will be implemented in Prompt 4
 struct SalmaCheckbox: View {
-    let label: String
     @Binding var isChecked: Bool
+    var consentText: String = ""
     var errorMessage: String?
+    var isRequired: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: SalmaDesign.Spacing.xs) {
             Button {
-                isChecked.toggle()
+                withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) {
+                    isChecked.toggle()
+                }
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
             } label: {
                 HStack(alignment: .top, spacing: SalmaDesign.Spacing.sm) {
-                    Image(systemName: isChecked ? "checkmark.square.fill" : "square")
-                        .font(.system(size: 22))
-                        .foregroundColor(isChecked ? SalmaDesign.Colors.primary : SalmaDesign.Colors.textTertiary)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(isChecked ? Color.clear : SalmaDesign.Colors.border, lineWidth: 2)
+                            .frame(width: 24, height: 24)
 
-                    Text(label)
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(isChecked ? SalmaDesign.Colors.primary : .clear)
+                            .frame(width: 24, height: 24)
+
+                        if isChecked {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundColor(.white)
+                                .transition(.scale.combined(with: .opacity))
+                        }
+                    }
+                    .animation(.spring(response: 0.25, dampingFraction: 0.6), value: isChecked)
+
+                    Text(consentText)
                         .font(SalmaDesign.Typography.callout)
                         .foregroundColor(SalmaDesign.Colors.textPrimary)
                         .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .buttonStyle(.plain)
 
             if let error = errorMessage {
-                Text(error)
-                    .font(SalmaDesign.Typography.caption)
-                    .foregroundColor(SalmaDesign.Colors.danger)
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle")
+                        .font(.system(size: 12))
+                    Text(error)
+                        .font(SalmaDesign.Typography.caption)
+                }
+                .foregroundColor(SalmaDesign.Colors.danger)
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
+        .animation(AppAnimations.fadeIn, value: errorMessage)
     }
 }

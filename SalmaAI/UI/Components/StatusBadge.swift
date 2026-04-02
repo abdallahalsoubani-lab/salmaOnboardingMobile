@@ -2,27 +2,45 @@ import SwiftUI
 
 struct StatusBadge: View {
     let status: String
+    var size: BadgeSize = .medium
 
     var body: some View {
-        Text(status)
-            .font(SalmaDesign.Typography.captionMedium)
-            .foregroundColor(foregroundColor)
-            .padding(.horizontal, SalmaDesign.Spacing.sm)
-            .padding(.vertical, SalmaDesign.Spacing.xs)
-            .background(backgroundColor)
+        Text(displayLabel)
+            .font(size == .small ? SalmaDesign.Typography.caption : SalmaDesign.Typography.captionMedium)
+            .foregroundColor(statusColor)
+            .padding(.horizontal, size == .small ? 8 : 12)
+            .padding(.vertical, size == .small ? 2 : 4)
+            .background(statusColor.opacity(0.15))
             .cornerRadius(SalmaDesign.Radius.full)
     }
 
-    private var foregroundColor: Color {
+    private var statusColor: Color {
         switch status.lowercased() {
-        case "approved": return SalmaDesign.Colors.success
+        case "approved", "published": return SalmaDesign.Colors.success
         case "rejected": return SalmaDesign.Colors.danger
-        case "pending", "pending review": return SalmaDesign.Colors.warning
-        default: return SalmaDesign.Colors.info
+        case "pending", "flagged": return SalmaDesign.Colors.warning
+        case "inreview", "in review": return SalmaDesign.Colors.info
+        case "draft", "archived": return SalmaDesign.Colors.textSecondary
+        default: return SalmaDesign.Colors.textSecondary
         }
     }
 
-    private var backgroundColor: Color {
-        foregroundColor.opacity(0.12)
+    private var displayLabel: String {
+        let isArabic = LanguageManager.shared.currentLanguage == .arabic
+        switch status.lowercased() {
+        case "approved": return isArabic ? "مقبول" : "Approved"
+        case "rejected": return isArabic ? "مرفوض" : "Rejected"
+        case "pending": return isArabic ? "قيد الانتظار" : "Pending"
+        case "inreview", "in review": return isArabic ? "قيد المراجعة" : "In Review"
+        case "flagged": return isArabic ? "مُعلَّم" : "Flagged"
+        case "draft": return isArabic ? "مسودة" : "Draft"
+        case "published": return isArabic ? "منشورة" : "Published"
+        case "archived": return isArabic ? "مؤرشفة" : "Archived"
+        default: return status
+        }
     }
+}
+
+enum BadgeSize {
+    case small, medium
 }
