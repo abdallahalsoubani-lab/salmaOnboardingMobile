@@ -122,6 +122,9 @@
 		8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4574729515FE3FC50E13AE /* HapticManager.swift */; };
 		695DD5A4AB988AE9A90B1212 /* FaceDetectorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89D9795723C42A9324146B0 /* FaceDetectorService.swift */; };
 		2F6A4D179ECEC28B6A791594 /* SelfieCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7166A8A79ACA950DA904F18 /* SelfieCameraSession.swift */; };
+		25F65B1EB0A08953357E63D4 /* SDKCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D11F27D858E15AD24896B6C /* SDKCoordinator.swift */; };
+		D5F1EC90585F0B4B693BCA18 /* SDKContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FC2D7F99E54317C3AE5953 /* SDKContainerView.swift */; };
+		C5A1358663F261C44973C563 /* SDKConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1597F531BB5445DCEC660E1F /* SDKConfigManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -242,6 +245,9 @@
 		AD4574729515FE3FC50E13AE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		C89D9795723C42A9324146B0 /* FaceDetectorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectorService.swift; sourceTree = "<group>"; };
 		B7166A8A79ACA950DA904F18 /* SelfieCameraSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieCameraSession.swift; sourceTree = "<group>"; };
+		5D11F27D858E15AD24896B6C /* SDKCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKCoordinator.swift; sourceTree = "<group>"; };
+		B3FC2D7F99E54317C3AE5953 /* SDKContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKContainerView.swift; sourceTree = "<group>"; };
+		1597F531BB5445DCEC660E1F /* SDKConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKConfigManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -499,6 +505,9 @@
 			isa = PBXGroup;
 			children = (
 				9BF83AA11DCDDB41E75F6137 /* SalmaSDK.swift */,
+				5D11F27D858E15AD24896B6C /* SDKCoordinator.swift */,
+				B3FC2D7F99E54317C3AE5953 /* SDKContainerView.swift */,
+				1597F531BB5445DCEC660E1F /* SDKConfigManager.swift */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -782,6 +791,9 @@
 				8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */,
 				695DD5A4AB988AE9A90B1212 /* FaceDetectorService.swift in Sources */,
 				2F6A4D179ECEC28B6A791594 /* SelfieCameraSession.swift in Sources */,
+				25F65B1EB0A08953357E63D4 /* SDKCoordinator.swift in Sources */,
+				D5F1EC90585F0B4B693BCA18 /* SDKContainerView.swift in Sources */,
+				C5A1358663F261C44973C563 /* SDKConfigManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

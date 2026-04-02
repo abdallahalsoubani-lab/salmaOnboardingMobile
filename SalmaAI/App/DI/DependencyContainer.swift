@@ -15,13 +15,13 @@ class DependencyContainer: ObservableObject {
     let submissionService: SubmissionService
     let storageService: StorageService
 
-    init() {
+    init(baseURL: String? = nil) {
         self.languageManager = LanguageManager.shared
         self.tokenManager = TokenManager.shared
         self.storageService = StorageService()
 
-        let baseURL = storageService.apiBaseURL
-        self.apiClient = APIClient(baseURL: baseURL, tokenManager: TokenManager.shared)
+        let url = baseURL ?? storageService.apiBaseURL
+        self.apiClient = APIClient(baseURL: url, tokenManager: TokenManager.shared)
         self.journeyService = JourneyService(apiClient: apiClient)
         self.submissionService = SubmissionService(apiClient: apiClient)
     }
