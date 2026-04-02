@@ -1,8 +1,9 @@
 import SwiftUI
 
-// Will be implemented in Prompt 10
+// Deprecated: Use ReviewView and SubmissionProgressView instead
+// Kept for backwards compatibility with project references
 struct SubmissionView: View {
     var body: some View {
-        Text("Submission — Coming in Prompt 10")
+        ReviewView()
     }
 }

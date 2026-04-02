@@ -95,6 +95,16 @@
 		C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */; };
 		DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */; };
 		A1688F88BF0B1BDBF0BE41F2 /* ConnectivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEDF6ED857C11A23504AF30 /* ConnectivityMonitor.swift */; };
+		EEB7A972FFA60A3E841F3174 /* VerificationFlowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC029DE6A7C13854612BA6 /* VerificationFlowState.swift */; };
+		ADC264348EC1152F19B66DDF /* JourneyLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508165DC47EAA01F14852DDE /* JourneyLoadingView.swift */; };
+		5472FDBBBE1160FED74E9793 /* LanguageSwitchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E66026E4BF91019B6A9C1 /* LanguageSwitchSheet.swift */; };
+		FF1F0D64FDFA9AD9E748BB2E /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B8CA16973B9841FDB17004 /* PhotoCaptureView.swift */; };
+		C2BC369E880D8E773945E2EE /* ImagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE2E3E7DF0D7B13D6B7ABC2 /* ImagePreviewView.swift */; };
+		06760BC870256C68203C344A /* SignaturePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761CC20B5D2523DC94B6B41E /* SignaturePadView.swift */; };
+		F1D30250DF55788F6A69EF67 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FFFE39E85FBFFFFA93ED2D /* ReviewView.swift */; };
+		EBFF60878D0719968F902D37 /* SubmissionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656404E67F58145EF196163 /* SubmissionProgressView.swift */; };
+		7B0F24A1474546DE1629A1A7 /* FieldInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543E74B4F5A316FB84FAED2 /* FieldInfoSheet.swift */; };
+		2A987BCA0A18ADBC4FD514A4 /* NoInternetBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF782359911CF577CDFD117 /* NoInternetBanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +198,16 @@
 		8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
 		9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFlashModifier.swift; sourceTree = "<group>"; };
 		7AEDF6ED857C11A23504AF30 /* ConnectivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMonitor.swift; sourceTree = "<group>"; };
+		59BC029DE6A7C13854612BA6 /* VerificationFlowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationFlowState.swift; sourceTree = "<group>"; };
+		508165DC47EAA01F14852DDE /* JourneyLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyLoadingView.swift; sourceTree = "<group>"; };
+		6D7E66026E4BF91019B6A9C1 /* LanguageSwitchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSwitchSheet.swift; sourceTree = "<group>"; };
+		72B8CA16973B9841FDB17004 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
+		ECE2E3E7DF0D7B13D6B7ABC2 /* ImagePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewView.swift; sourceTree = "<group>"; };
+		761CC20B5D2523DC94B6B41E /* SignaturePadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaturePadView.swift; sourceTree = "<group>"; };
+		45FFFE39E85FBFFFFA93ED2D /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		9656404E67F58145EF196163 /* SubmissionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionProgressView.swift; sourceTree = "<group>"; };
+		B543E74B4F5A316FB84FAED2 /* FieldInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoSheet.swift; sourceTree = "<group>"; };
+		6EF782359911CF577CDFD117 /* NoInternetBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetBanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -325,6 +345,8 @@
 				612BD31D37ACCE84FF1D7AC1 /* IDCaptureView.swift */,
 				0B909619A70280C5D65508CA /* IDCaptureViewModel.swift */,
 				541B4A27867DD490379AB075 /* IDCardOverlay.swift */,
+				72B8CA16973B9841FDB17004 /* PhotoCaptureView.swift */,
+				ECE2E3E7DF0D7B13D6B7ABC2 /* ImagePreviewView.swift */,
 			);
 			path = IDCapture;
 			sourceTree = "<group>";
@@ -335,6 +357,7 @@
 				2546877D19DAC3AF4636ACAC /* SelfieCaptureView.swift */,
 				63D510A5D5FE2CDE461452CD /* SelfieCaptureViewModel.swift */,
 				9BD24E5EC2B2A7A2BB5706FB /* FaceOvalOverlay.swift */,
+				761CC20B5D2523DC94B6B41E /* SignaturePadView.swift */,
 			);
 			path = Selfie;
 			sourceTree = "<group>";
@@ -355,6 +378,7 @@
 				076FEBF4B363FFBFA26892DD /* FormPage */,
 				C88DE288672B90EA9A98608C /* JourneyContainerView.swift */,
 				B32CC113B1C2F768ABEF4A19 /* JourneyContainerViewModel.swift */,
+				508165DC47EAA01F14852DDE /* JourneyLoadingView.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -374,6 +398,7 @@
 				4E299B35F99C1CBB605E8CCD /* SignatureFieldView.swift */,
 				9EE8E68B2703BB18369B3F01 /* CheckboxFieldView.swift */,
 				79D309D19AB41B18470419CE /* FileUploadFieldView.swift */,
+				B543E74B4F5A316FB84FAED2 /* FieldInfoSheet.swift */,
 			);
 			path = FieldViews;
 			sourceTree = "<group>";
@@ -392,6 +417,7 @@
 			children = (
 				766CEE647A5D529915F27787 /* LanguageSelectionView.swift */,
 				6258F0EAD227C6FAF5242B03 /* LanguageManager.swift */,
+				6D7E66026E4BF91019B6A9C1 /* LanguageSwitchSheet.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -410,6 +436,8 @@
 			children = (
 				4596DF0912D62C796A11D135 /* SubmissionView.swift */,
 				7BAA598F94B34300118D3F08 /* SubmissionViewModel.swift */,
+				45FFFE39E85FBFFFFA93ED2D /* ReviewView.swift */,
+				9656404E67F58145EF196163 /* SubmissionProgressView.swift */,
 			);
 			path = Submission;
 			sourceTree = "<group>";
@@ -420,6 +448,7 @@
 				EF6E2ED7E57E5AA76496587B /* AppCoordinator.swift */,
 				2EE5D51C039E1D664EED5160 /* Route.swift */,
 				248DAE2014FE889E98FF2465 /* NavigationRouter.swift */,
+				59BC029DE6A7C13854612BA6 /* VerificationFlowState.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -479,6 +508,7 @@
 				00D2EC4ECD1893BC4E6C5A87 /* ErrorView.swift */,
 				F780E88E8A8B2D911A414523 /* ProgressStepBar.swift */,
 				E512A1F2835AB580111D9890 /* StatusBadge.swift */,
+				6EF782359911CF577CDFD117 /* NoInternetBanner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -674,6 +704,16 @@
 				C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */,
 				DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */,
 				A1688F88BF0B1BDBF0BE41F2 /* ConnectivityMonitor.swift in Sources */,
+				EEB7A972FFA60A3E841F3174 /* VerificationFlowState.swift in Sources */,
+				ADC264348EC1152F19B66DDF /* JourneyLoadingView.swift in Sources */,
+				5472FDBBBE1160FED74E9793 /* LanguageSwitchSheet.swift in Sources */,
+				FF1F0D64FDFA9AD9E748BB2E /* PhotoCaptureView.swift in Sources */,
+				C2BC369E880D8E773945E2EE /* ImagePreviewView.swift in Sources */,
+				06760BC870256C68203C344A /* SignaturePadView.swift in Sources */,
+				F1D30250DF55788F6A69EF67 /* ReviewView.swift in Sources */,
+				EBFF60878D0719968F902D37 /* SubmissionProgressView.swift in Sources */,
+				7B0F24A1474546DE1629A1A7 /* FieldInfoSheet.swift in Sources */,
+				2A987BCA0A18ADBC4FD514A4 /* NoInternetBanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

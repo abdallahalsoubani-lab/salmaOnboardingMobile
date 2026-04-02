@@ -35,6 +35,15 @@ enum FieldType: String, Codable, CaseIterable {
         self == .fileUpload
     }
 
+    var isCamera: Bool {
+        switch self {
+        case .photo, .idScan, .selfie:
+            return true
+        default:
+            return false
+        }
+    }
+
     func captureSource(sourceType: String?) -> CaptureSource {
         switch self {
         case .fileUpload:

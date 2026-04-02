@@ -1,7 +1,7 @@
 import SwiftUI
 
-// Will be fully implemented in Prompt 11
-struct ResultView: View {
+// Will be fully implemented in Prompt 10
+struct ReviewView: View {
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var languageManager: LanguageManager
@@ -10,31 +10,30 @@ struct ResultView: View {
         VStack(spacing: SalmaDesign.Spacing.lg) {
             Spacer()
 
-            SuccessCheckmarkView()
+            Image(systemName: "doc.text.magnifyingglass")
+                .font(.system(size: 48))
+                .foregroundColor(SalmaDesign.Colors.primary)
 
-            Text(String(localized: "submission_success"))
-                .font(SalmaDesign.Typography.title2)
+            Text(languageManager.currentLanguage == .arabic
+                 ? "مراجعة البيانات"
+                 : "Review Data")
+                .font(SalmaDesign.Typography.title1)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, SalmaDesign.Spacing.lg)
 
-            Text(String(localized: "pending"))
+            Text("Placeholder — will be built in Prompt 10")
                 .font(SalmaDesign.Typography.callout)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
 
             Spacer()
 
-            SalmaButton(
-                title: languageManager.currentLanguage == .arabic ? "إغلاق" : "Close"
-            ) {
-                flowState.reset()
-                router.restartVerification()
+            SalmaButton(title: String(localized: "submit")) {
+                router.push(.submitting)
             }
             .padding(.horizontal, SalmaDesign.Spacing.lg)
             .padding(.bottom, SalmaDesign.Spacing.xl)
         }
         .background(SalmaDesign.Colors.background.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(false)
     }
 }

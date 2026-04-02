@@ -1,7 +1,7 @@
 import SwiftUI
 
-// Will be fully implemented in Prompt 9
-struct SelfieCaptureView: View {
+// Will be fully implemented alongside IDCapture
+struct PhotoCaptureView: View {
     let fieldId: String
 
     @EnvironmentObject var flowState: VerificationFlowState
@@ -11,25 +11,21 @@ struct SelfieCaptureView: View {
         VStack(spacing: SalmaDesign.Spacing.lg) {
             Spacer()
 
-            Image(systemName: "person.crop.circle.badge.checkmark")
+            Image(systemName: "camera.fill")
                 .font(.system(size: 64))
                 .foregroundColor(SalmaDesign.Colors.primary)
 
-            Text("Selfie Capture")
+            Text("Photo Capture")
                 .font(SalmaDesign.Typography.title2)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
 
-            Text("Coming in Prompt 9")
-                .font(SalmaDesign.Typography.callout)
-                .foregroundColor(SalmaDesign.Colors.textSecondary)
-
             SalmaButton(title: "Simulate Capture") {
-                let renderer = UIGraphicsImageRenderer(size: CGSize(width: 300, height: 400))
+                let renderer = UIGraphicsImageRenderer(size: CGSize(width: 400, height: 300))
                 let data = renderer.jpegData(withCompressionQuality: 0.8) { ctx in
                     UIColor.systemGray5.setFill()
-                    ctx.fill(CGRect(x: 0, y: 0, width: 300, height: 400))
+                    ctx.fill(CGRect(x: 0, y: 0, width: 400, height: 300))
                 }
-                let image = CapturedImage(fieldId: fieldId, imageData: data, type: .selfie)
+                let image = CapturedImage(fieldId: fieldId, imageData: data, type: .photo)
                 flowState.setCapturedImage(image, for: fieldId)
                 router.dismissFullScreen()
             }
