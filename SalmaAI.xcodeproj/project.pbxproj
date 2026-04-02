@@ -83,6 +83,17 @@
 		642D6B6D19389F309BD6C17C /* SalmaSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF83AA11DCDDB41E75F6137 /* SalmaSDK.swift */; };
 		5AB2D2E8C5A7FD182D2FD028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD107D206CD2DAF643628B /* Assets.xcassets */; };
 		1B393080CF6D59C0F7DB7DBF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E4051F96925CB50DE6DA9664 /* Localizable.xcstrings */; };
+		F6A7F5666E4C3DDEF2BA625C /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE069CC49B658EB8947E94D /* SplashView.swift */; };
+		209F4D721C07A34267F75EE5 /* AppAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5EA703DCD4373548E7E432 /* AppAnimations.swift */; };
+		549E895BBF0EC6D19BB2EA20 /* SuccessCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C1A963B2713E0CEF6BFECB /* SuccessCheckmarkView.swift */; };
+		83328FFDC0DD1E7F8DD06445 /* RejectedXMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599F7EF68C38DFB36A4A6BE9 /* RejectedXMarkView.swift */; };
+		36F7D15F60EC8BBC4898FF29 /* PendingClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D616199D7C64A3CC72BAFA8 /* PendingClockView.swift */; };
+		2B5494CD1C66E799EE654BC9 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311CB499235572B28493AF94 /* ConfettiView.swift */; };
+		4AB12ABDEC5022064262AAD9 /* PageTransitionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0DD4622C9021F69D8A149E /* PageTransitionModifier.swift */; };
+		DFE9D1F1F575F10937636C23 /* StaggeredAppearModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFF957B41CA1996EB51FC /* StaggeredAppearModifier.swift */; };
+		3D97D945224F1921B1E75D16 /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B7E11F08C8940CEE31B0D3 /* ShimmerModifier.swift */; };
+		C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */; };
+		DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +175,17 @@
 		67FD107D206CD2DAF643628B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4051F96925CB50DE6DA9664 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A803FFDBF2EC055C1723E269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EE069CC49B658EB8947E94D /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		6A5EA703DCD4373548E7E432 /* AppAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnimations.swift; sourceTree = "<group>"; };
+		23C1A963B2713E0CEF6BFECB /* SuccessCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCheckmarkView.swift; sourceTree = "<group>"; };
+		599F7EF68C38DFB36A4A6BE9 /* RejectedXMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectedXMarkView.swift; sourceTree = "<group>"; };
+		7D616199D7C64A3CC72BAFA8 /* PendingClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingClockView.swift; sourceTree = "<group>"; };
+		311CB499235572B28493AF94 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		0C0DD4622C9021F69D8A149E /* PageTransitionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTransitionModifier.swift; sourceTree = "<group>"; };
+		829CFF957B41CA1996EB51FC /* StaggeredAppearModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredAppearModifier.swift; sourceTree = "<group>"; };
+		A0B7E11F08C8940CEE31B0D3 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
+		8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
+		9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFlashModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -281,6 +303,7 @@
 				58E41F3635DD54C0FD3EADDA /* Language */,
 				74D6641CEEE7806B16B955E8 /* Result */,
 				516CD61B4DFEACF36DE3FF5F /* Submission */,
+				B8DDB94E794ABC4047234DA5 /* Splash */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -435,6 +458,7 @@
 				ED0442C564EA8F0F09E3BB54 /* Components */,
 				39BAB17D3522C4DA4519D225 /* Modifiers */,
 				1F7DA4654D8BF40BFAD36623 /* Theme */,
+				B2E74B30A52AD33DD123B074 /* Animations */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -462,6 +486,11 @@
 				7872E021C9EC2098E7864229 /* CardModifier.swift */,
 				5AF3ADCFDD1AF117EFD50ECB /* ShakeModifier.swift */,
 				8A11C111E1B26125C1F25C04 /* KeyboardModifier.swift */,
+				0C0DD4622C9021F69D8A149E /* PageTransitionModifier.swift */,
+				829CFF957B41CA1996EB51FC /* StaggeredAppearModifier.swift */,
+				A0B7E11F08C8940CEE31B0D3 /* ShimmerModifier.swift */,
+				8E0F0F4762754E9392C32DFF /* ButtonPressModifier.swift */,
+				9C052869D6FA96EBCF572150 /* CameraFlashModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -473,6 +502,26 @@
 				0660298A0707C3E8551FDC82 /* Spacing.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		B8DDB94E794ABC4047234DA5 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				7EE069CC49B658EB8947E94D /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		B2E74B30A52AD33DD123B074 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				6A5EA703DCD4373548E7E432 /* AppAnimations.swift */,
+				23C1A963B2713E0CEF6BFECB /* SuccessCheckmarkView.swift */,
+				599F7EF68C38DFB36A4A6BE9 /* RejectedXMarkView.swift */,
+				7D616199D7C64A3CC72BAFA8 /* PendingClockView.swift */,
+				311CB499235572B28493AF94 /* ConfettiView.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,6 +659,17 @@
 				5CC03E8040CAA07E0916AF83 /* Route.swift in Sources */,
 				8914586361CB6BEEB61CBFEB /* NavigationRouter.swift in Sources */,
 				642D6B6D19389F309BD6C17C /* SalmaSDK.swift in Sources */,
+				F6A7F5666E4C3DDEF2BA625C /* SplashView.swift in Sources */,
+				209F4D721C07A34267F75EE5 /* AppAnimations.swift in Sources */,
+				549E895BBF0EC6D19BB2EA20 /* SuccessCheckmarkView.swift in Sources */,
+				83328FFDC0DD1E7F8DD06445 /* RejectedXMarkView.swift in Sources */,
+				36F7D15F60EC8BBC4898FF29 /* PendingClockView.swift in Sources */,
+				2B5494CD1C66E799EE654BC9 /* ConfettiView.swift in Sources */,
+				4AB12ABDEC5022064262AAD9 /* PageTransitionModifier.swift in Sources */,
+				DFE9D1F1F575F10937636C23 /* StaggeredAppearModifier.swift in Sources */,
+				3D97D945224F1921B1E75D16 /* ShimmerModifier.swift in Sources */,
+				C0BBE8F25B95F8E928C037BB /* ButtonPressModifier.swift in Sources */,
+				DEFAE7303CCFCD8F4F08CE0D /* CameraFlashModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

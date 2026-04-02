@@ -833,6 +833,23 @@
           }
         }
       }
+    },
+    "splash_tagline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحقق من هويتك بسهولة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify your identity with ease"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

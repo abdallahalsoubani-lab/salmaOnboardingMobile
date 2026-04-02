@@ -20,17 +20,32 @@ struct SalmaAIApp: App {
 }
 
 struct RootView: View {
+    @State private var showSplash = true
     @EnvironmentObject var languageManager: LanguageManager
 
     var body: some View {
-        Group {
-            if !languageManager.isLanguageSelected {
-                LanguageSelectionView()
+        ZStack {
+            if showSplash {
+                SplashView()
+                    .transition(.opacity)
             } else {
-                MainAppView()
+                if !languageManager.isLanguageSelected {
+                    LanguageSelectionView()
+                        .transition(.opacity)
+                } else {
+                    MainAppView()
+                        .transition(.opacity)
+                }
             }
         }
-        .animation(.easeInOut(duration: 0.3), value: languageManager.isLanguageSelected)
+        .animation(AppAnimations.stateChange, value: languageManager.isLanguageSelected)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    showSplash = false
+                }
+            }
+        }
     }
 }
 
