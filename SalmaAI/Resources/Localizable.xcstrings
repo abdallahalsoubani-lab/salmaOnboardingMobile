@@ -1391,6 +1391,160 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "تأكد من وضوح وجهك وأن الإضاءة جيدة" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Make sure your face is clear and lighting is good" } }
       }
+    },
+    "review_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "مراجعة البيانات" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Review Data" } }
+      }
+    },
+    "review_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تأكد من صحة البيانات قبل الإرسال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Verify your data before submitting" } }
+      }
+    },
+    "edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تعديل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } }
+      }
+    },
+    "has_validation_errors" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يوجد أخطاء في البيانات" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "There are errors in your data" } }
+      }
+    },
+    "errors_count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "%d أخطاء تحتاج إصلاح" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%d errors need fixing" } }
+      }
+    },
+    "fix_errors" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "إصلاح الأخطاء" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fix Errors" } }
+      }
+    },
+    "not_filled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "لم يتم الإدخال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not filled" } }
+      }
+    },
+    "not_filled_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "مطلوب — لم يتم الإدخال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Required — not filled" } }
+      }
+    },
+    "not_captured" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "لم يتم الالتقاط" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not captured" } }
+      }
+    },
+    "not_captured_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "مطلوب — لم يتم الالتقاط" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Required — not captured" } }
+      }
+    },
+    "photo_captured" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم الالتقاط" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Captured" } }
+      }
+    },
+    "both_sides" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الوجهان" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Both sides" } }
+      }
+    },
+    "back_side_missing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الوجه الخلفي ناقص" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Back side missing" } }
+      }
+    },
+    "agreed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تمت الموافقة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Agreed" } }
+      }
+    },
+    "not_agreed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "لم تتم الموافقة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not agreed" } }
+      }
+    },
+    "fields_filled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "حقول مكتملة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "fields filled" } }
+      }
+    },
+    "photos_captured" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "صور ملتقطة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "photos captured" } }
+      }
+    },
+    "confirm_submit_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تأكيد الإرسال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Confirm Submission" } }
+      }
+    },
+    "confirm_submit_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "هل أنت متأكد من إرسال طلبك؟ لا يمكن التراجع بعد الإرسال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Are you sure you want to submit? This cannot be undone" } }
+      }
+    },
+    "do_not_close_app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "يرجى عدم إغلاق التطبيق أثناء الإرسال" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please don't close the app during submission" } }
+      }
+    },
+    "submission_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "فشل إرسال الطلب" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Submission failed" } }
+      }
+    },
+    "back_to_review" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "العودة للمراجعة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Back to Review" } }
+      }
     }
   },
   "version" : "1.0"
