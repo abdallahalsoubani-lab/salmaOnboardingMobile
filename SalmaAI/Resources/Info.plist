@@ -27,7 +27,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Salma AI needs photo library access to select images for upload</string>
 	<key>API_BASE_URL</key>
-	<string>http://localhost:5000/api/v1</string>
+	<string>http://localhost:5001/api/v1</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

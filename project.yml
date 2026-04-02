@@ -1,0 +1,73 @@
+name: SalmaAI
+options:
+  bundleIdPrefix: com.salmaai
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  SalmaAI:
+    type: application
+    platform: iOS
+    sources:
+      - path: SalmaAI
+        excludes:
+          - "**/.DS_Store"
+    resources:
+      - path: SalmaAI/Resources/Assets.xcassets
+      - path: SalmaAI/Resources/Localizable.xcstrings
+    settings:
+      base:
+        INFOPLIST_FILE: SalmaAI/Resources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.onboarding
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    info:
+      path: SalmaAI/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: "Salma AI"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSCameraUsageDescription: "Salma AI needs camera access to photograph your ID card and take a selfie for identity verification"
+        NSPhotoLibraryUsageDescription: "Salma AI needs photo library access to select images for upload"
+        API_BASE_URL: "http://localhost:5001/api/v1"
+
+  SalmaAITests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SalmaAITests
+    dependencies:
+      - target: SalmaAI
+
+  SalmaAIDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: SalmaAIDemo
+    dependencies:
+      - target: SalmaAI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.demo
+        INFOPLIST_FILE: ""
+    info:
+      properties:
+        CFBundleDisplayName: "Salma AI Demo"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSCameraUsageDescription: "Camera access needed for identity verification demo"
+        NSPhotoLibraryUsageDescription: "Photo library access needed for image upload demo"
