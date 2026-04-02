@@ -1,43 +1,115 @@
 import SwiftUI
 
-// Will be fully implemented alongside IDCapture
 struct PhotoCaptureView: View {
     let fieldId: String
+
+    @StateObject private var cameraManager = CameraSessionManager(position: .back)
+    @State private var capturedImage: UIImage?
+    @State private var isReviewing = false
+    @State private var flashTrigger = false
 
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
 
     var body: some View {
-        VStack(spacing: SalmaDesign.Spacing.lg) {
-            Spacer()
+        ZStack {
+            Color.black.ignoresSafeArea()
 
-            Image(systemName: "camera.fill")
-                .font(.system(size: 64))
-                .foregroundColor(SalmaDesign.Colors.primary)
-
-            Text("Photo Capture")
-                .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
-
-            SalmaButton(title: "Simulate Capture") {
-                let renderer = UIGraphicsImageRenderer(size: CGSize(width: 400, height: 300))
-                let data = renderer.jpegData(withCompressionQuality: 0.8) { ctx in
-                    UIColor.systemGray5.setFill()
-                    ctx.fill(CGRect(x: 0, y: 0, width: 400, height: 300))
-                }
-                let image = CapturedImage(fieldId: fieldId, imageData: data, type: .photo)
-                flowState.setCapturedImage(image, for: fieldId)
-                router.dismissFullScreen()
+            if isReviewing, let image = capturedImage {
+                reviewView(image: image)
+            } else {
+                cameraView
             }
-            .padding(.horizontal, SalmaDesign.Spacing.xl)
-
-            SalmaButton(title: String(localized: "cancel"), style: .secondary) {
-                router.dismissFullScreen()
-            }
-            .padding(.horizontal, SalmaDesign.Spacing.xl)
-
-            Spacer()
         }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .cameraFlash(trigger: $flashTrigger)
+        .statusBarHidden(true)
+        .onAppear { cameraManager.configure(); cameraManager.start() }
+        .onDisappear { cameraManager.stop() }
+        .onChange(of: cameraManager.capturedImage) { img in
+            if let img = img {
+                flashTrigger = true
+                HapticManager.impact(.heavy)
+                capturedImage = img
+                isReviewing = true
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var cameraView: some View {
+        ZStack {
+            CameraPreviewView(session: cameraManager.session)
+                .ignoresSafeArea()
+
+            VStack {
+                Spacer()
+                CameraBottomBar(
+                    onCapture: { cameraManager.capturePhoto() },
+                    onTorchToggle: { cameraManager.toggleTorch() },
+                    onClose: { router.dismissFullScreen() },
+                    isTorchOn: cameraManager.isTorchOn
+                )
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func reviewView(image: UIImage) -> some View {
+        ZStack {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .ignoresSafeArea()
+
+            VStack {
+                Spacer()
+                HStack(spacing: SalmaDesign.Spacing.md) {
+                    Button {
+                        capturedImage = nil
+                        isReviewing = false
+                        cameraManager.capturedImage = nil
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "arrow.counterclockwise")
+                            Text(String(localized: "retake"))
+                        }
+                        .font(SalmaDesign.Typography.bodyMedium)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity).frame(height: 52)
+                        .background(Color.white.opacity(0.2))
+                        .cornerRadius(SalmaDesign.Radius.lg)
+                    }
+
+                    Button {
+                        if let data = image.jpegData(compressionQuality: 0.85) {
+                            flowState.setCapturedImage(
+                                CapturedImage(fieldId: fieldId, imageData: data, type: .photo),
+                                for: fieldId
+                            )
+                        }
+                        HapticManager.notification(.success)
+                        router.dismissFullScreen()
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "checkmark")
+                            Text(String(localized: "use_photo"))
+                        }
+                        .font(SalmaDesign.Typography.bodyMedium)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity).frame(height: 52)
+                        .background(SalmaDesign.Colors.primary)
+                        .cornerRadius(SalmaDesign.Radius.lg)
+                    }
+                }
+                .padding(.horizontal, SalmaDesign.Spacing.lg)
+                .padding(.bottom, 40)
+                .background(
+                    LinearGradient(colors: [.clear, .black.opacity(0.7)],
+                                   startPoint: .top, endPoint: .bottom)
+                    .frame(height: 180).allowsHitTesting(false),
+                    alignment: .bottom
+                )
+            }
+        }
     }
 }

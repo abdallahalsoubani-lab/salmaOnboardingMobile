@@ -119,6 +119,7 @@
 		17C3832903D410F147AE5FFB /* FieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EC31DAA9A0E171104C7EF /* FieldValidator.swift */; };
 		F13935261848258AF285A097 /* PageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74AC8631E8E1BF26DA7A80 /* PageValidator.swift */; };
 		DCE69B000945766390709F02 /* ValidationSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13ECE94B7872B6B9EB31BCB /* ValidationSummary.swift */; };
+		8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4574729515FE3FC50E13AE /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,6 +237,7 @@
 		AE2EC31DAA9A0E171104C7EF /* FieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidator.swift; sourceTree = "<group>"; };
 		3D74AC8631E8E1BF26DA7A80 /* PageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageValidator.swift; sourceTree = "<group>"; };
 		B13ECE94B7872B6B9EB31BCB /* ValidationSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationSummary.swift; sourceTree = "<group>"; };
+		AD4574729515FE3FC50E13AE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -316,6 +318,7 @@
 				5750B75BA308CD215F48DA8F /* View+Extensions.swift */,
 				307B660E506468C4C2F96A77 /* String+Extensions.swift */,
 				1927A12C25727EBCA15F5D22 /* Date+Extensions.swift */,
+				AD4574729515FE3FC50E13AE /* HapticManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				17C3832903D410F147AE5FFB /* FieldValidator.swift in Sources */,
 				F13935261848258AF285A097 /* PageValidator.swift in Sources */,
 				DCE69B000945766390709F02 /* ValidationSummary.swift in Sources */,
+				8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,57 +1,216 @@
 import SwiftUI
 
-// Will be fully implemented in Prompt 8
 struct IDCaptureView: View {
     let fieldId: String
     let side: IDSide
 
+    @StateObject private var viewModel: IDCaptureViewModel
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
 
-    var body: some View {
-        VStack(spacing: SalmaDesign.Spacing.lg) {
-            Spacer()
+    @State private var focusPoint: CGPoint = .zero
+    @State private var showFocusIndicator = false
+    @State private var flashTrigger = false
 
-            Image(systemName: "creditcard.viewfinder")
-                .font(.system(size: 64))
-                .foregroundColor(SalmaDesign.Colors.primary)
-
-            Text("ID Capture — \(side.displayNameEn)")
-                .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
-
-            Text("Coming in Prompt 8")
-                .font(SalmaDesign.Typography.callout)
-                .foregroundColor(SalmaDesign.Colors.textSecondary)
-
-            // Simulate capture
-            SalmaButton(title: "Simulate Capture") {
-                let placeholder = createPlaceholderImage()
-                flowState.setCapturedImage(placeholder, for: fieldId)
-                router.dismissFullScreen()
-            }
-            .padding(.horizontal, SalmaDesign.Spacing.xl)
-
-            SalmaButton(title: String(localized: "cancel"), style: .secondary) {
-                router.dismissFullScreen()
-            }
-            .padding(.horizontal, SalmaDesign.Spacing.xl)
-
-            Spacer()
-        }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+    init(fieldId: String, side: IDSide) {
+        self.fieldId = fieldId
+        self.side = side
+        self._viewModel = StateObject(wrappedValue: IDCaptureViewModel(fieldId: fieldId, side: side))
     }
 
-    private func createPlaceholderImage() -> CapturedImage {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 400, height: 260))
-        let data = renderer.jpegData(withCompressionQuality: 0.8) { ctx in
-            UIColor.systemGray5.setFill()
-            ctx.fill(CGRect(x: 0, y: 0, width: 400, height: 260))
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+
+            switch viewModel.captureState {
+            case .capturing:
+                capturingView
+            case .qualityCheck:
+                qualityCheckView
+            case .reviewing:
+                reviewingView
+            case .completed:
+                Color.black.ignoresSafeArea()
+            }
         }
-        return CapturedImage(
-            fieldId: fieldId,
-            imageData: data,
-            type: side == .front ? .idFront : .idBack
-        )
+        .cameraFlash(trigger: $flashTrigger)
+        .statusBarHidden(true)
+        .onAppear { viewModel.setupCamera() }
+        .onDisappear { viewModel.stopCamera() }
+        .onChange(of: viewModel.cameraManager.capturedImage) { newImage in
+            if let image = newImage {
+                flashTrigger = true
+                viewModel.handleCapturedImage(image)
+            }
+        }
+        .onChange(of: viewModel.captureState) { newState in
+            if newState == .completed { saveAndDismiss() }
+        }
+    }
+
+    // MARK: - Capturing
+
+    private var capturingView: some View {
+        ZStack {
+            CameraPreviewView(session: viewModel.cameraManager.session)
+                .ignoresSafeArea()
+                .onTapGesture { location in
+                    viewModel.cameraManager.focus(at: location, in: UIScreen.main.bounds.size)
+                    focusPoint = location
+                    showFocusIndicator = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        showFocusIndicator = false
+                    }
+                }
+
+            IDCardOverlay(side: viewModel.currentSide)
+                .ignoresSafeArea()
+                .animation(.easeInOut(duration: 0.4), value: viewModel.currentSide)
+
+            // Focus indicator
+            if showFocusIndicator {
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(SalmaDesign.Colors.primary, lineWidth: 2)
+                    .frame(width: 60, height: 60)
+                    .position(focusPoint)
+                    .transition(.scale.combined(with: .opacity))
+            }
+
+            VStack {
+                Spacer()
+                CameraBottomBar(
+                    onCapture: { viewModel.capturePhoto() },
+                    onTorchToggle: { viewModel.toggleTorch() },
+                    onClose: { dismissCapture() },
+                    isTorchOn: viewModel.cameraManager.isTorchOn,
+                    isCapturing: viewModel.isProcessing
+                )
+            }
+        }
+        .animation(.easeOut(duration: 0.3), value: showFocusIndicator)
+    }
+
+    // MARK: - Quality Check
+
+    private var qualityCheckView: some View {
+        VStack(spacing: SalmaDesign.Spacing.md) {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                .scaleEffect(1.5)
+            Text(String(localized: "image_quality_checking"))
+                .font(SalmaDesign.Typography.body)
+                .foregroundColor(.white)
+        }
+    }
+
+    // MARK: - Reviewing
+
+    private var reviewingView: some View {
+        ZStack {
+            if let image = viewModel.currentImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .ignoresSafeArea()
+            }
+
+            VStack {
+                // Top: side badge + quality warning
+                VStack(spacing: SalmaDesign.Spacing.sm) {
+                    Text(viewModel.currentSide == .front
+                         ? String(localized: "front_side")
+                         : String(localized: "back_side"))
+                        .font(SalmaDesign.Typography.title2)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(SalmaDesign.Colors.primary.opacity(0.8))
+                        .cornerRadius(SalmaDesign.Radius.sm)
+
+                    if viewModel.showQualityWarning {
+                        VStack(spacing: 4) {
+                            ForEach(viewModel.qualityIssues.indices, id: \.self) { i in
+                                HStack(spacing: 6) {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(SalmaDesign.Colors.warning)
+                                    Text(String(localized: String.LocalizationValue(viewModel.qualityIssues[i].messageKey)))
+                                        .font(SalmaDesign.Typography.caption)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.black.opacity(0.7))
+                        .cornerRadius(SalmaDesign.Radius.sm)
+                    }
+                }
+                .padding(.top, 60)
+
+                Spacer()
+
+                // Bottom: dots + buttons
+                VStack(spacing: SalmaDesign.Spacing.md) {
+                    HStack(spacing: 8) {
+                        Circle().fill(SalmaDesign.Colors.primary).frame(width: 10, height: 10)
+                        Circle().fill(viewModel.currentSide == .back
+                                      ? SalmaDesign.Colors.primary
+                                      : Color.white.opacity(0.3))
+                            .frame(width: 10, height: 10)
+                    }
+
+                    HStack(spacing: SalmaDesign.Spacing.md) {
+                        Button { viewModel.retakePhoto() } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "arrow.counterclockwise")
+                                    .font(.system(size: 16, weight: .semibold))
+                                Text(String(localized: "retake"))
+                                    .font(SalmaDesign.Typography.bodyMedium)
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity).frame(height: 52)
+                            .background(Color.white.opacity(0.2))
+                            .cornerRadius(SalmaDesign.Radius.lg)
+                        }
+
+                        Button { viewModel.usePhoto() } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 16, weight: .semibold))
+                                Text(String(localized: "use_photo"))
+                                    .font(SalmaDesign.Typography.bodyMedium)
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity).frame(height: 52)
+                            .background(SalmaDesign.Colors.primary)
+                            .cornerRadius(SalmaDesign.Radius.lg)
+                        }
+                    }
+                    .padding(.horizontal, SalmaDesign.Spacing.lg)
+                }
+                .padding(.bottom, 40)
+                .background(
+                    LinearGradient(colors: [.clear, .black.opacity(0.7)],
+                                   startPoint: .top, endPoint: .bottom)
+                    .frame(height: 200).allowsHitTesting(false),
+                    alignment: .bottom
+                )
+            }
+        }
+    }
+
+    // MARK: - Save & Dismiss
+
+    private func saveAndDismiss() {
+        let images = viewModel.buildCapturedImages()
+        if let front = images.front { flowState.setCapturedImage(front, for: fieldId) }
+        if let back = images.back { flowState.setCapturedImage(back, for: fieldId + "_back") }
+        router.dismissFullScreen()
+    }
+
+    private func dismissCapture() {
+        viewModel.stopCamera()
+        router.dismissFullScreen()
     }
 }

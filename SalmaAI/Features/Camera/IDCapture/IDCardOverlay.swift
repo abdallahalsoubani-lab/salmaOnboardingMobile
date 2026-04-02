@@ -54,6 +54,12 @@ struct IDCardOverlay: View {
                 }
                 .position(x: screenWidth / 2, y: frameRect.maxY + 30)
 
+                // Scanning line
+                ScanningLineView(frameHeight: frameHeight)
+                    .frame(width: frameWidth - 8)
+                    .position(x: frameRect.midX, y: frameRect.midY)
+                    .clipped()
+
                 // Subtle ID hint
                 Image(systemName: "creditcard")
                     .font(.system(size: 40))
@@ -105,5 +111,27 @@ struct CornerAccents: View {
                 context.stroke(vPath, with: .color(color), lineWidth: lineWidth)
             }
         }
+    }
+}
+
+struct ScanningLineView: View {
+    let frameHeight: CGFloat
+    @State private var offset: CGFloat = 0
+
+    var body: some View {
+        Rectangle()
+            .fill(
+                LinearGradient(
+                    colors: [.clear, SalmaDesign.Colors.primary.opacity(0.4), .clear],
+                    startPoint: .leading, endPoint: .trailing
+                )
+            )
+            .frame(height: 2)
+            .offset(y: offset - frameHeight / 2)
+            .onAppear {
+                withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: true)) {
+                    offset = frameHeight
+                }
+            }
     }
 }
