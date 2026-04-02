@@ -1356,6 +1356,41 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "جميع البيانات صحيحة" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "All data is valid" } }
       }
+    },
+    "selfie_no_face" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "لم يتم اكتشاف وجه" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No face detected" } }
+      }
+    },
+    "selfie_captured" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم التقاط الصورة الشخصية" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Selfie captured" } }
+      }
+    },
+    "selfie_face_detected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم اكتشاف الوجه" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Face detected" } }
+      }
+    },
+    "selfie_guide_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "صورة شخصية" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Selfie" } }
+      }
+    },
+    "selfie_guide_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تأكد من وضوح وجهك وأن الإضاءة جيدة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Make sure your face is clear and lighting is good" } }
+      }
     }
   },
   "version" : "1.0"

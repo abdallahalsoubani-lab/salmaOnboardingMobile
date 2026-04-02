@@ -120,6 +120,8 @@
 		F13935261848258AF285A097 /* PageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74AC8631E8E1BF26DA7A80 /* PageValidator.swift */; };
 		DCE69B000945766390709F02 /* ValidationSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13ECE94B7872B6B9EB31BCB /* ValidationSummary.swift */; };
 		8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4574729515FE3FC50E13AE /* HapticManager.swift */; };
+		695DD5A4AB988AE9A90B1212 /* FaceDetectorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89D9795723C42A9324146B0 /* FaceDetectorService.swift */; };
+		2F6A4D179ECEC28B6A791594 /* SelfieCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7166A8A79ACA950DA904F18 /* SelfieCameraSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,6 +240,8 @@
 		3D74AC8631E8E1BF26DA7A80 /* PageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageValidator.swift; sourceTree = "<group>"; };
 		B13ECE94B7872B6B9EB31BCB /* ValidationSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationSummary.swift; sourceTree = "<group>"; };
 		AD4574729515FE3FC50E13AE /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		C89D9795723C42A9324146B0 /* FaceDetectorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectorService.swift; sourceTree = "<group>"; };
+		B7166A8A79ACA950DA904F18 /* SelfieCameraSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieCameraSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -393,6 +397,8 @@
 				63D510A5D5FE2CDE461452CD /* SelfieCaptureViewModel.swift */,
 				9BD24E5EC2B2A7A2BB5706FB /* FaceOvalOverlay.swift */,
 				761CC20B5D2523DC94B6B41E /* SignaturePadView.swift */,
+				C89D9795723C42A9324146B0 /* FaceDetectorService.swift */,
+				B7166A8A79ACA950DA904F18 /* SelfieCameraSession.swift */,
 			);
 			path = Selfie;
 			sourceTree = "<group>";
@@ -774,6 +780,8 @@
 				F13935261848258AF285A097 /* PageValidator.swift in Sources */,
 				DCE69B000945766390709F02 /* ValidationSummary.swift in Sources */,
 				8097966BF2FFA74C1B8D1C62 /* HapticManager.swift in Sources */,
+				695DD5A4AB988AE9A90B1212 /* FaceDetectorService.swift in Sources */,
+				2F6A4D179ECEC28B6A791594 /* SelfieCameraSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
