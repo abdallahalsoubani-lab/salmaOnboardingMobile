@@ -1279,6 +1279,13 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "جاري فحص جودة الصورة..." } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Checking image quality..." } }
       }
+    },
+    "max" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الحد الأقصى" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Max" } }
+      }
     }
   },
   "version" : "1.0"

@@ -1,12 +1,21 @@
 import SwiftUI
 
-// Will be implemented in Prompt 6
 struct TextFieldView: View {
     let field: PageField
+    let label: String
+    let placeholder: String
     @Binding var value: String
-    var error: String?
+    let errorMessage: String?
 
     var body: some View {
-        SalmaTextField(label: field.label, placeholder: field.placeholder ?? "", text: $value, errorMessage: error)
+        SalmaTextField(
+            label: label,
+            text: $value,
+            placeholder: placeholder,
+            errorMessage: errorMessage,
+            isRequired: field.isRequired,
+            keyboardType: .default,
+            maxLength: field.validationRules?.maxLength
+        )
     }
 }

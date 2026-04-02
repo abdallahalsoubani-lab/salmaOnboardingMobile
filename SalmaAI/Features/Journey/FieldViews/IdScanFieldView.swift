@@ -1,12 +1,30 @@
 import SwiftUI
 
-// Will be implemented in Prompt 8
 struct IdScanFieldView: View {
     let field: PageField
-    @Binding var value: String
-    var error: String?
+    let label: String
+    @Binding var capturedImage: CapturedImage?
+    let errorMessage: String?
+    let onCapture: () -> Void
+    let onGallery: () -> Void
+    let onPreview: () -> Void
+    let onRemove: () -> Void
 
     var body: some View {
-        Text("ID Scan Field — Coming in Prompt 8")
+        let sourceType = FieldType.idScan.captureSource(sourceType: field.validationRules?.sourceType)
+        let uiImage: UIImage? = capturedImage.flatMap { UIImage(data: $0.imageData) }
+
+        MediaFieldButton(
+            label: label,
+            fieldType: .idScan,
+            capturedImage: uiImage,
+            errorMessage: errorMessage,
+            isRequired: field.isRequired,
+            sourceType: sourceType,
+            onCapture: onCapture,
+            onGallery: onGallery,
+            onPreview: onPreview,
+            onRemove: onRemove
+        )
     }
 }

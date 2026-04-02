@@ -60,5 +60,6 @@ struct CapturedImage {
         case selfie
         case photo
         case signature
+        case document
     }
 }

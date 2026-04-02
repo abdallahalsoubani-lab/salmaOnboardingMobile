@@ -7,6 +7,11 @@ struct FormPageView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var languageManager: LanguageManager
 
+    @State private var showPhotoPicker = false
+    @State private var showDocumentPicker = false
+    @State private var showImagePreview = false
+    @State private var activeMediaFieldId: String?
+
     var body: some View {
         let pages = flowState.sortedPages
         let page = pages.indices.contains(pageIndex) ? pages[pageIndex] : nil
@@ -34,16 +39,20 @@ struct FormPageView: View {
 
             // Scrollable fields
             ScrollView {
-                VStack(spacing: SalmaDesign.Spacing.md) {
+                VStack(spacing: SalmaDesign.Spacing.lg) {
                     if let page = page {
-                        ForEach(Array(page.fields.sorted(by: { $0.order < $1.order }).enumerated()), id: \.element.id) { index, field in
-                            fieldPlaceholder(for: field)
-                                .staggeredAppear(index: index)
+                        let sortedFields = page.fields.sorted(by: { $0.order < $1.order })
+                        ForEach(Array(sortedFields.enumerated()), id: \.element.id) { index, field in
+                            if shouldShowField(field) {
+                                makeFieldView(for: field)
+                                    .staggeredAppear(index: index)
+                                    .transition(.opacity.combined(with: .move(edge: .top)))
+                            }
                         }
                     }
                 }
                 .padding(.horizontal, SalmaDesign.Spacing.md)
-                .padding(.bottom, 100)
+                .padding(.bottom, 120)
             }
 
             Spacer(minLength: 0)
@@ -56,9 +65,7 @@ struct FormPageView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    router.presentSheet(.languageSwitch)
-                } label: {
+                Button { router.presentSheet(.languageSwitch) } label: {
                     Image(systemName: "globe")
                         .font(.system(size: 18))
                         .foregroundColor(SalmaDesign.Colors.textSecondary)
@@ -66,8 +73,171 @@ struct FormPageView: View {
             }
         }
         .dismissKeyboardOnTap()
-        .onAppear {
-            flowState.currentPageIndex = pageIndex
+        .onAppear { flowState.currentPageIndex = pageIndex }
+        // Photo picker
+        .sheet(isPresented: $showPhotoPicker) {
+            PhotoPickerView(
+                selectedImage: .constant(nil),
+                onImageSelected: { image in handleGalleryImage(image) },
+                onCancel: { showPhotoPicker = false }
+            )
+        }
+        // Document picker
+        .sheet(isPresented: $showDocumentPicker) {
+            documentPickerSheet
+        }
+        // Image preview
+        .fullScreenCover(isPresented: $showImagePreview) {
+            imagePreviewCover
+        }
+    }
+
+    // MARK: - Field View Builder
+
+    @ViewBuilder
+    private func makeFieldView(for field: PageField) -> some View {
+        let valueBinding = Binding<String>(
+            get: { flowState.getValue(for: field.id) },
+            set: { flowState.setValue($0, for: field.id) }
+        )
+
+        let imageBinding = Binding<CapturedImage?>(
+            get: { flowState.getCapturedImage(for: field.id) },
+            set: { if let img = $0 { flowState.setCapturedImage(img, for: field.id) } }
+        )
+
+        FieldFactory.makeField(
+            for: field,
+            value: valueBinding,
+            capturedImage: imageBinding,
+            errorMessage: nil,
+            languageManager: languageManager,
+            onCameraCapture: { handleCameraCapture($0) },
+            onGalleryPick: { handleGalleryPick($0) },
+            onFilePick: { handleFilePick($0) },
+            onImagePreview: { handleImagePreview($0) },
+            onImageRemove: { handleImageRemove($0) }
+        )
+    }
+
+    // MARK: - Conditional Visibility
+
+    private func shouldShowField(_ field: PageField) -> Bool {
+        guard let condition = field.validationRules?.condition else { return true }
+        let watchedValue = flowState.getValue(for: condition.field)
+
+        switch condition.operator {
+        case "equals":
+            return watchedValue == (condition.value ?? "")
+        case "not_equals":
+            return watchedValue != (condition.value ?? "")
+        case "contains":
+            return watchedValue.contains(condition.value ?? "")
+        case "not_empty":
+            return !watchedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        default:
+            return true
+        }
+    }
+
+    // MARK: - Media Handlers
+
+    private func handleCameraCapture(_ field: PageField) {
+        activeMediaFieldId = field.id
+        let fieldType = FieldType(rawValue: field.type) ?? .photo
+
+        switch fieldType {
+        case .idScan:
+            router.presentFullScreen(.idCapture(fieldId: field.id, side: .front))
+        case .selfie:
+            router.presentFullScreen(.selfieCapture(fieldId: field.id))
+        case .photo:
+            router.presentFullScreen(.photoCapture(fieldId: field.id))
+        default:
+            break
+        }
+    }
+
+    private func handleGalleryPick(_ field: PageField) {
+        activeMediaFieldId = field.id
+        showPhotoPicker = true
+    }
+
+    private func handleFilePick(_ field: PageField) {
+        activeMediaFieldId = field.id
+        showDocumentPicker = true
+    }
+
+    private func handleImagePreview(_ field: PageField) {
+        activeMediaFieldId = field.id
+        showImagePreview = true
+    }
+
+    private func handleImageRemove(_ field: PageField) {
+        flowState.removeCapturedImage(for: field.id)
+    }
+
+    private func handleGalleryImage(_ image: UIImage) {
+        guard let fieldId = activeMediaFieldId,
+              let data = image.jpegData(compressionQuality: 0.85) else { return }
+
+        let fieldType = findField(by: fieldId).flatMap { FieldType(rawValue: $0.type) } ?? .photo
+        let captureType: CapturedImage.CaptureType
+        switch fieldType {
+        case .idScan: captureType = .idFront
+        case .selfie: captureType = .selfie
+        default: captureType = .photo
+        }
+
+        flowState.setCapturedImage(
+            CapturedImage(fieldId: fieldId, imageData: data, type: captureType),
+            for: fieldId
+        )
+    }
+
+    private func handlePickedDocuments(_ docs: [PickedDocument], fieldId: String) {
+        guard let doc = docs.first else { return }
+        flowState.setCapturedImage(
+            CapturedImage(fieldId: fieldId, imageData: doc.data, type: .document),
+            for: fieldId
+        )
+    }
+
+    private func findField(by id: String) -> PageField? {
+        flowState.journey?.pages.flatMap { $0.fields }.first { $0.id == id }
+    }
+
+    // MARK: - Sheet/Cover Builders
+
+    @ViewBuilder
+    private var documentPickerSheet: some View {
+        if let fieldId = activeMediaFieldId,
+           let field = findField(by: fieldId) {
+            let formats = (field.validationRules?.acceptedFormats ?? ["pdf", "jpg", "png"])
+                .compactMap { $0.utType }
+            DocumentPickerView(
+                allowedTypes: formats.isEmpty ? [.pdf, .jpeg, .png] : formats,
+                allowMultiple: field.validationRules?.allowMultiple ?? false,
+                onDocumentsPicked: { docs in handlePickedDocuments(docs, fieldId: fieldId) },
+                onCancel: { showDocumentPicker = false }
+            )
+        }
+    }
+
+    @ViewBuilder
+    private var imagePreviewCover: some View {
+        if let fieldId = activeMediaFieldId,
+           let captured = flowState.getCapturedImage(for: fieldId),
+           let uiImage = UIImage(data: captured.imageData) {
+            ImagePreviewOverlay(
+                image: uiImage,
+                isPresented: $showImagePreview,
+                onRetake: {
+                    flowState.removeCapturedImage(for: fieldId)
+                    showImagePreview = false
+                },
+                onUse: { showImagePreview = false }
+            )
         }
     }
 
@@ -77,81 +247,38 @@ struct FormPageView: View {
     private func bottomButtons(isLast: Bool) -> some View {
         HStack(spacing: SalmaDesign.Spacing.md) {
             if pageIndex > 0 {
-                Button {
-                    router.pop()
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: languageManager.currentLanguage == .arabic ? "chevron.right" : "chevron.left")
-                            .font(.system(size: 14, weight: .semibold))
-                        Text(String(localized: "previous"))
-                    }
-                    .font(SalmaDesign.Typography.bodyMedium)
-                    .foregroundColor(SalmaDesign.Colors.textSecondary)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(SalmaDesign.Colors.backgroundSecondary)
-                    .cornerRadius(SalmaDesign.Radius.lg)
-                }
-                .pressAnimation()
+                SalmaButton(
+                    title: String(localized: "previous"),
+                    style: .secondary,
+                    size: .medium,
+                    icon: languageManager.currentLanguage == .arabic ? "chevron.right" : "chevron.left",
+                    iconPosition: .leading,
+                    action: { router.pop() }
+                )
             }
 
-            Button {
-                if isLast {
-                    router.push(.review)
-                } else {
-                    router.push(.formPage(pageIndex: pageIndex + 1))
+            SalmaButton(
+                title: isLast
+                    ? String(localized: "review_and_submit")
+                    : String(localized: "next"),
+                size: .medium,
+                icon: languageManager.currentLanguage == .arabic ? "chevron.left" : "chevron.right",
+                iconPosition: .trailing,
+                action: {
+                    if isLast {
+                        router.push(.review)
+                    } else {
+                        router.push(.formPage(pageIndex: pageIndex + 1))
+                    }
                 }
-            } label: {
-                HStack(spacing: 6) {
-                    Text(isLast
-                         ? String(localized: "review_and_submit")
-                         : String(localized: "next"))
-                    Image(systemName: languageManager.currentLanguage == .arabic ? "chevron.left" : "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                }
-                .font(SalmaDesign.Typography.bodyMedium)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-                .background(SalmaDesign.Colors.primary)
-                .cornerRadius(SalmaDesign.Radius.lg)
-            }
-            .pressAnimation()
+            )
         }
         .padding(.horizontal, SalmaDesign.Spacing.md)
-        .padding(.bottom, SalmaDesign.Spacing.lg)
+        .padding(.vertical, SalmaDesign.Spacing.md)
         .background(
             SalmaDesign.Colors.background
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: -4)
                 .mask(Rectangle().padding(.top, -20))
         )
-    }
-
-    // MARK: - Field Placeholder
-
-    @ViewBuilder
-    private func fieldPlaceholder(for field: PageField) -> some View {
-        let fieldType = FieldType(rawValue: field.type)
-
-        VStack(alignment: .leading, spacing: SalmaDesign.Spacing.xs) {
-            Text(languageManager.localizedLabel(for: field))
-                .font(SalmaDesign.Typography.callout)
-                .foregroundColor(SalmaDesign.Colors.textSecondary)
-
-            RoundedRectangle(cornerRadius: SalmaDesign.Radius.sm)
-                .fill(SalmaDesign.Colors.backgroundSecondary)
-                .frame(height: fieldType?.isMediaField == true ? 120 : 48)
-                .overlay(
-                    HStack(spacing: SalmaDesign.Spacing.sm) {
-                        if let icon = fieldType?.iconName {
-                            Image(systemName: icon)
-                                .foregroundColor(SalmaDesign.Colors.textTertiary)
-                        }
-                        Text(fieldType?.displayNameEn ?? field.type)
-                            .font(SalmaDesign.Typography.caption)
-                            .foregroundColor(SalmaDesign.Colors.textTertiary)
-                    }
-                )
-        }
     }
 }

@@ -1,12 +1,21 @@
 import SwiftUI
 
-// Will be implemented in Prompt 6
 struct DropdownFieldView: View {
     let field: PageField
+    let label: String
     @Binding var value: String
-    var error: String?
+    let errorMessage: String?
+
+    @EnvironmentObject var languageManager: LanguageManager
 
     var body: some View {
-        SalmaDropdown(label: field.label, options: field.options ?? [], selection: $value, errorMessage: error)
+        SalmaDropdown(
+            label: label,
+            options: field.options ?? [],
+            selection: $value,
+            placeholder: languageManager.currentLanguage == .arabic ? "اختر..." : "Select...",
+            errorMessage: errorMessage,
+            isRequired: field.isRequired
+        )
     }
 }

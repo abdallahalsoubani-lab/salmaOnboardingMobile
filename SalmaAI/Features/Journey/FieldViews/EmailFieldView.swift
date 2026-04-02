@@ -1,12 +1,21 @@
 import SwiftUI
 
-// Will be implemented in Prompt 6
 struct EmailFieldView: View {
     let field: PageField
+    let label: String
+    let placeholder: String
     @Binding var value: String
-    var error: String?
+    let errorMessage: String?
 
     var body: some View {
-        SalmaTextField(label: field.label, placeholder: field.placeholder ?? "", text: $value, errorMessage: error)
+        SalmaTextField(
+            label: label,
+            text: $value,
+            placeholder: placeholder.isEmpty ? "email@example.com" : placeholder,
+            errorMessage: errorMessage,
+            isRequired: field.isRequired,
+            keyboardType: .emailAddress
+        )
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
