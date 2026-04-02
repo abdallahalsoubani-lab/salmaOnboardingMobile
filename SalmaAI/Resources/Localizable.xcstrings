@@ -1545,6 +1545,146 @@
         "ar" : { "stringUnit" : { "state" : "translated", "value" : "العودة للمراجعة" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Back to Review" } }
       }
+    },
+    "result_approved_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تمت الموافقة على طلبك" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your Application is Approved" } }
+      }
+    },
+    "result_approved_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم التحقق من هويتك بنجاح" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your identity has been verified successfully" } }
+      }
+    },
+    "result_rejected_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تم رفض الطلب" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Application Rejected" } }
+      }
+    },
+    "result_rejected_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "لم نتمكن من التحقق من هويتك" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We were unable to verify your identity" } }
+      }
+    },
+    "result_pending_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "طلبك قيد المراجعة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Application Under Review" } }
+      }
+    },
+    "result_pending_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "سيتم مراجعة طلبك من قبل فريقنا. قد يستغرق ذلك بعض الوقت" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your application is being reviewed by our team. This may take some time" } }
+      }
+    },
+    "result_in_review_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "جاري المراجعة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Under Review" } }
+      }
+    },
+    "result_in_review_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "فريقنا يراجع طلبك حالياً" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Our team is currently reviewing your application" } }
+      }
+    },
+    "result_flagged_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الطلب يحتاج مراجعة إضافية" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Additional Review Needed" } }
+      }
+    },
+    "result_flagged_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "طلبك يحتاج مراجعة إضافية من فريقنا" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your application needs additional review from our team" } }
+      }
+    },
+    "try_again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "إعادة المحاولة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Try Again" } }
+      }
+    },
+    "check_status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تحديث الحالة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check Status" } }
+      }
+    },
+    "checking_status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "جاري التحقق..." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Checking..." } }
+      }
+    },
+    "submission_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "رقم الطلب" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Submission ID" } }
+      }
+    },
+    "extracted_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "البيانات المستخرجة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Extracted Data" } }
+      }
+    },
+    "full_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الاسم الكامل" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Full Name" } }
+      }
+    },
+    "national_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الرقم الوطني" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "National ID" } }
+      }
+    },
+    "date_of_birth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "تاريخ الميلاد" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date of Birth" } }
+      }
+    },
+    "gender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "الجنس" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Gender" } }
+      }
+    },
+    "ocr_confidence" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "دقة القراءة" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "OCR Accuracy" } }
+      }
     }
   },
   "version" : "1.0"
