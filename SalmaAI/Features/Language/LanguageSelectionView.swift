@@ -12,7 +12,7 @@ struct LanguageSelectionView: View {
         ZStack {
             // Premium gradient background
             LinearGradient(
-                colors: [SalmaDesign.Colors.primaryDark, SalmaDesign.Colors.primary],
+                colors: [ThemedColors.primaryDark, ThemedColors.primary],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -90,7 +90,7 @@ struct LanguageSelectionView: View {
                 } label: {
                     Text(selectedLanguage == .arabic ? "ابدأ" : "Start")
                         .font(SalmaDesign.Typography.title3)
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                         .frame(maxWidth: .infinity)
                         .frame(height: 56)
                         .background(.white)
@@ -137,7 +137,7 @@ struct LanguageCard: View {
 
                 Text(title)
                     .font(SalmaDesign.Typography.title1)
-                    .foregroundColor(isSelected ? SalmaDesign.Colors.primary : SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(isSelected ? ThemedColors.primary : ThemedColors.textPrimary)
 
                 Text(subtitle)
                     .font(SalmaDesign.Typography.caption)
@@ -152,7 +152,7 @@ struct LanguageCard: View {
             .overlay(
                 RoundedRectangle(cornerRadius: SalmaDesign.Radius.lg)
                     .stroke(
-                        isSelected ? SalmaDesign.Colors.primary : SalmaDesign.Colors.border,
+                        isSelected ? ThemedColors.primary : SalmaDesign.Colors.border,
                         lineWidth: isSelected ? 3 : 1
                     )
             )
@@ -160,14 +160,14 @@ struct LanguageCard: View {
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                         .padding(SalmaDesign.Spacing.sm)
                         .transition(.scale.combined(with: .opacity))
                 }
             }
             .shadow(
                 color: isSelected
-                    ? SalmaDesign.Colors.primary.opacity(0.3)
+                    ? ThemedColors.primary.opacity(0.3)
                     : .black.opacity(0.06),
                 radius: isSelected ? 16 : 8,
                 x: 0,

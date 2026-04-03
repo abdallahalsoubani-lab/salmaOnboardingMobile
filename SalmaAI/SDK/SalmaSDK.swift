@@ -3,6 +3,7 @@ import UIKit
 
 // MARK: - Main SDK Entry Point
 
+@MainActor
 public final class SalmaSDK {
     public static let version = "1.0.0"
 

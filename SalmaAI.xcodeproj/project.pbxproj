@@ -112,6 +112,7 @@
 		9460C149CCA105054BFC14E7 /* SalmaDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EA3310F16922D1C8B39F2E /* SalmaDropdown.swift */; };
 		968222744411A98F662E081E /* AmplifyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2DD4622D63D384F3EA46D /* AmplifyConfiguration.swift */; };
 		97BB69BA2ADD5257071B802F /* JourneyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC9B5204FC11B83123180C /* JourneyService.swift */; };
+		A1B2C3D4E5F6071809AABBCC /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6071809AABBDD /* ThemeManager.swift */; };
 		9A1AE233523BD6F6CD2BE753 /* ProgressStepBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C21801E1DE16E2219D8CED /* ProgressStepBar.swift */; };
 		A0A4FCFFB6C24920480BFDA1 /* JourneyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC401E5D3C82635266CE56 /* JourneyModelTests.swift */; };
 		AAD16677E930723400F1981F /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 3EF6BE6BC33439CC845BBE0A /* AWSCognitoAuthPlugin */; };
@@ -272,6 +273,7 @@
 		C398397CDFF235DFFDBB37C5 /* ShimmerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerModifier.swift; sourceTree = "<group>"; };
 		C63758BD51FC0D079C4C7EFD /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C8EC9B5204FC11B83123180C /* JourneyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyService.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6071809AABBDD /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C97AA0D2B6DEB05C22B42FE2 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		C9C33F266F5760F1C0948501 /* JourneyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyServiceProtocol.swift; sourceTree = "<group>"; };
 		CA9F16FF2AF5A72662F9BB9B /* VerificationFlowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationFlowState.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				3E8E16ADAB609B55FEF13D6A /* PageValidator.swift */,
 				4320132AA03ED813F1FFC37C /* StorageService.swift */,
 				140808F19DB60BAC54DCC423 /* SubmissionService.swift */,
+				A1B2C3D4E5F6071809AABBDD /* ThemeManager.swift */,
 				57CAEEF54468FFDB618BECBE /* ValidationSummary.swift */,
 				282B249F2340915D5DA4BBF9 /* Network */,
 			);
@@ -912,6 +915,7 @@
 				D8E1AF52F7326DBA46E82853 /* ImagePreviewOverlay.swift in Sources */,
 				CEF5A103AB069746855FC571 /* Journey.swift in Sources */,
 				97BB69BA2ADD5257071B802F /* JourneyService.swift in Sources */,
+				A1B2C3D4E5F6071809AABBCC /* ThemeManager.swift in Sources */,
 				4684068E79CB025E167DFE51 /* JourneyServiceProtocol.swift in Sources */,
 				BD445E22C4318113C7F671F6 /* KeyboardModifier.swift in Sources */,
 				CA4D4015AC6F96C378402930 /* LoadingView.swift in Sources */,

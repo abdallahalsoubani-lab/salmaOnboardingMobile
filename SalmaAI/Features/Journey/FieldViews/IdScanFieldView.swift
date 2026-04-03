@@ -84,11 +84,11 @@ struct IdScanFieldView: View {
             HStack(spacing: SalmaDesign.Spacing.sm) {
                 Image(systemName: "creditcard")
                     .font(.system(size: 20))
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(L("id_capture_back"))
                         .font(SalmaDesign.Typography.callout)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                     Text(L("back_side"))
                         .font(SalmaDesign.Typography.caption)
                         .foregroundColor(SalmaDesign.Colors.textSecondary)

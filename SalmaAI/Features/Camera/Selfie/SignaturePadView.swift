@@ -13,11 +13,11 @@ struct SignaturePadView: View {
 
             Image(systemName: "pencil.tip")
                 .font(.system(size: 64))
-                .foregroundColor(SalmaDesign.Colors.primary)
+                .foregroundColor(ThemedColors.primary)
 
             Text("Signature Pad")
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             Text("Coming in Prompt 5")
                 .font(SalmaDesign.Typography.callout)
@@ -42,6 +42,6 @@ struct SignaturePadView: View {
 
             Spacer()
         }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background.ignoresSafeArea())
     }
 }

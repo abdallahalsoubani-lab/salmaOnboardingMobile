@@ -7,11 +7,12 @@ struct JourneyLoadingView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var connectivity: ConnectivityMonitor
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var spinAngle: Double = 0
 
     var body: some View {
         ZStack {
-            SalmaDesign.Colors.background.ignoresSafeArea()
+            ThemedColors.background(for: colorScheme).ignoresSafeArea()
 
             if flowState.isLoadingJourney {
                 loadingContent
@@ -47,12 +48,12 @@ struct JourneyLoadingView: View {
 
             Text("Salma AI")
                 .font(SalmaDesign.Typography.largeTitle)
-                .foregroundColor(SalmaDesign.Colors.primary)
+                .foregroundColor(ThemedColors.primary)
 
             // Spinner
             Circle()
                 .trim(from: 0, to: 0.7)
-                .stroke(SalmaDesign.Colors.primary, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                .stroke(ThemedColors.primary, style: StrokeStyle(lineWidth: 3, lineCap: .round))
                 .frame(width: 36, height: 36)
                 .rotationEffect(.degrees(spinAngle))
                 .onAppear {
@@ -82,7 +83,7 @@ struct JourneyLoadingView: View {
 
             Text(error.errorDescription ?? L("error"))
                 .font(SalmaDesign.Typography.body)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary(for: colorScheme))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, SalmaDesign.Spacing.xl)
 
@@ -132,6 +133,8 @@ struct JourneyLoadingView: View {
                 let journey = try await container.journeyService.getActiveJourney(forceRefresh: false)
                 flowState.journey = journey
                 flowState.isLoadingJourney = false
+
+                ThemeManager.shared.applyTheme(journey.theme)
 
                 if !journey.pages.isEmpty {
                     router.push(.formPage(pageIndex: 0))

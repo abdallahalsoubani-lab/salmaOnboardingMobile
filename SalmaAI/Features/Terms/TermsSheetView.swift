@@ -90,7 +90,7 @@ struct TermsSheetView: View {
         default:
             Text(content)
                 .font(SalmaDesign.Typography.body)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
                 .multilineTextAlignment(
                     languageManager.currentLanguage == .arabic ? .trailing : .leading
                 )

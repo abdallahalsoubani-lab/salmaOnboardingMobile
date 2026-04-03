@@ -28,7 +28,10 @@ struct SDKContainerView: View {
                 .environment(\.locale, languageManager.currentLanguage.locale)
 
             // Close button
-            Button { completion(.cancelled) } label: {
+            Button {
+                ThemeManager.shared.resetToDefaults()
+                completion(.cancelled)
+            } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(SalmaDesign.Colors.textSecondary)

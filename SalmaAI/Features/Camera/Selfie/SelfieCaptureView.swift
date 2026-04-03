@@ -176,7 +176,7 @@ struct SelfieCaptureView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity).frame(height: 52)
-                            .background(SalmaDesign.Colors.primary)
+                            .background(ThemedColors.primary)
                             .cornerRadius(SalmaDesign.Radius.lg)
                         }
                     }

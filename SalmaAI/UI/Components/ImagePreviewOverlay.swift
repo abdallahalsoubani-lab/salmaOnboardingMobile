@@ -88,7 +88,7 @@ struct ImagePreviewOverlay: View {
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
                                         .frame(height: 48)
-                                        .background(SalmaDesign.Colors.primary)
+                                        .background(ThemedColors.primary)
                                         .cornerRadius(SalmaDesign.Radius.md)
                                 }
                             }

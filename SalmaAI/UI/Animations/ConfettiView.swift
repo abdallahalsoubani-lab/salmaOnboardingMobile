@@ -26,9 +26,9 @@ struct ConfettiView: View {
     private func generateAndAnimate(in size: CGSize) {
         let center = CGPoint(x: size.width / 2, y: size.height / 2 - 60)
         let colors: [Color] = [
-            SalmaDesign.Colors.primary,
+            ThemedColors.primary,
             SalmaDesign.Colors.success,
-            SalmaDesign.Colors.primary.opacity(0.6),
+            ThemedColors.primary.opacity(0.6),
             SalmaDesign.Colors.success.opacity(0.6)
         ]
 

@@ -15,7 +15,7 @@ struct LoadingView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(SalmaDesign.Colors.background)
+        .background(ThemedColors.background)
     }
 }
 
@@ -47,7 +47,7 @@ private struct PulsingDots: View {
         HStack(spacing: size.spacing) {
             ForEach(0..<3, id: \.self) { index in
                 Circle()
-                    .fill(SalmaDesign.Colors.primary)
+                    .fill(ThemedColors.primary)
                     .frame(width: size.dotSize, height: size.dotSize)
                     .scaleEffect(scales[index])
             }

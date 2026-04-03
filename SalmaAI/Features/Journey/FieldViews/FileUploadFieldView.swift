@@ -186,7 +186,7 @@ struct FileUploadFieldView: View {
         .cornerRadius(SalmaDesign.Radius.lg)
         .overlay(
             RoundedRectangle(cornerRadius: SalmaDesign.Radius.lg)
-                .stroke(SalmaDesign.Colors.primaryLight, lineWidth: 1)
+                .stroke(ThemedColors.primaryLight, lineWidth: 1)
         )
     }
 
@@ -199,7 +199,7 @@ struct FileUploadFieldView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(displayFileName ?? L("file_selected"))
                     .font(SalmaDesign.Typography.bodyMedium)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
                     .lineLimit(1)
 
                 if let size = displayFileSize {
@@ -215,7 +215,7 @@ struct FileUploadFieldView: View {
                 Button { handleUploadTap() } label: {
                     Text(L("change"))
                         .font(SalmaDesign.Typography.caption)
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
                 Button { removeFile() } label: {
                     Text(L("remove"))
@@ -229,7 +229,7 @@ struct FileUploadFieldView: View {
         .cornerRadius(SalmaDesign.Radius.lg)
         .overlay(
             RoundedRectangle(cornerRadius: SalmaDesign.Radius.lg)
-                .stroke(SalmaDesign.Colors.primaryLight, lineWidth: 1)
+                .stroke(ThemedColors.primaryLight, lineWidth: 1)
         )
     }
 

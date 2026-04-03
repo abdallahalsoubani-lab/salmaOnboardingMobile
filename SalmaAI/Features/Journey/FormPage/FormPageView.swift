@@ -9,6 +9,7 @@ struct FormPageView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @StateObject private var viewModel: FormPageViewModel
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var showPhotoPicker = false
     @State private var showDocumentPicker = false
     @State private var showImagePreview = false
@@ -39,7 +40,7 @@ struct FormPageView: View {
             if let page = currentPage {
                 Text(languageManager.localizedTitle(for: page))
                     .font(SalmaDesign.Typography.title2)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary(for: colorScheme))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, SalmaDesign.Spacing.md)
                     .padding(.top, SalmaDesign.Spacing.lg)
@@ -80,7 +81,7 @@ struct FormPageView: View {
             Spacer(minLength: 0)
             bottomButtons(isLast: isLast)
         }
-        .background(SalmaDesign.Colors.background)
+        .background(ThemedColors.background(for: colorScheme))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -313,7 +314,7 @@ struct FormPageView: View {
         .padding(.horizontal, SalmaDesign.Spacing.md)
         .padding(.vertical, SalmaDesign.Spacing.md)
         .background(
-            SalmaDesign.Colors.background
+            ThemedColors.background(for: colorScheme)
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: -4)
                 .mask(Rectangle().padding(.top, -20))
         )

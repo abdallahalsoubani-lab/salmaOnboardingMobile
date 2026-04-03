@@ -38,7 +38,7 @@ struct SalmaDatePicker: View {
 
                     Text(formattedDate)
                         .font(SalmaDesign.Typography.body)
-                        .foregroundColor(selectedDate != nil ? SalmaDesign.Colors.textPrimary : SalmaDesign.Colors.textTertiary)
+                        .foregroundColor(selectedDate != nil ? ThemedColors.textPrimary : SalmaDesign.Colors.textTertiary)
 
                     Spacer()
 
@@ -110,7 +110,7 @@ struct SalmaDatePicker: View {
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)
-                .tint(SalmaDesign.Colors.primary)
+                .tint(ThemedColors.primary)
                 .padding()
 
                 Spacer()
@@ -123,7 +123,7 @@ struct SalmaDatePicker: View {
                         selectedDate = tempDate
                         showPicker = false
                     }
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                     .fontWeight(.semibold)
                 }
                 ToolbarItem(placement: .topBarLeading) {

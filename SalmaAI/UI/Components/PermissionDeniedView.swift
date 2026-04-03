@@ -41,7 +41,7 @@ struct PermissionDeniedView: View {
 
             Text(NSLocalizedString(permissionType.titleKey, bundle: .localized, comment: ""))
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             Text(NSLocalizedString(permissionType.explanationKey, bundle: .localized, comment: ""))
                 .font(SalmaDesign.Typography.body)
@@ -66,6 +66,6 @@ struct PermissionDeniedView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background.ignoresSafeArea())
     }
 }

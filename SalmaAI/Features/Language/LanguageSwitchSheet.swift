@@ -41,7 +41,7 @@ struct LanguageSwitchSheet: View {
                     Button(L("done")) {
                         dismiss()
                     }
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 }
             }
         }
@@ -59,7 +59,7 @@ struct LanguageSwitchSheet: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(SalmaDesign.Typography.bodyMedium)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                     Text(subtitle)
                         .font(SalmaDesign.Typography.caption)
                         .foregroundColor(SalmaDesign.Colors.textSecondary)
@@ -70,7 +70,7 @@ struct LanguageSwitchSheet: View {
                 if isSelected {
                     Image(systemName: "checkmark")
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
             }
             .padding(.horizontal, SalmaDesign.Spacing.md)

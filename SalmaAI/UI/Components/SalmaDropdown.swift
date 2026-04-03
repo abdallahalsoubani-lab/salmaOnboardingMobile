@@ -30,7 +30,7 @@ struct SalmaDropdown: View {
                 HStack {
                     Text(selection.isEmpty ? (placeholder.isEmpty ? label : placeholder) : selection)
                         .font(SalmaDesign.Typography.body)
-                        .foregroundColor(selection.isEmpty ? SalmaDesign.Colors.textTertiary : SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(selection.isEmpty ? SalmaDesign.Colors.textTertiary : ThemedColors.textPrimary)
                         .lineLimit(1)
                     Spacer()
                     Image(systemName: "chevron.down")
@@ -86,11 +86,11 @@ struct SalmaDropdown: View {
                         HStack {
                             Text(option)
                                 .font(SalmaDesign.Typography.body)
-                                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                                .foregroundColor(ThemedColors.textPrimary)
                             Spacer()
                             if selection == option {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(SalmaDesign.Colors.primary)
+                                    .foregroundColor(ThemedColors.primary)
                             }
                         }
                     }
@@ -101,7 +101,7 @@ struct SalmaDropdown: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(L("done")) { showPicker = false }
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
             }
         }
@@ -120,11 +120,11 @@ struct SalmaDropdown: View {
                         HStack {
                             Text(option)
                                 .font(SalmaDesign.Typography.body)
-                                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                                .foregroundColor(ThemedColors.textPrimary)
                             Spacer()
                             if selection == option {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(SalmaDesign.Colors.primary)
+                                    .foregroundColor(ThemedColors.primary)
                             }
                         }
                     }
@@ -136,7 +136,7 @@ struct SalmaDropdown: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(L("done")) { showPicker = false }
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
             }
         }

@@ -1,5 +1,20 @@
 import Foundation
 
+struct JourneyTheme: Codable {
+    let primaryColor: String?
+    let primaryDarkColor: String?
+    let primaryLightColor: String?
+    let backgroundColor: String?
+    let backgroundDarkColor: String?
+    let textColor: String?
+    let textDarkColor: String?
+    let buttonRadius: Int?
+    let cardRadius: Int?
+    let fontFamily: String?
+    let logoUrl: String?
+    let showPoweredBy: Bool?
+}
+
 struct JourneyDetail: Codable, Identifiable {
     let id: String
     let name: String
@@ -8,6 +23,7 @@ struct JourneyDetail: Codable, Identifiable {
     let status: String
     let pages: [JourneyPage]
     let businessRules: [BusinessRule]
+    let theme: JourneyTheme?
 }
 
 struct JourneyPage: Codable, Identifiable {

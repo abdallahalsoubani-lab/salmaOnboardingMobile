@@ -54,6 +54,6 @@ struct ImagePreviewView: View {
             .padding(.horizontal, SalmaDesign.Spacing.md)
             .padding(.bottom, SalmaDesign.Spacing.xl)
         }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background.ignoresSafeArea())
     }
 }

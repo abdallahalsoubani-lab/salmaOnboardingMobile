@@ -70,7 +70,7 @@ struct SalmaTextField: View {
                     }
                 }
                 .font(SalmaDesign.Typography.body)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
                 .keyboardType(keyboardType)
                 .focused($isFocused)
                 .disabled(isDisabled)
@@ -118,7 +118,7 @@ struct SalmaTextField: View {
 
     private var borderColor: Color {
         if errorMessage != nil { return SalmaDesign.Colors.danger }
-        if isFocused { return SalmaDesign.Colors.primary }
+        if isFocused { return ThemedColors.primary }
         return SalmaDesign.Colors.border
     }
 }

@@ -14,7 +14,7 @@ struct FieldInfoSheet: View {
 
                 Text("Field information for: \(fieldId)")
                     .font(SalmaDesign.Typography.body)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, SalmaDesign.Spacing.lg)
 
@@ -27,7 +27,7 @@ struct FieldInfoSheet: View {
                     Button(L("done")) {
                         dismiss()
                     }
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 }
             }
         }

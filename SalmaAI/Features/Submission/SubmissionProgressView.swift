@@ -6,6 +6,7 @@ struct SubmissionProgressView: View {
     @EnvironmentObject var container: DependencyContainer
     @EnvironmentObject var languageManager: LanguageManager
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var currentStep: SubmitStep = .uploading
     @State private var error: APIError?
     @State private var progress: Double = 0.0
@@ -49,7 +50,7 @@ struct SubmissionProgressView: View {
             Spacer()
         }
         .padding(.horizontal, SalmaDesign.Spacing.lg)
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background(for: colorScheme).ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
         .interactiveDismissDisabled(true)
         .onAppear { startSubmission() }
@@ -62,16 +63,16 @@ struct SubmissionProgressView: View {
         VStack(spacing: SalmaDesign.Spacing.xl) {
             ZStack {
                 Circle()
-                    .fill(SalmaDesign.Colors.primaryLight)
+                    .fill(ThemedColors.primaryLight)
                     .frame(width: 100, height: 100)
                 Image(systemName: currentStep.icon)
                     .font(.system(size: 36))
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
             }
 
             Text(languageManager.currentLanguage == .arabic ? currentStep.labelAr : currentStep.labelEn)
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
                 .animation(.easeInOut, value: currentStep)
 
             VStack(spacing: SalmaDesign.Spacing.sm) {
@@ -79,12 +80,12 @@ struct SubmissionProgressView: View {
                     ForEach(SubmitStep.allCases, id: \.rawValue) { step in
                         Circle()
                             .fill(step.rawValue <= currentStep.rawValue
-                                  ? SalmaDesign.Colors.primary : SalmaDesign.Colors.border)
+                                  ? ThemedColors.primary : SalmaDesign.Colors.border)
                             .frame(width: 12, height: 12)
                         if step != .complete {
                             Rectangle()
                                 .fill(step.rawValue < currentStep.rawValue
-                                      ? SalmaDesign.Colors.primary : SalmaDesign.Colors.border)
+                                      ? ThemedColors.primary : SalmaDesign.Colors.border)
                                 .frame(height: 3)
                         }
                     }
@@ -116,7 +117,7 @@ struct SubmissionProgressView: View {
 
             Text(L("submission_failed"))
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             Text(error.errorDescription ?? L("server_error_generic"))
                 .font(SalmaDesign.Typography.body)

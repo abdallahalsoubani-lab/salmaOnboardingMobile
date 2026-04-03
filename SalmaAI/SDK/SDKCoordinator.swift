@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 
+@MainActor
 class SDKCoordinator {
     let config: SalmaConfig
     let completion: (SalmaResult) -> Void
@@ -15,6 +16,7 @@ class SDKCoordinator {
         SDKConfigManager.shared.apply(config)
 
         let sdkView = SDKContainerView(config: config) { [weak self] result in
+            ThemeManager.shared.resetToDefaults()
             self?.hostingController?.dismiss(animated: true) {
                 self?.completion(result)
             }

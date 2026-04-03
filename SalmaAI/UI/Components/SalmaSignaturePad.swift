@@ -3,7 +3,7 @@ import UIKit
 
 struct SalmaSignaturePad: View {
     @Binding var signatureImage: UIImage?
-    var lineColor: Color = SalmaDesign.Colors.textPrimary
+    var lineColor: Color = ThemedColors.textPrimary
     var lineWidth: CGFloat = 3.0
     var backgroundColor: Color = SalmaDesign.Colors.backgroundSecondary
 

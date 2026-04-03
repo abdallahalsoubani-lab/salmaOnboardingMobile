@@ -126,7 +126,7 @@ struct MediaFieldButton: View {
             .cornerRadius(SalmaDesign.Radius.lg)
             .overlay(
                 RoundedRectangle(cornerRadius: SalmaDesign.Radius.lg)
-                    .stroke(SalmaDesign.Colors.primaryLight, lineWidth: 1)
+                    .stroke(ThemedColors.primaryLight, lineWidth: 1)
             )
         } else if let fileName = capturedFileName {
             // File preview
@@ -138,7 +138,7 @@ struct MediaFieldButton: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(fileName)
                         .font(SalmaDesign.Typography.bodyMedium)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                         .lineLimit(1)
 
                     if let size = capturedFileSize {
@@ -154,7 +154,7 @@ struct MediaFieldButton: View {
                     Button { handleTap() } label: {
                         Text(L("change"))
                             .font(SalmaDesign.Typography.caption)
-                            .foregroundColor(SalmaDesign.Colors.primary)
+                            .foregroundColor(ThemedColors.primary)
                     }
                     Button { onRemove() } label: {
                         Text(L("remove"))
@@ -168,7 +168,7 @@ struct MediaFieldButton: View {
             .cornerRadius(SalmaDesign.Radius.lg)
             .overlay(
                 RoundedRectangle(cornerRadius: SalmaDesign.Radius.lg)
-                    .stroke(SalmaDesign.Colors.primaryLight, lineWidth: 1)
+                    .stroke(ThemedColors.primaryLight, lineWidth: 1)
             )
         }
     }

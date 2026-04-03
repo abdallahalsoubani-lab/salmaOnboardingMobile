@@ -103,7 +103,7 @@ struct SignaturePadFullScreen: View {
 
             Text(L("sign_here"))
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             SalmaSignaturePad(signatureImage: $signatureImage)
                 .frame(height: 250)
@@ -123,6 +123,6 @@ struct SignaturePadFullScreen: View {
 
             Spacer()
         }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background.ignoresSafeArea())
     }
 }

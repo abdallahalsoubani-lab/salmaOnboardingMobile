@@ -8,8 +8,8 @@ struct SalmaToggle: View {
         Toggle(isOn: $isOn) {
             Text(label)
                 .font(SalmaDesign.Typography.body)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
         }
-        .tint(SalmaDesign.Colors.primary)
+        .tint(ThemedColors.primary)
     }
 }

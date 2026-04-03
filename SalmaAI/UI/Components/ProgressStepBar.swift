@@ -84,8 +84,8 @@ private struct StepDot: View {
     }
 
     private var dotColor: Color {
-        if isCompleted { return SalmaDesign.Colors.primary }
-        if isCurrent { return SalmaDesign.Colors.primary }
+        if isCompleted { return ThemedColors.primary }
+        if isCurrent { return ThemedColors.primary }
         return SalmaDesign.Colors.border
     }
 }
@@ -104,7 +104,7 @@ private struct StepLine: View {
 
                 // Filled line
                 Capsule()
-                    .fill(SalmaDesign.Colors.primary)
+                    .fill(ThemedColors.primary)
                     .frame(width: isCompleted ? geometry.size.width : 0, height: 3)
                     .animation(
                         reduceMotion ? .none : .easeInOut(duration: 0.3),

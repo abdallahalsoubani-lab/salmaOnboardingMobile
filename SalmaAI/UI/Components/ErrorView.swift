@@ -14,7 +14,7 @@ struct ErrorView: View {
 
             Text(title)
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             Text(message)
                 .font(SalmaDesign.Typography.body)

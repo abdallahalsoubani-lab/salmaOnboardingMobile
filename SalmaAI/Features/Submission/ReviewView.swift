@@ -6,6 +6,7 @@ struct ReviewView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var container: DependencyContainer
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var validationErrors: [String: String] = [:]
     @State private var showSubmitConfirm = false
 
@@ -52,7 +53,7 @@ struct ReviewView: View {
             Spacer(minLength: 0)
             bottomBar
         }
-        .background(SalmaDesign.Colors.background)
+        .background(ThemedColors.background(for: colorScheme))
         .navigationTitle(L("review_data"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
@@ -65,7 +66,7 @@ struct ReviewView: View {
                         Text(L("edit"))
                     }
                     .font(SalmaDesign.Typography.callout)
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 }
             }
         }
@@ -123,7 +124,7 @@ struct ReviewView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(languageManager.localizedTitle(for: page))
                         .font(SalmaDesign.Typography.title3)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                     Text(String(format: L("page_of"), pageIndex + 1, flowState.totalPages))
                         .font(SalmaDesign.Typography.caption)
                         .foregroundColor(SalmaDesign.Colors.textTertiary)
@@ -141,9 +142,9 @@ struct ReviewView: View {
                         Image(systemName: "pencil").font(.system(size: 12))
                         Text(L("edit")).font(SalmaDesign.Typography.captionMedium)
                     }
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                     .padding(.horizontal, 10).padding(.vertical, 5)
-                    .background(SalmaDesign.Colors.primaryLight)
+                    .background(ThemedColors.primaryLight)
                     .cornerRadius(SalmaDesign.Radius.sm)
                 }
             }
@@ -212,16 +213,16 @@ struct ReviewView: View {
             case .date:
                 Text(formatDate(value))
                     .font(SalmaDesign.Typography.body)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
             case .phone:
                 let prefix = field.validationRules?.countryCode ?? ""
                 Text("\(prefix) \(value)")
                     .font(SalmaDesign.Typography.body)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
             default:
                 Text(value)
                     .font(SalmaDesign.Typography.body)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
             }
         }
     }
@@ -306,7 +307,7 @@ struct ReviewView: View {
         .padding(.vertical, SalmaDesign.Spacing.md)
         .padding(.horizontal, SalmaDesign.Spacing.md)
         .background(
-            SalmaDesign.Colors.background
+            ThemedColors.background(for: colorScheme)
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: -4)
                 .mask(Rectangle().padding(.top, -20))
         )
@@ -318,7 +319,7 @@ struct ReviewView: View {
             Image(systemName: icon).font(.system(size: 14))
                 .foregroundColor(count == total ? SalmaDesign.Colors.success : SalmaDesign.Colors.warning)
             Text("\(count)/\(total)").font(SalmaDesign.Typography.captionMedium)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
             Text(label).font(SalmaDesign.Typography.caption)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
         }

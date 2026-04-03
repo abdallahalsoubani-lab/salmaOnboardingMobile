@@ -22,7 +22,7 @@ struct SalmaCheckbox: View {
                             .frame(width: 24, height: 24)
 
                         RoundedRectangle(cornerRadius: 6)
-                            .fill(isChecked ? SalmaDesign.Colors.primary : .clear)
+                            .fill(isChecked ? ThemedColors.primary : .clear)
                             .frame(width: 24, height: 24)
 
                         if isChecked {
@@ -36,7 +36,7 @@ struct SalmaCheckbox: View {
 
                     Text(consentText)
                         .font(SalmaDesign.Typography.callout)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                 }

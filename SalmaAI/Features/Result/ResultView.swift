@@ -6,6 +6,7 @@ struct ResultView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var container: DependencyContainer
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var polledStatus: String?
     @State private var isPolling = false
     @State private var pollTimer: Timer?
@@ -36,7 +37,7 @@ struct ResultView: View {
 
             bottomActions
         }
-        .background(SalmaDesign.Colors.background.ignoresSafeArea())
+        .background(ThemedColors.background(for: colorScheme).ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
         .onAppear { onScreenAppear() }
         .onDisappear { stopPolling() }
@@ -77,7 +78,7 @@ struct ResultView: View {
         VStack(spacing: SalmaDesign.Spacing.sm) {
             Text(statusTitle)
                 .font(SalmaDesign.Typography.title1)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary(for: colorScheme))
                 .multilineTextAlignment(.center)
 
             Text(statusSubtitle)
@@ -112,10 +113,10 @@ struct ResultView: View {
             HStack {
                 Image(systemName: "doc.text.viewfinder")
                     .font(.system(size: 16))
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 Text(L("extracted_data"))
                     .font(SalmaDesign.Typography.title3)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
             }
 
             VStack(spacing: 1) {
@@ -161,7 +162,7 @@ struct ResultView: View {
                 .frame(width: 100, alignment: .trailing)
             Text(value)
                 .font(SalmaDesign.Typography.callout)
-                .foregroundColor(valueColor ?? SalmaDesign.Colors.textPrimary)
+                .foregroundColor(valueColor ?? ThemedColors.textPrimary)
             Spacer()
         }
         .padding(.horizontal, SalmaDesign.Spacing.md)
@@ -186,7 +187,7 @@ struct ResultView: View {
                 } label: {
                     Image(systemName: "doc.on.doc")
                         .font(.system(size: 12))
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
             }
             .padding(.vertical, SalmaDesign.Spacing.sm)
@@ -215,7 +216,7 @@ struct ResultView: View {
             default: // Pending, Flagged, InReview
                 if isPolling {
                     HStack(spacing: SalmaDesign.Spacing.sm) {
-                        ProgressView().tint(SalmaDesign.Colors.primary)
+                        ProgressView().tint(ThemedColors.primary)
                         Text(L("checking_status"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.textSecondary)
@@ -229,7 +230,7 @@ struct ResultView: View {
         .padding(.horizontal, SalmaDesign.Spacing.md)
         .padding(.vertical, SalmaDesign.Spacing.md)
         .background(
-            SalmaDesign.Colors.background
+            ThemedColors.background(for: colorScheme)
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: -4)
                 .mask(Rectangle().padding(.top, -20))
         )

@@ -46,7 +46,7 @@ struct SalmaButton: View {
                 Group {
                     if style == .outline {
                         RoundedRectangle(cornerRadius: size.radius)
-                            .stroke(SalmaDesign.Colors.primary, lineWidth: 1.5)
+                            .stroke(ThemedColors.primary, lineWidth: 1.5)
                     }
                 }
             )
@@ -61,17 +61,18 @@ struct SalmaButton: View {
     private var spinnerColor: Color {
         switch style {
         case .primary, .danger: return .white
-        default: return SalmaDesign.Colors.primary
+        default: return ThemedColors.primary
         }
     }
 }
 
+@MainActor
 enum ButtonVariant {
     case primary, secondary, danger, ghost, outline
 
     var backgroundColor: Color {
         switch self {
-        case .primary: return SalmaDesign.Colors.primary
+        case .primary: return ThemedColors.primary
         case .secondary: return SalmaDesign.Colors.backgroundSecondary
         case .danger: return SalmaDesign.Colors.danger
         case .ghost: return .clear
@@ -82,14 +83,15 @@ enum ButtonVariant {
     var foregroundColor: Color {
         switch self {
         case .primary: return .white
-        case .secondary: return SalmaDesign.Colors.textPrimary
+        case .secondary: return ThemedColors.textPrimary
         case .danger: return .white
-        case .ghost: return SalmaDesign.Colors.primary
-        case .outline: return SalmaDesign.Colors.primary
+        case .ghost: return ThemedColors.primary
+        case .outline: return ThemedColors.primary
         }
     }
 }
 
+@MainActor
 enum ButtonSize {
     case small, medium, large
 
@@ -117,6 +119,9 @@ enum ButtonSize {
     }
 
     var radius: CGFloat {
+        if ThemeManager.shared.hasCustomTheme {
+            return ThemedColors.buttonRadius
+        }
         switch self {
         case .small: return SalmaDesign.Radius.sm
         case .medium: return SalmaDesign.Radius.md

@@ -23,7 +23,7 @@ struct LivenessCheckView: View {
 
     var body: some View {
         ZStack {
-            SalmaDesign.Colors.background.ignoresSafeArea()
+            ThemedColors.background.ignoresSafeArea()
 
             if viewModel.isLoading && viewModel.sessionId == nil {
                 preparingView
@@ -142,7 +142,7 @@ struct LivenessCheckView: View {
 
             Text(L("liveness_error"))
                 .font(SalmaDesign.Typography.title2)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
 
             Text(error)
                 .font(SalmaDesign.Typography.caption)

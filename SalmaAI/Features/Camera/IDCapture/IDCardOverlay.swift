@@ -27,7 +27,7 @@ struct IDCardOverlay: View {
                     .position(x: frameRect.midX, y: frameRect.midY)
 
                 // Corner accents
-                CornerAccents(rect: frameRect, lineLength: 30, lineWidth: 4, color: SalmaDesign.Colors.primary)
+                CornerAccents(rect: frameRect, lineLength: 30, lineWidth: 4, color: ThemedColors.primary)
 
                 // Instruction text above frame
                 VStack(spacing: 8) {
@@ -39,17 +39,17 @@ struct IDCardOverlay: View {
                          ? L("front_side")
                          : L("back_side"))
                         .font(SalmaDesign.Typography.title2)
-                        .foregroundColor(SalmaDesign.Colors.primary)
+                        .foregroundColor(ThemedColors.primary)
                 }
                 .position(x: screenWidth / 2, y: frameY - 50)
 
                 // Side indicator dots
                 HStack(spacing: 8) {
                     Circle()
-                        .fill(side == .front ? SalmaDesign.Colors.primary : Color.white.opacity(0.3))
+                        .fill(side == .front ? ThemedColors.primary : Color.white.opacity(0.3))
                         .frame(width: 10, height: 10)
                     Circle()
-                        .fill(side == .back ? SalmaDesign.Colors.primary : Color.white.opacity(0.3))
+                        .fill(side == .back ? ThemedColors.primary : Color.white.opacity(0.3))
                         .frame(width: 10, height: 10)
                 }
                 .position(x: screenWidth / 2, y: frameRect.maxY + 30)
@@ -122,7 +122,7 @@ struct ScanningLineView: View {
         Rectangle()
             .fill(
                 LinearGradient(
-                    colors: [.clear, SalmaDesign.Colors.primary.opacity(0.4), .clear],
+                    colors: [.clear, ThemedColors.primary.opacity(0.4), .clear],
                     startPoint: .leading, endPoint: .trailing
                 )
             )

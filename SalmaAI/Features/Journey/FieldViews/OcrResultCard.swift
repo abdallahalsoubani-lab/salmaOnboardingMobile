@@ -9,10 +9,10 @@ struct OcrResultCard: View {
         VStack(alignment: .trailing, spacing: SalmaDesign.Spacing.md) {
             HStack(spacing: SalmaDesign.Spacing.sm) {
                 Image(systemName: "creditcard.fill")
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 Text(L("extracted_id_data"))
                     .font(SalmaDesign.Typography.bodyMedium)
-                    .foregroundColor(SalmaDesign.Colors.textPrimary)
+                    .foregroundColor(ThemedColors.textPrimary)
                 Spacer()
                 Text(String(format: "%d%%", Int(result.confidence)))
                     .font(SalmaDesign.Typography.captionMedium)
@@ -62,10 +62,10 @@ struct OcrResultCard: View {
                 HStack(spacing: SalmaDesign.Spacing.sm) {
                     Image(systemName: confirmed ? "checkmark.square.fill" : "square")
                         .font(.system(size: 24))
-                        .foregroundColor(confirmed ? SalmaDesign.Colors.primary : SalmaDesign.Colors.border)
+                        .foregroundColor(confirmed ? ThemedColors.primary : SalmaDesign.Colors.border)
                     Text(L("confirm_id_data_correct"))
                         .font(SalmaDesign.Typography.body)
-                        .foregroundColor(SalmaDesign.Colors.textPrimary)
+                        .foregroundColor(ThemedColors.textPrimary)
                 }
             }
             .buttonStyle(.plain)
@@ -81,7 +81,7 @@ struct OcrResultCard: View {
         HStack {
             Text(value)
                 .font(SalmaDesign.Typography.body)
-                .foregroundColor(SalmaDesign.Colors.textPrimary)
+                .foregroundColor(ThemedColors.textPrimary)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             Text(label)
                 .font(SalmaDesign.Typography.caption)

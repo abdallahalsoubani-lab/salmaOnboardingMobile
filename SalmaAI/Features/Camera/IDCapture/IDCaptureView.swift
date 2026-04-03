@@ -69,7 +69,7 @@ struct IDCaptureView: View {
             // Focus indicator
             if showFocusIndicator {
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(SalmaDesign.Colors.primary, lineWidth: 2)
+                    .stroke(ThemedColors.primary, lineWidth: 2)
                     .frame(width: 60, height: 60)
                     .position(focusPoint)
                     .transition(.scale.combined(with: .opacity))
@@ -123,7 +123,7 @@ struct IDCaptureView: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
-                        .background(SalmaDesign.Colors.primary.opacity(0.8))
+                        .background(ThemedColors.primary.opacity(0.8))
                         .cornerRadius(SalmaDesign.Radius.sm)
 
                     if viewModel.showQualityWarning {
@@ -152,9 +152,9 @@ struct IDCaptureView: View {
                 // Bottom: dots + buttons
                 VStack(spacing: SalmaDesign.Spacing.md) {
                     HStack(spacing: 8) {
-                        Circle().fill(SalmaDesign.Colors.primary).frame(width: 10, height: 10)
+                        Circle().fill(ThemedColors.primary).frame(width: 10, height: 10)
                         Circle().fill(viewModel.currentSide == .back
-                                      ? SalmaDesign.Colors.primary
+                                      ? ThemedColors.primary
                                       : Color.white.opacity(0.3))
                             .frame(width: 10, height: 10)
                     }
@@ -182,7 +182,7 @@ struct IDCaptureView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity).frame(height: 52)
-                            .background(SalmaDesign.Colors.primary)
+                            .background(ThemedColors.primary)
                             .cornerRadius(SalmaDesign.Radius.lg)
                         }
                     }

@@ -97,7 +97,7 @@ struct PhotoCaptureView: View {
                         .font(SalmaDesign.Typography.bodyMedium)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity).frame(height: 52)
-                        .background(SalmaDesign.Colors.primary)
+                        .background(ThemedColors.primary)
                         .cornerRadius(SalmaDesign.Radius.lg)
                     }
                 }

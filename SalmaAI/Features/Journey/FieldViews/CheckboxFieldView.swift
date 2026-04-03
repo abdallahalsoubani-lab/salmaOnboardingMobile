@@ -55,7 +55,7 @@ struct CheckboxFieldView: View {
                             .font(SalmaDesign.Typography.callout)
                             .underline()
                     }
-                    .foregroundColor(SalmaDesign.Colors.primary)
+                    .foregroundColor(ThemedColors.primary)
                 }
                 .buttonStyle(.plain)
 
