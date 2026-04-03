@@ -23,16 +23,16 @@ struct PhotoCaptureView: View {
         }
         .cameraFlash(trigger: $flashTrigger)
         .statusBarHidden(true)
-        .onAppear { cameraManager.configure(); cameraManager.start() }
-        .onDisappear { cameraManager.stop() }
-        .onChange(of: cameraManager.capturedImage) { img in
-            if let img = img {
+        .onAppear {
+            cameraManager.onPhotoCaptured = { [self] image in
                 flashTrigger = true
                 HapticManager.impact(.heavy)
-                capturedImage = img
+                capturedImage = image
                 isReviewing = true
             }
+            cameraManager.configureAndStart()
         }
+        .onDisappear { cameraManager.stop() }
     }
 
     @ViewBuilder
@@ -46,7 +46,7 @@ struct PhotoCaptureView: View {
                 CameraBottomBar(
                     onCapture: { cameraManager.capturePhoto() },
                     onTorchToggle: { cameraManager.toggleTorch() },
-                    onClose: { router.dismissFullScreen() },
+                    onClose: { cameraManager.stop(); router.dismissFullScreen() },
                     isTorchOn: cameraManager.isTorchOn
                 )
             }
@@ -67,7 +67,7 @@ struct PhotoCaptureView: View {
                     Button {
                         capturedImage = nil
                         isReviewing = false
-                        cameraManager.capturedImage = nil
+                        cameraManager.configureAndStart()
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.counterclockwise")

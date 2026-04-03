@@ -3,15 +3,22 @@ import UIKit
 
 class CameraSessionManager: NSObject, ObservableObject {
     @Published var isSessionRunning = false
-    @Published var capturedImage: UIImage?
     @Published var error: CameraError?
     @Published var isTorchOn = false
 
     let session = AVCaptureSession()
-    private var videoOutput = AVCapturePhotoOutput()
+    private var videoOutput = AVCaptureVideoDataOutput()
     private var currentDevice: AVCaptureDevice?
     private var currentInput: AVCaptureDeviceInput?
     private(set) var cameraPosition: AVCaptureDevice.Position
+
+    var onPhotoCaptured: ((UIImage) -> Void)?
+
+    private let sessionQueue = DispatchQueue(label: "com.salmaai.camera.session")
+    private let videoQueue = DispatchQueue(label: "com.salmaai.camera.video")
+
+    private var isConfigured = false
+    private var pendingCapture = false
 
     enum CameraError: LocalizedError {
         case deviceNotAvailable
@@ -35,88 +42,104 @@ class CameraSessionManager: NSObject, ObservableObject {
 
     // MARK: - Setup
 
-    func configure() {
-        session.beginConfiguration()
-        session.sessionPreset = .photo
-
-        guard let device = AVCaptureDevice.default(
-            .builtInWideAngleCamera, for: .video, position: cameraPosition
-        ) else {
-            error = .deviceNotAvailable
-            session.commitConfiguration()
-            return
-        }
-        currentDevice = device
-
-        session.inputs.forEach { session.removeInput($0) }
-
-        do {
-            let input = try AVCaptureDeviceInput(device: device)
-            guard session.canAddInput(input) else {
-                error = .cannotAddInput
-                session.commitConfiguration()
+    func configureAndStart() {
+        sessionQueue.async { [weak self] in
+            guard let self = self else { return }
+            if self.isConfigured {
+                self.startSession()
                 return
             }
-            session.addInput(input)
-            currentInput = input
-        } catch {
-            self.error = .cannotAddInput
-            session.commitConfiguration()
-            return
-        }
 
-        session.outputs.forEach { session.removeOutput($0) }
+            self.session.beginConfiguration()
+            self.session.sessionPreset = .photo
 
-        guard session.canAddOutput(videoOutput) else {
-            error = .cannotAddOutput
-            session.commitConfiguration()
-            return
-        }
-        session.addOutput(videoOutput)
-
-        if let connection = videoOutput.connection(with: .video) {
-            if connection.isVideoOrientationSupported {
-                connection.videoOrientation = .portrait
+            guard let device = AVCaptureDevice.default(
+                .builtInWideAngleCamera, for: .video, position: self.cameraPosition
+            ) else {
+                DispatchQueue.main.async { self.error = .deviceNotAvailable }
+                self.session.commitConfiguration()
+                return
             }
-            if cameraPosition == .front && connection.isVideoMirroringSupported {
-                connection.isVideoMirrored = true
-            }
-        }
+            self.currentDevice = device
 
-        session.commitConfiguration()
+            self.session.inputs.forEach { self.session.removeInput($0) }
+
+            do {
+                let input = try AVCaptureDeviceInput(device: device)
+                guard self.session.canAddInput(input) else {
+                    DispatchQueue.main.async { self.error = .cannotAddInput }
+                    self.session.commitConfiguration()
+                    return
+                }
+                self.session.addInput(input)
+                self.currentInput = input
+            } catch {
+                DispatchQueue.main.async { self.error = .cannotAddInput }
+                self.session.commitConfiguration()
+                return
+            }
+
+            self.session.outputs.forEach { self.session.removeOutput($0) }
+
+            self.videoOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
+            self.videoOutput.alwaysDiscardsLateVideoFrames = true
+            self.videoOutput.videoSettings = [
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
+            ]
+
+            guard self.session.canAddOutput(self.videoOutput) else {
+                DispatchQueue.main.async { self.error = .cannotAddOutput }
+                self.session.commitConfiguration()
+                return
+            }
+            self.session.addOutput(self.videoOutput)
+
+            if let connection = self.videoOutput.connection(with: .video) {
+                if connection.isVideoOrientationSupported {
+                    connection.videoOrientation = .portrait
+                }
+                if self.cameraPosition == .front && connection.isVideoMirroringSupported {
+                    connection.isVideoMirrored = true
+                }
+            }
+
+            self.session.commitConfiguration()
+            self.isConfigured = true
+            self.startSession()
+        }
+    }
+
+    @available(*, deprecated, message: "Use configureAndStart() instead")
+    func configure() {
+        configureAndStart()
     }
 
     // MARK: - Start/Stop
 
-    func start() {
-        guard !session.isRunning else { return }
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.session.startRunning()
-            DispatchQueue.main.async {
-                self?.isSessionRunning = self?.session.isRunning ?? false
-            }
+    private func startSession() {
+        sessionQueue.async { [weak self] in
+            guard let self = self, !self.session.isRunning else { return }
+            self.session.startRunning()
+            let running = self.session.isRunning
+            DispatchQueue.main.async { self.isSessionRunning = running }
         }
     }
 
+    func start() {
+        startSession()
+    }
+
     func stop() {
-        guard session.isRunning else { return }
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        sessionQueue.async { [weak self] in
             self?.session.stopRunning()
-            DispatchQueue.main.async {
-                self?.isSessionRunning = false
-            }
+            DispatchQueue.main.async { self?.isSessionRunning = false }
         }
     }
 
     // MARK: - Capture
 
     func capturePhoto() {
-        let settings = AVCapturePhotoSettings()
-        settings.photoQualityPrioritization = videoOutput.maxPhotoQualityPrioritization
-        if let device = currentDevice, device.hasFlash {
-            settings.flashMode = isTorchOn ? .on : .off
-        }
-        videoOutput.capturePhoto(with: settings, delegate: self)
+        pendingCapture = true
     }
 
     // MARK: - Torch
@@ -141,7 +164,8 @@ class CameraSessionManager: NSObject, ObservableObject {
     func switchCamera() {
         cameraPosition = (cameraPosition == .back) ? .front : .back
         isTorchOn = false
-        configure()
+        isConfigured = false
+        configureAndStart()
     }
 
     // MARK: - Focus
@@ -163,34 +187,32 @@ class CameraSessionManager: NSObject, ObservableObject {
             device.unlockForConfiguration()
         } catch {}
     }
+
+    // MARK: - Image Conversion
+
+    private func imageFromSampleBuffer(_ sampleBuffer: CMSampleBuffer) -> UIImage? {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let context = CIContext()
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return nil }
+        return UIImage(cgImage: cgImage)
+    }
 }
 
-// MARK: - AVCapturePhotoCaptureDelegate
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 
-extension CameraSessionManager: AVCapturePhotoCaptureDelegate {
-    func photoOutput(
-        _ output: AVCapturePhotoOutput,
-        didFinishProcessingPhoto photo: AVCapturePhoto,
-        error: Error?
-    ) {
-        if let error = error {
-            DispatchQueue.main.async { self.error = .captureFailed(error) }
-            return
-        }
-
-        guard let imageData = photo.fileDataRepresentation(),
-              let image = UIImage(data: imageData) else {
-            DispatchQueue.main.async {
-                self.error = .captureFailed(
-                    NSError(domain: "CameraSession", code: -1,
-                            userInfo: [NSLocalizedDescriptionKey: "Failed to process photo"])
-                )
+extension CameraSessionManager: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if pendingCapture {
+            pendingCapture = false
+            if let image = imageFromSampleBuffer(sampleBuffer) {
+                session.stopRunning()
+                DispatchQueue.main.async {
+                    self.isSessionRunning = false
+                    self.onPhotoCaptured?(image)
+                }
             }
             return
-        }
-
-        DispatchQueue.main.async {
-            self.capturedImage = image
         }
     }
 }

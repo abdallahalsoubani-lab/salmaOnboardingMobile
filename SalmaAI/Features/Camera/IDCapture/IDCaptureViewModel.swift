@@ -26,8 +26,10 @@ class IDCaptureViewModel: ObservableObject {
     }
 
     func setupCamera() {
-        cameraManager.configure()
-        cameraManager.start()
+        cameraManager.onPhotoCaptured = { [weak self] image in
+            self?.handleCapturedImage(image)
+        }
+        cameraManager.configureAndStart()
     }
 
     func stopCamera() {
@@ -43,9 +45,6 @@ class IDCaptureViewModel: ObservableObject {
 
     func handleCapturedImage(_ image: UIImage) {
         isProcessing = false
-        captureState = .qualityCheck
-
-        let quality = ImageQualityChecker.check(image)
 
         if currentSide == .front {
             frontImage = image
@@ -53,16 +52,18 @@ class IDCaptureViewModel: ObservableObject {
             backImage = image
         }
 
+        let quality = ImageQualityChecker.check(image)
+
         if quality.isAcceptable {
-            captureState = .reviewing
             qualityIssues = []
             showQualityWarning = false
         } else {
-            captureState = .reviewing
             qualityIssues = quality.issues
             showQualityWarning = true
             HapticManager.notification(.warning)
         }
+
+        captureState = .reviewing
     }
 
     func usePhoto() {
@@ -72,7 +73,7 @@ class IDCaptureViewModel: ObservableObject {
             HapticManager.notification(.success)
             currentSide = .back
             captureState = .capturing
-            cameraManager.capturedImage = nil
+            cameraManager.configureAndStart()
         } else {
             HapticManager.notification(.success)
             captureState = .completed
@@ -84,13 +85,9 @@ class IDCaptureViewModel: ObservableObject {
         else { backImage = nil }
 
         captureState = .capturing
-        cameraManager.capturedImage = nil
         qualityIssues = []
         showQualityWarning = false
-
-        if !cameraManager.isSessionRunning {
-            cameraManager.start()
-        }
+        cameraManager.configureAndStart()
     }
 
     func toggleTorch() {

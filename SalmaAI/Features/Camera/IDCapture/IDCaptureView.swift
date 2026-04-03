@@ -37,14 +37,12 @@ struct IDCaptureView: View {
         .statusBarHidden(true)
         .onAppear { viewModel.setupCamera() }
         .onDisappear { viewModel.stopCamera() }
-        .onChange(of: viewModel.cameraManager.capturedImage) { newImage in
-            if let image = newImage {
-                flashTrigger = true
-                viewModel.handleCapturedImage(image)
-            }
-        }
         .onChange(of: viewModel.captureState) { newState in
-            if newState == .completed { saveAndDismiss() }
+            if newState == .reviewing {
+                flashTrigger = true
+            } else if newState == .completed {
+                saveAndDismiss()
+            }
         }
     }
 
