@@ -26,6 +26,9 @@ class SelfieCaptureViewModel: ObservableObject {
         cameraSession.onVideoFrame = { [weak self] sampleBuffer in
             self?.faceDetector.detectFace(in: sampleBuffer)
         }
+        cameraSession.onPhotoCaptured = { [weak self] image in
+            self?.handleCapturedImage(image)
+        }
         cameraSession.configureAndStart()
     }
 
@@ -42,21 +45,20 @@ class SelfieCaptureViewModel: ObservableObject {
 
     func handleCapturedImage(_ image: UIImage) {
         isProcessing = false
-        captureState = .qualityCheck
-
-        let quality = ImageQualityChecker.check(image)
         capturedImage = image
 
+        let quality = ImageQualityChecker.check(image)
+
         if quality.isAcceptable {
-            captureState = .reviewing
             qualityIssues = []
             showQualityWarning = false
         } else {
-            captureState = .reviewing
             qualityIssues = quality.issues
             showQualityWarning = true
             HapticManager.notification(.warning)
         }
+
+        captureState = .reviewing
     }
 
     func usePhoto() {
@@ -66,14 +68,10 @@ class SelfieCaptureViewModel: ObservableObject {
     func retakePhoto() {
         capturedImage = nil
         captureState = .capturing
-        cameraSession.capturedImage = nil
         qualityIssues = []
         showQualityWarning = false
         faceDetector.reset()
-
-        if !cameraSession.isSessionRunning {
-            cameraSession.configureAndStart()
-        }
+        cameraSession.configureAndStart()
     }
 
     func buildCapturedImage() -> CapturedImage? {

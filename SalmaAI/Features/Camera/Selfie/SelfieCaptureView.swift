@@ -31,10 +31,9 @@ struct SelfieCaptureView: View {
         .statusBarHidden(true)
         .onAppear { viewModel.setupCamera() }
         .onDisappear { viewModel.stopCamera() }
-        .onChange(of: viewModel.cameraSession.capturedImage) { image in
-            if let image = image {
+        .onChange(of: viewModel.captureState) { state in
+            if state == .reviewing {
                 flashTrigger = true
-                viewModel.handleCapturedImage(image)
             }
         }
     }

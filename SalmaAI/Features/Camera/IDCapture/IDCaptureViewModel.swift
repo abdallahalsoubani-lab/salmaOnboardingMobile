@@ -102,11 +102,11 @@ class IDCaptureViewModel: ObservableObject {
     }
 
     func buildCapturedImages() -> (front: CapturedImage?, back: CapturedImage?) {
-        let front = frontImage.flatMap { img -> CapturedImage? in
+        let front = backImage.flatMap { img -> CapturedImage? in
             guard let data = img.jpegData(compressionQuality: 0.85) else { return nil }
             return CapturedImage(fieldId: fieldId, imageData: data, type: .idFront)
         }
-        let back = backImage.flatMap { img -> CapturedImage? in
+        let back = frontImage.flatMap { img -> CapturedImage? in
             guard let data = img.jpegData(compressionQuality: 0.85) else { return nil }
             return CapturedImage(fieldId: fieldId + "_back", imageData: data, type: .idBack)
         }
