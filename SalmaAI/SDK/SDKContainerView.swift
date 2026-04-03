@@ -104,6 +104,25 @@ struct SDKContainerView: View {
             IDCaptureView(fieldId: fieldId, side: side)
         case .selfieCapture(let fieldId):
             SelfieCaptureView(fieldId: fieldId)
+        case .livenessCheck(let fieldId):
+            LivenessCheckView(
+                fieldId: fieldId,
+                apiClient: container.apiClient,
+                onComplete: { isLive, confidence, sessionId in
+                    flowState.livenessResult = isLive
+                    flowState.livenessConfidence = confidence
+                    flowState.livenessSessionId = sessionId
+                    router.dismissFullScreen()
+                    if isLive {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            router.presentFullScreen(.selfieCapture(fieldId: fieldId))
+                        }
+                    }
+                },
+                onCancel: {
+                    router.dismissFullScreen()
+                }
+            )
         case .photoCapture(let fieldId):
             PhotoCaptureView(fieldId: fieldId)
         case .signaturePad(let fieldId):

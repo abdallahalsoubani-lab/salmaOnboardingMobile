@@ -11,23 +11,23 @@ struct CaptureSourceSheet: ViewModifier {
     func body(content: Content) -> some View {
         content
             .confirmationDialog(
-                String(localized: "choose_source"),
+                L("choose_source"),
                 isPresented: $isPresented,
                 titleVisibility: .visible
             ) {
                 if sourceType == .cameraOnly || sourceType == .cameraAndGallery {
-                    Button(String(localized: "take_photo")) { onCamera() }
+                    Button(L("take_photo")) { onCamera() }
                 }
 
                 if sourceType == .galleryOnly || sourceType == .cameraAndGallery {
                     if fieldType == .fileUpload {
-                        Button(String(localized: "choose_file")) { onFilePicker() }
+                        Button(L("choose_file")) { onFilePicker() }
                     } else {
-                        Button(String(localized: "choose_from_gallery")) { onGallery() }
+                        Button(L("choose_from_gallery")) { onGallery() }
                     }
                 }
 
-                Button(String(localized: "cancel"), role: .cancel) {}
+                Button(L("cancel"), role: .cancel) {}
             }
     }
 }

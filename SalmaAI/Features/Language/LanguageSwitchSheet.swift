@@ -7,7 +7,7 @@ struct LanguageSwitchSheet: View {
     var body: some View {
         NavigationView {
             VStack(spacing: SalmaDesign.Spacing.md) {
-                Text(String(localized: "language_will_change"))
+                Text(L("language_will_change"))
                     .font(SalmaDesign.Typography.callout)
                     .foregroundColor(SalmaDesign.Colors.textSecondary)
                     .padding(.top, SalmaDesign.Spacing.sm)
@@ -34,11 +34,11 @@ struct LanguageSwitchSheet: View {
 
                 Spacer()
             }
-            .navigationTitle(String(localized: "change_language"))
+            .navigationTitle(L("change_language"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "done")) {
+                    Button(L("done")) {
                         dismiss()
                     }
                     .foregroundColor(SalmaDesign.Colors.primary)

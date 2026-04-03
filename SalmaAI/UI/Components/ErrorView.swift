@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ErrorView: View {
-    var title: String = String(localized: "error")
+    var title: String = L("error")
     let message: String
     var icon: String = "exclamationmark.triangle.fill"
     var retryAction: (() -> Void)?
@@ -24,7 +24,7 @@ struct ErrorView: View {
 
             if let retry = retryAction {
                 SalmaButton(
-                    title: String(localized: "retry"),
+                    title: L("retry"),
                     style: .secondary,
                     size: .medium,
                     action: retry

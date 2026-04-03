@@ -11,7 +11,6 @@
 		0284BB1C58E8F128C98ADEF3 /* ImageQualityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030D43D0D9F080A989B3FF5 /* ImageQualityChecker.swift */; };
 		05249314CDF64E6C1D06F3B4 /* CameraPermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44974BAF3277D740BD774086 /* CameraPermissionHandler.swift */; };
 		0B1E954CEF999CB3D5B70252 /* SalmaDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2812F35B79667861DAA2D43A /* SalmaDatePicker.swift */; };
-		0BD429E16DA72D3500D14A8C /* SalmaAI.app in Resources */ = {isa = PBXBuildFile; fileRef = ECF07EDBA3C3590B89BCE3FC /* SalmaAI.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0CDB2B4E7D060F2F07C88759 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EC00C7FE7904952A780012 /* ApiResponse.swift */; };
 		0DA635EA7B955A5103D39BA2 /* SubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC935F52460CB2F1749178 /* SubmissionView.swift */; };
 		13EC9500CB91871B00CE7E1C /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B088D4F55C21B6A41FF187DF /* SplashView.swift */; };
@@ -23,6 +22,7 @@
 		2ADDC4991739206EF7FDD43A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E8FB33BC58FB6EE3997CCB /* APIError.swift */; };
 		2C1B2C8EAFBDDB27909CA9D8 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4BE540C8C5DF634A839BE /* ErrorView.swift */; };
 		2C1BEDE517BC492FE6D29E72 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320132AA03ED813F1FFC37C /* StorageService.swift */; };
+		2C44F3074991465A69FF3700 /* Bundle+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559B0EC0818F2218F88ECAF /* Bundle+Localization.swift */; };
 		2D3CC810B972654FE35277AC /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D57E8A93DF1B005503805A /* LanguageSelectionView.swift */; };
 		2F2E944F897F67B1289B2E2C /* SalmaSignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248ECD25C5A45A04F2FC220D /* SalmaSignaturePad.swift */; };
 		3081E496A111AEAE57A3F965 /* CameraSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A18916A33DB108C048F3C /* CameraSessionManager.swift */; };
@@ -56,7 +56,6 @@
 		63FA667B496A6D19E4EB7EFE /* SubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8090971CAAAE1977D56B3616 /* SubmissionViewModel.swift */; };
 		6460BB806F8986011E52C106 /* SelfieCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C79458FBE9D498107680D1 /* SelfieCaptureViewModel.swift */; };
 		64E21E4C78433E3717F475C9 /* ConnectivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A87413123220395C922CC1 /* ConnectivityMonitor.swift */; };
-		662D41DFF064AE068E7A25DB /* SalmaAIDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A2BEBB6D63853F8DA63212 /* SalmaAIDemoApp.swift */; };
 		66C7C1F7B1F1B59FCBE03380 /* StorageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE651F66C925E49C3EB78B /* StorageServiceProtocol.swift */; };
 		681DEE2B18D075B43FDFD134 /* SalmaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404497DE7E0AE3F0E5D3F6CF /* SalmaTextField.swift */; };
 		68213C11ED9EFABB4FA572F0 /* JourneyLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83905CD39A6901065470299 /* JourneyLoadingView.swift */; };
@@ -84,17 +83,19 @@
 		8B469359434981CEBCD5B649 /* SalmaAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715981B456F52A4225F0E423 /* SalmaAIApp.swift */; };
 		8D924C0BC90EA0DF3747E83A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F9F9E31823D34EBDDC2EB2 /* ReviewView.swift */; };
 		8EA65580AE82BA2361E3C06F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281B56AA14F5E9D3925B01C2 /* Route.swift */; };
-		907532C4C01DD6C6A7501ED6 /* DemoHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3540E861362C205C82DDF9D8 /* DemoHomeView.swift */; };
 		92D3587A6DAB7895021BF9BB /* ShimmerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398397CDFF235DFFDBB37C5 /* ShimmerModifier.swift */; };
 		930EBA07FAC91A1D3B98CFBA /* FaceOvalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396DAAE4BC079A1C58C4E38 /* FaceOvalOverlay.swift */; };
+		9344CFC0928D0D2374A19B3D /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 326DB030A6F7EEB6A710FDA7 /* Amplify */; };
 		9460C149CCA105054BFC14E7 /* SalmaDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EA3310F16922D1C8B39F2E /* SalmaDropdown.swift */; };
 		94DDB35B980AD4AA7B547611 /* DocumentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B02814C91B2481CC55A964 /* DocumentPickerViewModel.swift */; };
+		968222744411A98F662E081E /* AmplifyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2DD4622D63D384F3EA46D /* AmplifyConfiguration.swift */; };
 		97BB69BA2ADD5257071B802F /* JourneyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC9B5204FC11B83123180C /* JourneyService.swift */; };
 		9A1AE233523BD6F6CD2BE753 /* ProgressStepBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C21801E1DE16E2219D8CED /* ProgressStepBar.swift */; };
 		9D620F920E7AC842E1037905 /* PhotoFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0726594B696E288D69A7F7 /* PhotoFieldView.swift */; };
 		A0A4FCFFB6C24920480BFDA1 /* JourneyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC401E5D3C82635266CE56 /* JourneyModelTests.swift */; };
 		A94B70D4E3332BFC92153086 /* SubmissionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0B5401BB4C21DA4F7412 /* SubmissionProgressView.swift */; };
 		AA8D8A7CC98E62F415E176FB /* IDCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5127F9D305F7336960F4 /* IDCardOverlay.swift */; };
+		AAD16677E930723400F1981F /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 3EF6BE6BC33439CC845BBE0A /* AWSCognitoAuthPlugin */; };
 		AB4A0F4F9213145930BF5BB7 /* FileUploadFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAC3E15E1184C99455FEAA0 /* FileUploadFieldView.swift */; };
 		AE865513B1E0E10CBADF08F6 /* IDCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E2588B7428B43949FE33D7 /* IDCaptureView.swift */; };
 		B416667985EEAA6F1635D930 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82EFC382377745846A662F5 /* DesignSystem.swift */; };
@@ -103,6 +104,7 @@
 		BAFFE4B52459E08161BB7429 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645B72CF2B72DD13E047536E /* CardModifier.swift */; };
 		BC1537474A828439BEDB363B /* FieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510CB2F8B865626DDE300E7 /* FieldTypeTests.swift */; };
 		BC8F46AF01AC86EBAE54D1F0 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777948052F981D91B660FCC /* Auth.swift */; };
+		BD202EBC3E74C35A7967A3EC /* FaceLiveness in Frameworks */ = {isa = PBXBuildFile; productRef = 0EAB676A51F063939924D710 /* FaceLiveness */; };
 		BD445E22C4318113C7F671F6 /* KeyboardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F30641906B6769FD887329 /* KeyboardModifier.swift */; };
 		BFD6334C371B1228EADCA7A7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484928EE81F6F0D5316579B /* MockData.swift */; };
 		C431A942C617B2E1E1C860F1 /* NoInternetBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23796B6E1CE5380C9E29AF80 /* NoInternetBanner.swift */; };
@@ -118,8 +120,10 @@
 		D284B8EB9B1C3F0B8F90F400 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406729C6863CE768D5CEF748 /* Spacing.swift */; };
 		D8E1AF52F7326DBA46E82853 /* ImagePreviewOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AAF816A36A16ABE18C2E0D /* ImagePreviewOverlay.swift */; };
 		D9C3763E741A83593AFB149F /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3BEEA0DAAFC086EA3B9 /* ResultViewModel.swift */; };
+		DC6082413D7EF0E73A9DEF4B /* LivenessCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393B7CC3763D2A7A3800C53 /* LivenessCheckView.swift */; };
 		DE5C76838C5D2D912E2A65F5 /* SalmaCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D664CE1A85B0B7888798AC /* SalmaCheckbox.swift */; };
 		DFCF05264ACB6E62B54DB9A1 /* SalmaToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8984196F8C905B3251D0F5ED /* SalmaToggle.swift */; };
+		E36448220CE99E6AB10AE298 /* LivenessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A39DCBBE2F9E77F2E4627 /* LivenessViewModel.swift */; };
 		E429482BD6B3482BA84FCAEC /* SelfieCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C1510C9160BC7E4BC6B1B2 /* SelfieCaptureView.swift */; };
 		E44AB6D78706CE2FF14DD376 /* JourneyContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8E931A6F96B86FBEE47F7 /* JourneyContainerViewModel.swift */; };
 		E6860ED662F19A326481BD45 /* ShakeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9169156D0E5824C73C325 /* ShakeModifier.swift */; };
@@ -136,13 +140,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1A1BDE9E3E968659D49E38C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 14B3856E395F0B5A8518905E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A59C3F9E0276C41A34098871;
-			remoteInfo = SalmaAI;
-		};
 		E1F43E7ED96F2B61E4DB4222 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14B3856E395F0B5A8518905E /* Project object */;
@@ -172,7 +169,7 @@
 		281B56AA14F5E9D3925B01C2 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		2A0726594B696E288D69A7F7 /* PhotoFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFieldView.swift; sourceTree = "<group>"; };
 		2B5A18916A33DB108C048F3C /* CameraSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSessionManager.swift; sourceTree = "<group>"; };
-		3540E861362C205C82DDF9D8 /* DemoHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoHomeView.swift; sourceTree = "<group>"; };
+		3DD2DD4622D63D384F3EA46D /* AmplifyConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyConfiguration.swift; sourceTree = "<group>"; };
 		3E8E16ADAB609B55FEF13D6A /* PageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageValidator.swift; sourceTree = "<group>"; };
 		3E908CAD95B4DD37E8482D66 /* ButtonPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPressModifier.swift; sourceTree = "<group>"; };
 		404497DE7E0AE3F0E5D3F6CF /* SalmaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaTextField.swift; sourceTree = "<group>"; };
@@ -227,9 +224,7 @@
 		9EA9971198D5F346A0B9FEB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A16EC87D6FE35A3FBD6027D3 /* RejectedXMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectedXMarkView.swift; sourceTree = "<group>"; };
 		A17C0AE9C2DADAD556BEC815 /* CameraServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraServiceProtocol.swift; sourceTree = "<group>"; };
-		A2A2BEBB6D63853F8DA63212 /* SalmaAIDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaAIDemoApp.swift; sourceTree = "<group>"; };
 		A3B02814C91B2481CC55A964 /* DocumentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewModel.swift; sourceTree = "<group>"; };
-		A403C7D1CBCD0B039CBFA4F4 /* SalmaAIDemo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SalmaAIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C79458FBE9D498107680D1 /* SelfieCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieCaptureViewModel.swift; sourceTree = "<group>"; };
 		A5D57E8A93DF1B005503805A /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		A7A87413123220395C922CC1 /* ConnectivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMonitor.swift; sourceTree = "<group>"; };
@@ -237,6 +232,7 @@
 		A9EBCB2C6062C457F781DC00 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		B088D4F55C21B6A41FF187DF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		B4B9E8A9EB799CCF96BD8635 /* FieldFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldFactory.swift; sourceTree = "<group>"; };
+		B559B0EC0818F2218F88ECAF /* Bundle+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Localization.swift"; sourceTree = "<group>"; };
 		B5A8B69379F8FF51058DD93C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA47DC50814F6C6C8C17BA60 /* SDKConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKConfigManager.swift; sourceTree = "<group>"; };
 		BC0CA638581C686A8E8B173B /* FaceDetectorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectorService.swift; sourceTree = "<group>"; };
@@ -261,6 +257,7 @@
 		D1FB2D04297DFF3AEA32BA6A /* FieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidator.swift; sourceTree = "<group>"; };
 		D2450FAC169AE1F425377D48 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		D4A052ED1E4641678270D9B2 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		D71A39DCBBE2F9E77F2E4627 /* LivenessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessViewModel.swift; sourceTree = "<group>"; };
 		D82EFC382377745846A662F5 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		DA2344B444CD236726AE501F /* SalmaSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalmaSDK.swift; sourceTree = "<group>"; };
 		DB52C5362FAFAE55EF1652A2 /* FieldInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldInfoSheet.swift; sourceTree = "<group>"; };
@@ -273,6 +270,7 @@
 		E8314C81AEAF4B1F0255455D /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		ECF07EDBA3C3590B89BCE3FC /* SalmaAI.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SalmaAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04EAFE2976E1F05EFCEBF89 /* SuccessCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCheckmarkView.swift; sourceTree = "<group>"; };
+		F393B7CC3763D2A7A3800C53 /* LivenessCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessCheckView.swift; sourceTree = "<group>"; };
 		F4C21801E1DE16E2219D8CED /* ProgressStepBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepBar.swift; sourceTree = "<group>"; };
 		F6AAF816A36A16ABE18C2E0D /* ImagePreviewOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewOverlay.swift; sourceTree = "<group>"; };
 		F83905CD39A6901065470299 /* JourneyLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyLoadingView.swift; sourceTree = "<group>"; };
@@ -282,6 +280,19 @@
 		FCF813B9F36D4AB57B2DD092 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
 		FE765502B60CC5869BA12C70 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B0AB84D828E13C0048F5454 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9344CFC0928D0D2374A19B3D /* Amplify in Frameworks */,
+				AAD16677E930723400F1981F /* AWSCognitoAuthPlugin in Frameworks */,
+				BD202EBC3E74C35A7967A3EC /* FaceLiveness in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		02E3B469AF26126A3FA4E223 /* SDK */ = {
@@ -305,6 +316,15 @@
 				CC476B5108A97141A7B74B85 /* PhotoCaptureView.swift */,
 			);
 			path = IDCapture;
+			sourceTree = "<group>";
+		};
+		0CFD72D374725B69C1B243DC /* Liveness */ = {
+			isa = PBXGroup;
+			children = (
+				F393B7CC3763D2A7A3800C53 /* LivenessCheckView.swift */,
+				D71A39DCBBE2F9E77F2E4627 /* LivenessViewModel.swift */,
+			);
+			path = Liveness;
 			sourceTree = "<group>";
 		};
 		11CBE18EFB7755364E4F2213 /* Theme */ = {
@@ -356,6 +376,7 @@
 				2B5A18916A33DB108C048F3C /* CameraSessionManager.swift */,
 				6030D43D0D9F080A989B3FF5 /* ImageQualityChecker.swift */,
 				0B248AE4C87512BD5E542507 /* IDCapture */,
+				0CFD72D374725B69C1B243DC /* Liveness */,
 				BD451E27EAE1B05DE61D80A4 /* Selfie */,
 			);
 			path = Camera;
@@ -458,7 +479,6 @@
 			isa = PBXGroup;
 			children = (
 				76DAD29FB98F83458205706D /* SalmaAI */,
-				89329437236540391E5D138C /* SalmaAIDemo */,
 				9BFB2AD07A734B1EF0E0F5BA /* SalmaAITests */,
 				BD4B2BDF6DBBC72C993F568F /* Products */,
 			);
@@ -477,15 +497,6 @@
 				CD8DCFAA9F87CEB38A14279D /* StaggeredAppearModifier.swift */,
 			);
 			path = Modifiers;
-			sourceTree = "<group>";
-		};
-		89329437236540391E5D138C /* SalmaAIDemo */ = {
-			isa = PBXGroup;
-			children = (
-				3540E861362C205C82DDF9D8 /* DemoHomeView.swift */,
-				A2A2BEBB6D63853F8DA63212 /* SalmaAIDemoApp.swift */,
-			);
-			path = SalmaAIDemo;
 			sourceTree = "<group>";
 		};
 		9BFB2AD07A734B1EF0E0F5BA /* SalmaAITests */ = {
@@ -527,7 +538,6 @@
 			isa = PBXGroup;
 			children = (
 				ECF07EDBA3C3590B89BCE3FC /* SalmaAI.app */,
-				A403C7D1CBCD0B039CBFA4F4 /* SalmaAIDemo.app */,
 				643022CB3C207A23B505DD90 /* SalmaAITests.xctest */,
 			);
 			name = Products;
@@ -545,6 +555,7 @@
 		C46821A183A3A79C74155C07 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B559B0EC0818F2218F88ECAF /* Bundle+Localization.swift */,
 				9A7210E00464562408B6AEDB /* Color+Theme.swift */,
 				FE765502B60CC5869BA12C70 /* Date+Extensions.swift */,
 				D1642A031604EFFE5A679020 /* Font+Theme.swift */,
@@ -612,6 +623,7 @@
 		E66352A4DDB08880496ED939 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3DD2DD4622D63D384F3EA46D /* AmplifyConfiguration.swift */,
 				9EA9971198D5F346A0B9FEB9 /* AppDelegate.swift */,
 				715981B456F52A4225F0E423 /* SalmaAIApp.swift */,
 				229A46C4496582A940DFDC1E /* DI */,
@@ -677,31 +689,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8B47D8B6502B2CCEFA037081 /* SalmaAIDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 534BE4E28368F211809F6A99 /* Build configuration list for PBXNativeTarget "SalmaAIDemo" */;
-			buildPhases = (
-				8AC92A2CF9A041045BB0B69D /* Sources */,
-				9D59938E47E29FB7BF31BB80 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				14089888CF19D1755B0EE07E /* PBXTargetDependency */,
-			);
-			name = SalmaAIDemo;
-			packageProductDependencies = (
-			);
-			productName = SalmaAIDemo;
-			productReference = A403C7D1CBCD0B039CBFA4F4 /* SalmaAIDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
 		A59C3F9E0276C41A34098871 /* SalmaAI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BE8DE4F25FCB4FDC51F0E04 /* Build configuration list for PBXNativeTarget "SalmaAI" */;
 			buildPhases = (
 				C425FD67E642406A48A89B90 /* Sources */,
 				EE890C14689B574777841BCD /* Resources */,
+				3B0AB84D828E13C0048F5454 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -709,6 +703,9 @@
 			);
 			name = SalmaAI;
 			packageProductDependencies = (
+				326DB030A6F7EEB6A710FDA7 /* Amplify */,
+				3EF6BE6BC33439CC845BBE0A /* AWSCognitoAuthPlugin */,
+				0EAB676A51F063939924D710 /* FaceLiveness */,
 			);
 			productName = SalmaAI;
 			productReference = ECF07EDBA3C3590B89BCE3FC /* SalmaAI.app */;
@@ -741,12 +738,8 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					8B47D8B6502B2CCEFA037081 = {
-						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
-					};
 					A59C3F9E0276C41A34098871 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = 7M3PR8TQAD;
 						ProvisioningStyle = Automatic;
 					};
 					F74AF5A6B1C90006A3DCF536 = {
@@ -765,27 +758,22 @@
 			);
 			mainGroup = 83AAD13D6C3F6DFCF6575D41;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A8A4603B39730BF4F8097202 /* XCRemoteSwiftPackageReference "amplify-swift" */,
+				72145B896DAD633CA7C753E9 /* XCRemoteSwiftPackageReference "amplify-ui-swift-liveness" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD4B2BDF6DBBC72C993F568F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				A59C3F9E0276C41A34098871 /* SalmaAI */,
-				8B47D8B6502B2CCEFA037081 /* SalmaAIDemo */,
 				F74AF5A6B1C90006A3DCF536 /* SalmaAITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9D59938E47E29FB7BF31BB80 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BD429E16DA72D3500D14A8C /* SalmaAI.app in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EE890C14689B574777841BCD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -810,15 +798,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8AC92A2CF9A041045BB0B69D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				907532C4C01DD6C6A7501ED6 /* DemoHomeView.swift in Sources */,
-				662D41DFF064AE068E7A25DB /* SalmaAIDemoApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C425FD67E642406A48A89B90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -826,11 +805,13 @@
 				1701C29FE1B7341E19DD56C7 /* APIClient.swift in Sources */,
 				C593D71E0C3FDDDF21E7BD6E /* APIEndpoints.swift in Sources */,
 				2ADDC4991739206EF7FDD43A /* APIError.swift in Sources */,
+				968222744411A98F662E081E /* AmplifyConfiguration.swift in Sources */,
 				0CDB2B4E7D060F2F07C88759 /* ApiResponse.swift in Sources */,
 				44149AF967914711A223CF8E /* AppAnimations.swift in Sources */,
 				C6626F78EBDE64ED8CF5E6D7 /* AppCoordinator.swift in Sources */,
 				367187EB24F02C9F76DA0298 /* AppDelegate.swift in Sources */,
 				BC8F46AF01AC86EBAE54D1F0 /* Auth.swift in Sources */,
+				2C44F3074991465A69FF3700 /* Bundle+Localization.swift in Sources */,
 				3F110F0C085986F08E8D16F3 /* ButtonPressModifier.swift in Sources */,
 				88F8D5A8C8C236CAAE5CCD21 /* CameraBottomBar.swift in Sources */,
 				377B0BC48255CD9918902733 /* CameraFlashModifier.swift in Sources */,
@@ -881,6 +862,8 @@
 				3D7F1EF2BDC6C6760B4A43E3 /* LanguageManager.swift in Sources */,
 				2D3CC810B972654FE35277AC /* LanguageSelectionView.swift in Sources */,
 				602EF0B8D75429FC96136322 /* LanguageSwitchSheet.swift in Sources */,
+				DC6082413D7EF0E73A9DEF4B /* LivenessCheckView.swift in Sources */,
+				E36448220CE99E6AB10AE298 /* LivenessViewModel.swift in Sources */,
 				CA4D4015AC6F96C378402930 /* LoadingView.swift in Sources */,
 				7986AE6764FAA5C624C2183E /* MediaFieldButton.swift in Sources */,
 				FE85964359F03BC0A2C1819A /* NavigationRouter.swift in Sources */,
@@ -945,11 +928,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		14089888CF19D1755B0EE07E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A59C3F9E0276C41A34098871 /* SalmaAI */;
-			targetProxy = E1A1BDE9E3E968659D49E38C /* PBXContainerItemProxy */;
-		};
 		5CBDC9EC4FBF2FE5099467EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A59C3F9E0276C41A34098871 /* SalmaAI */;
@@ -958,48 +936,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		4FECC8D86DDE0C776C6563FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Salma AI Demo";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access needed for identity verification demo";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access needed for image upload demo";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.salmaai.demo;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		6C52DA379279A3EF369DBB3C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Salma AI Demo";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access needed for identity verification demo";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access needed for image upload demo";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.salmaai.demo;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		6CE00067D6192AE3A4E3A656 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1022,6 +958,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7M3PR8TQAD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalmaAI/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Salma AI";
@@ -1186,6 +1123,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7M3PR8TQAD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalmaAI/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Salma AI";
@@ -1224,15 +1162,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		534BE4E28368F211809F6A99 /* Build configuration list for PBXNativeTarget "SalmaAIDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6C52DA379279A3EF369DBB3C /* Debug */,
-				4FECC8D86DDE0C776C6563FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		9F4F588F2A1A29FDA38EE196 /* Build configuration list for PBXProject "SalmaAI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1243,6 +1172,43 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		72145B896DAD633CA7C753E9 /* XCRemoteSwiftPackageReference "amplify-ui-swift-liveness" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-ui-swift-liveness.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+		A8A4603B39730BF4F8097202 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.54.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0EAB676A51F063939924D710 /* FaceLiveness */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 72145B896DAD633CA7C753E9 /* XCRemoteSwiftPackageReference "amplify-ui-swift-liveness" */;
+			productName = FaceLiveness;
+		};
+		326DB030A6F7EEB6A710FDA7 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8A4603B39730BF4F8097202 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = Amplify;
+		};
+		3EF6BE6BC33439CC845BBE0A /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8A4603B39730BF4F8097202 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14B3856E395F0B5A8518905E /* Project object */;
 }

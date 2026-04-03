@@ -97,6 +97,27 @@ struct AppCoordinator: View {
                 .environmentObject(flowState)
                 .environmentObject(router)
 
+        case .livenessCheck(let fieldId):
+            LivenessCheckView(
+                fieldId: fieldId,
+                apiClient: container.apiClient,
+                onComplete: { isLive, confidence, sessionId in
+                    flowState.livenessResult = isLive
+                    flowState.livenessConfidence = confidence
+                    flowState.livenessSessionId = sessionId
+                    router.dismissFullScreen()
+                    if isLive {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            router.presentFullScreen(.selfieCapture(fieldId: fieldId))
+                        }
+                    }
+                },
+                onCancel: {
+                    router.dismissFullScreen()
+                }
+            )
+            .environmentObject(flowState)
+
         case .photoCapture(let fieldId):
             PhotoCaptureView(fieldId: fieldId)
                 .environmentObject(flowState)

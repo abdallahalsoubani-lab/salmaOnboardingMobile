@@ -50,7 +50,7 @@ struct SalmaDropdown: View {
             .accessibilityLabel(label)
             .accessibilityValue(selection.isEmpty ? (placeholder.isEmpty ? label : placeholder) : selection)
             .accessibilityAddTraits(.isButton)
-            .accessibilityHint(String(localized: "double_tap_to_select"))
+            .accessibilityHint(L("double_tap_to_select"))
 
             // Error
             if let error = errorMessage {
@@ -100,7 +100,7 @@ struct SalmaDropdown: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "done")) { showPicker = false }
+                    Button(L("done")) { showPicker = false }
                         .foregroundColor(SalmaDesign.Colors.primary)
                 }
             }
@@ -135,7 +135,7 @@ struct SalmaDropdown: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "done")) { showPicker = false }
+                    Button(L("done")) { showPicker = false }
                         .foregroundColor(SalmaDesign.Colors.primary)
                 }
             }

@@ -165,7 +165,7 @@ actor APIClient: NetworkServiceProtocol {
             let apiResponse = try? decoder.decode(ApiResponse<EmptyResponse>.self, from: data)
             throw APIError.serverError(
                 statusCode: httpResponse.statusCode,
-                message: apiResponse?.message ?? String(localized: "server_error_generic")
+                message: apiResponse?.message ?? L("server_error_generic")
             )
 
         default:

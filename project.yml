@@ -13,6 +13,14 @@ settings:
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
 
+packages:
+  Amplify:
+    url: https://github.com/aws-amplify/amplify-swift.git
+    from: "2.54.0"
+  AmplifyUILiveness:
+    url: https://github.com/aws-amplify/amplify-ui-swift-liveness.git
+    from: "1.4.0"
+
 targets:
   SalmaAI:
     type: application
@@ -25,6 +33,13 @@ targets:
     resources:
       - path: SalmaAI/Resources/Assets.xcassets
       - path: SalmaAI/Resources/Localizable.xcstrings
+    dependencies:
+      - package: Amplify
+        product: Amplify
+      - package: Amplify
+        product: AWSCognitoAuthPlugin
+      - package: AmplifyUILiveness
+        product: FaceLiveness
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.onboarding
@@ -35,6 +50,9 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_NSCameraUsageDescription: "Salma AI needs camera access to photograph your ID card and take a selfie for identity verification"
         INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Salma AI needs photo library access to select images for upload"
+        INFOPLIST_FILE: SalmaAI/Resources/Info.plist
+        CODE_SIGN_IDENTITY: "iPhone Developer"
+        DEVELOPMENT_TEAM: 7M3PR8TQAD
 
   SalmaAITests:
     type: bundle.unit-test
@@ -48,22 +66,3 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: true
-
-  SalmaAIDemo:
-    type: application
-    platform: iOS
-    sources:
-      - path: SalmaAIDemo
-        excludes:
-          - "**/.DS_Store"
-    dependencies:
-      - target: SalmaAI
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.salmaai.demo
-        GENERATE_INFOPLIST_FILE: true
-        INFOPLIST_KEY_CFBundleDisplayName: "Salma AI Demo"
-        INFOPLIST_KEY_UILaunchScreen_Generation: true
-        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_NSCameraUsageDescription: "Camera access needed for identity verification demo"
-        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Photo library access needed for image upload demo"

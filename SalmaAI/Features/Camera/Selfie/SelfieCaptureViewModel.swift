@@ -26,8 +26,7 @@ class SelfieCaptureViewModel: ObservableObject {
         cameraSession.onVideoFrame = { [weak self] sampleBuffer in
             self?.faceDetector.detectFace(in: sampleBuffer)
         }
-        cameraSession.configure()
-        cameraSession.start()
+        cameraSession.configureAndStart()
     }
 
     func stopCamera() {
@@ -73,7 +72,7 @@ class SelfieCaptureViewModel: ObservableObject {
         faceDetector.reset()
 
         if !cameraSession.isSessionRunning {
-            cameraSession.start()
+            cameraSession.configureAndStart()
         }
     }
 

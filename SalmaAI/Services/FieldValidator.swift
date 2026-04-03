@@ -197,7 +197,7 @@ struct FieldValidator {
     // MARK: - Helpers
 
     private static func loc(_ key: String, _ language: AppLanguage) -> String {
-        String(localized: String.LocalizationValue(key))
+        NSLocalizedString(key, bundle: .localized, comment: "")
     }
 
     private static func formatDate(_ date: Date, language: AppLanguage) -> String {

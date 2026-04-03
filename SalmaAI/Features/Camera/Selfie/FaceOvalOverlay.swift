@@ -45,7 +45,7 @@ struct FaceOvalOverlay: View {
                 }
 
                 // Instruction text above oval
-                Text(String(localized: String.LocalizationValue(faceInstruction.messageKey)))
+                Text(NSLocalizedString(faceInstruction.messageKey, bundle: .localized, comment: ""))
                     .font(SalmaDesign.Typography.bodyMedium)
                     .foregroundColor(faceInstruction.color)
                     .padding(.horizontal, 20)

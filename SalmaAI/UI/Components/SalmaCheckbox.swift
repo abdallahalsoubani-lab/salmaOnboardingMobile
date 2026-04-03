@@ -44,9 +44,9 @@ struct SalmaCheckbox: View {
             .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(consentText)
-            .accessibilityValue(isChecked ? String(localized: "checked") : String(localized: "unchecked"))
+            .accessibilityValue(isChecked ? L("checked") : L("unchecked"))
             .accessibilityAddTraits(.isButton)
-            .accessibilityHint(String(localized: "double_tap_to_toggle"))
+            .accessibilityHint(L("double_tap_to_toggle"))
 
             if let error = errorMessage {
                 HStack(spacing: 4) {

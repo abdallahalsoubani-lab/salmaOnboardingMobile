@@ -8,7 +8,7 @@ struct NoInternetBanner: View {
             HStack(spacing: 8) {
                 Image(systemName: "wifi.slash")
                     .font(.system(size: 14))
-                Text(String(localized: "no_internet_error"))
+                Text(L("no_internet_error"))
                     .font(SalmaDesign.Typography.caption)
             }
             .foregroundColor(.white)

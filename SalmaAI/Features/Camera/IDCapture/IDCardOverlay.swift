@@ -31,13 +31,13 @@ struct IDCardOverlay: View {
 
                 // Instruction text above frame
                 VStack(spacing: 8) {
-                    Text(String(localized: "id_frame_instruction"))
+                    Text(L("id_frame_instruction"))
                         .font(SalmaDesign.Typography.bodyMedium)
                         .foregroundColor(.white)
 
                     Text(side == .front
-                         ? String(localized: "front_side")
-                         : String(localized: "back_side"))
+                         ? L("front_side")
+                         : L("back_side"))
                         .font(SalmaDesign.Typography.title2)
                         .foregroundColor(SalmaDesign.Colors.primary)
                 }

@@ -98,7 +98,7 @@ struct SubmissionProgressView: View {
                 }
             }
 
-            Text(String(localized: "do_not_close_app"))
+            Text(L("do_not_close_app"))
                 .font(SalmaDesign.Typography.caption)
                 .foregroundColor(SalmaDesign.Colors.textTertiary)
                 .multilineTextAlignment(.center)
@@ -114,23 +114,23 @@ struct SubmissionProgressView: View {
                 .font(.system(size: 48))
                 .foregroundColor(SalmaDesign.Colors.danger)
 
-            Text(String(localized: "submission_failed"))
+            Text(L("submission_failed"))
                 .font(SalmaDesign.Typography.title2)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
 
-            Text(error.errorDescription ?? String(localized: "server_error_generic"))
+            Text(error.errorDescription ?? L("server_error_generic"))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
                 .multilineTextAlignment(.center)
 
             VStack(spacing: SalmaDesign.Spacing.md) {
-                SalmaButton(title: String(localized: "retry"), size: .large, icon: "arrow.clockwise") {
+                SalmaButton(title: L("retry"), size: .large, icon: "arrow.clockwise") {
                     self.error = nil
                     currentStep = .uploading
                     progress = 0.0
                     startSubmission()
                 }
-                SalmaButton(title: String(localized: "back_to_review"), style: .ghost, size: .medium) {
+                SalmaButton(title: L("back_to_review"), style: .ghost, size: .medium) {
                     router.pop()
                 }
             }
@@ -155,13 +155,18 @@ struct SubmissionProgressView: View {
 
                 let images = Array(flowState.capturedImages.values)
 
+                var fields = flowState.fieldValues
+                if let livenessId = flowState.livenessSessionId {
+                    fields["livenessSessionId"] = livenessId
+                }
+
                 currentStep = .processing
                 progressTask.cancel()
                 await MainActor.run { progress = 0.9 }
 
                 let result = try await container.submissionService.submitVerification(
                     journeyId: journey.id,
-                    fields: flowState.fieldValues,
+                    fields: fields,
                     images: images
                 )
 

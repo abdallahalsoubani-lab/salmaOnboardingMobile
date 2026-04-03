@@ -64,7 +64,7 @@ struct ImagePreviewOverlay: View {
                                     retake()
                                     isPresented = false
                                 } label: {
-                                    Text(String(localized: "retake"))
+                                    Text(L("retake"))
                                         .font(SalmaDesign.Typography.bodyMedium)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
@@ -83,7 +83,7 @@ struct ImagePreviewOverlay: View {
                                     use()
                                     isPresented = false
                                 } label: {
-                                    Text(String(localized: "use_photo"))
+                                    Text(L("use_photo"))
                                         .font(SalmaDesign.Typography.bodyMedium)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)

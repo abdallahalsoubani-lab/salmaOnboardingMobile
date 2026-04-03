@@ -20,15 +20,15 @@ enum APIError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .noInternet:
-            return String(localized: "no_internet_error")
+            return L("no_internet_error")
         case .timeout:
-            return String(localized: "timeout_error")
+            return L("timeout_error")
         case .serverError(_, let message):
             return message
         case .unauthorized:
-            return String(localized: "session_expired_error")
+            return L("session_expired_error")
         case .forbidden:
-            return String(localized: "forbidden_error")
+            return L("forbidden_error")
         case .notFound(let message):
             return message
         case .validationError(let errors):
@@ -36,17 +36,17 @@ enum APIError: LocalizedError {
         case .businessRuleError(let message):
             return message
         case .rateLimited:
-            return String(localized: "rate_limited_error")
+            return L("rate_limited_error")
         case .decodingError:
-            return String(localized: "parsing_error")
+            return L("parsing_error")
         case .encodingError:
-            return String(localized: "encoding_error")
+            return L("encoding_error")
         case .invalidURL:
-            return String(localized: "invalid_url_error")
+            return L("invalid_url_error")
         case .tokenRefreshFailed:
-            return String(localized: "token_refresh_failed_error")
+            return L("token_refresh_failed_error")
         case .noData:
-            return String(localized: "no_data_error")
+            return L("no_data_error")
         case .unknown(let error):
             return error.localizedDescription
         }

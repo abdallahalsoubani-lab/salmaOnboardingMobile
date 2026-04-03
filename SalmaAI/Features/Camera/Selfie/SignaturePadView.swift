@@ -35,7 +35,7 @@ struct SignaturePadView: View {
             }
             .padding(.horizontal, SalmaDesign.Spacing.xl)
 
-            SalmaButton(title: String(localized: "cancel"), style: .secondary) {
+            SalmaButton(title: L("cancel"), style: .secondary) {
                 router.dismissFullScreen()
             }
             .padding(.horizontal, SalmaDesign.Spacing.xl)

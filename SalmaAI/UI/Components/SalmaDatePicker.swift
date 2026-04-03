@@ -70,7 +70,7 @@ struct SalmaDatePicker: View {
             }
         }
         .accessibilityLabel(label)
-        .accessibilityValue(selectedDate != nil ? formattedDate : String(localized: "no_date_selected"))
+        .accessibilityValue(selectedDate != nil ? formattedDate : L("no_date_selected"))
         .animation(AppAnimations.fadeIn, value: errorMessage)
         .sheet(isPresented: $showPicker) {
             datePickerSheet
@@ -119,7 +119,7 @@ struct SalmaDatePicker: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "done")) {
+                    Button(L("done")) {
                         selectedDate = tempDate
                         showPicker = false
                     }
@@ -127,7 +127,7 @@ struct SalmaDatePicker: View {
                     .fontWeight(.semibold)
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(String(localized: "cancel")) {
+                    Button(L("cancel")) {
                         showPicker = false
                     }
                     .foregroundColor(SalmaDesign.Colors.textSecondary)

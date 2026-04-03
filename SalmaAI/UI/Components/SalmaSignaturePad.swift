@@ -26,7 +26,7 @@ struct SalmaSignaturePad: View {
             )
             .overlay(alignment: .center) {
                 if canvasView.isEmpty {
-                    Text(String(localized: "sign_here"))
+                    Text(L("sign_here"))
                         .font(SalmaDesign.Typography.callout)
                         .foregroundColor(SalmaDesign.Colors.textTertiary)
                         .allowsHitTesting(false)
@@ -36,7 +36,7 @@ struct SalmaSignaturePad: View {
             // Buttons
             HStack(spacing: SalmaDesign.Spacing.md) {
                 SalmaButton(
-                    title: String(localized: "clear_signature"),
+                    title: L("clear_signature"),
                     style: .ghost,
                     size: .small
                 ) {
@@ -44,7 +44,7 @@ struct SalmaSignaturePad: View {
                 }
 
                 SalmaButton(
-                    title: String(localized: "done"),
+                    title: L("done"),
                     size: .small
                 ) {
                     signatureImage = canvasView.exportImage()

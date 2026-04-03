@@ -78,7 +78,7 @@ struct SelfieCaptureView: View {
                       : SalmaDesign.Colors.warning)
                 .frame(width: 8, height: 8)
 
-            Text(String(localized: String.LocalizationValue(viewModel.faceDetector.instruction.messageKey)))
+            Text(NSLocalizedString(viewModel.faceDetector.instruction.messageKey, bundle: .localized, comment: ""))
                 .font(SalmaDesign.Typography.caption)
                 .foregroundColor(.white)
         }
@@ -96,7 +96,7 @@ struct SelfieCaptureView: View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 .scaleEffect(1.5)
-            Text(String(localized: "image_quality_checking"))
+            Text(L("image_quality_checking"))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(.white)
         }
@@ -121,7 +121,7 @@ struct SelfieCaptureView: View {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .font(.system(size: 14))
                                     .foregroundColor(SalmaDesign.Colors.warning)
-                                Text(String(localized: String.LocalizationValue(viewModel.qualityIssues[i].messageKey)))
+                                Text(NSLocalizedString(viewModel.qualityIssues[i].messageKey, bundle: .localized, comment: ""))
                                     .font(SalmaDesign.Typography.caption)
                                     .foregroundColor(.white)
                             }
@@ -140,7 +140,7 @@ struct SelfieCaptureView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "person.crop.circle.fill.badge.checkmark")
                             .font(.system(size: 16))
-                        Text(String(localized: "selfie_captured"))
+                        Text(L("selfie_captured"))
                             .font(SalmaDesign.Typography.captionMedium)
                     }
                     .foregroundColor(.white)
@@ -156,7 +156,7 @@ struct SelfieCaptureView: View {
                             HStack(spacing: 6) {
                                 Image(systemName: "arrow.counterclockwise")
                                     .font(.system(size: 16, weight: .semibold))
-                                Text(String(localized: "retake"))
+                                Text(L("retake"))
                                     .font(SalmaDesign.Typography.bodyMedium)
                             }
                             .foregroundColor(.white)
@@ -172,7 +172,7 @@ struct SelfieCaptureView: View {
                             HStack(spacing: 6) {
                                 Image(systemName: "checkmark")
                                     .font(.system(size: 16, weight: .semibold))
-                                Text(String(localized: "use_photo"))
+                                Text(L("use_photo"))
                                     .font(SalmaDesign.Typography.bodyMedium)
                             }
                             .foregroundColor(.white)

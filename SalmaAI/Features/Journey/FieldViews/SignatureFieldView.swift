@@ -35,10 +35,10 @@ struct SignatureFieldView: View {
                         )
 
                     HStack {
-                        SalmaButton(title: String(localized: "change"), style: .ghost, size: .small) {
+                        SalmaButton(title: L("change"), style: .ghost, size: .small) {
                             showSignaturePad = true
                         }
-                        SalmaButton(title: String(localized: "remove"), style: .ghost, size: .small) {
+                        SalmaButton(title: L("remove"), style: .ghost, size: .small) {
                             signatureUIImage = nil
                             capturedImage = nil
                         }
@@ -50,7 +50,7 @@ struct SignatureFieldView: View {
                         Image(systemName: "pencil.tip")
                             .font(.system(size: 28))
                             .foregroundColor(SalmaDesign.Colors.textTertiary)
-                        Text(String(localized: "sign_here"))
+                        Text(L("sign_here"))
                             .font(SalmaDesign.Typography.callout)
                             .foregroundColor(SalmaDesign.Colors.textTertiary)
                     }
@@ -101,7 +101,7 @@ struct SignaturePadFullScreen: View {
         VStack(spacing: SalmaDesign.Spacing.lg) {
             Spacer()
 
-            Text(String(localized: "sign_here"))
+            Text(L("sign_here"))
                 .font(SalmaDesign.Typography.title2)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
 
@@ -110,9 +110,9 @@ struct SignaturePadFullScreen: View {
                 .padding(.horizontal, SalmaDesign.Spacing.md)
 
             HStack(spacing: SalmaDesign.Spacing.md) {
-                SalmaButton(title: String(localized: "cancel"), style: .secondary, size: .medium, action: onCancel)
+                SalmaButton(title: L("cancel"), style: .secondary, size: .medium, action: onCancel)
                 SalmaButton(
-                    title: String(localized: "done"),
+                    title: L("done"),
                     size: .medium,
                     isDisabled: signatureImage == nil
                 ) {

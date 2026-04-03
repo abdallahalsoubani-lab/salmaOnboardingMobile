@@ -15,57 +15,99 @@ class SelfieCameraSession: NSObject, ObservableObject {
     private let sessionQueue = DispatchQueue(label: "com.salmaai.selfie.session")
     private let videoQueue = DispatchQueue(label: "com.salmaai.selfie.video")
 
-    func configure() {
+    private var isConfigured = false
+    private var retryCount = 0
+    private let maxRetries = 5
+
+    func configureAndStart() {
         sessionQueue.async { [weak self] in
             guard let self = self else { return }
 
-            self.session.beginConfiguration()
-            self.session.sessionPreset = .photo
+            if !self.isConfigured {
+                self.session.beginConfiguration()
+                self.session.sessionPreset = .photo
 
-            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
-                DispatchQueue.main.async { self.error = .deviceNotAvailable }
+                guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
+                    DispatchQueue.main.async { self.error = .deviceNotAvailable }
+                    self.session.commitConfiguration()
+                    return
+                }
+
+                guard let input = try? AVCaptureDeviceInput(device: device),
+                      self.session.canAddInput(input) else {
+                    DispatchQueue.main.async { self.error = .cannotAddInput }
+                    self.session.commitConfiguration()
+                    return
+                }
+                self.session.addInput(input)
+
+                if self.session.canAddOutput(self.photoOutput) {
+                    self.session.addOutput(self.photoOutput)
+                    if let connection = self.photoOutput.connection(with: .video) {
+                        connection.videoOrientation = .portrait
+                        connection.isVideoMirrored = true
+                    }
+                }
+
+                self.videoOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
+                self.videoOutput.alwaysDiscardsLateVideoFrames = true
+                self.videoOutput.videoSettings = [
+                    kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
+                ]
+
+                if self.session.canAddOutput(self.videoOutput) {
+                    self.session.addOutput(self.videoOutput)
+                    if let connection = self.videoOutput.connection(with: .video) {
+                        connection.videoOrientation = .portrait
+                        connection.isVideoMirrored = true
+                    }
+                }
+
                 self.session.commitConfiguration()
-                return
+                self.isConfigured = true
             }
 
-            guard let input = try? AVCaptureDeviceInput(device: device),
-                  self.session.canAddInput(input) else {
-                DispatchQueue.main.async { self.error = .cannotAddInput }
-                self.session.commitConfiguration()
-                return
-            }
-            self.session.addInput(input)
+            self.session.startRunning()
 
-            if self.session.canAddOutput(self.photoOutput) {
-                self.session.addOutput(self.photoOutput)
-                if let connection = self.photoOutput.connection(with: .video) {
-                    connection.videoOrientation = .portrait
-                    connection.isVideoMirrored = true
+            let running = self.session.isRunning
+            DispatchQueue.main.async { self.isSessionRunning = running }
+
+            if !running && self.retryCount < self.maxRetries {
+                self.retryCount += 1
+                let delay = Double(self.retryCount) * 0.5
+                print("[SalmaAI] Camera session not running, retry \(self.retryCount)/\(self.maxRetries) in \(delay)s")
+                self.sessionQueue.asyncAfter(deadline: .now() + delay) { [weak self] in
+                    guard let self = self else { return }
+                    self.session.startRunning()
+                    let nowRunning = self.session.isRunning
+                    DispatchQueue.main.async { self.isSessionRunning = nowRunning }
+                    if !nowRunning && self.retryCount < self.maxRetries {
+                        self.retryCount += 1
+                        self.retryStart()
+                    }
                 }
             }
-
-            self.videoOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
-            self.videoOutput.alwaysDiscardsLateVideoFrames = true
-            self.videoOutput.videoSettings = [
-                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
-            ]
-
-            if self.session.canAddOutput(self.videoOutput) {
-                self.session.addOutput(self.videoOutput)
-                if let connection = self.videoOutput.connection(with: .video) {
-                    connection.videoOrientation = .portrait
-                    connection.isVideoMirrored = true
-                }
-            }
-
-            self.session.commitConfiguration()
         }
     }
 
-    func start() {
-        sessionQueue.async { [weak self] in
-            self?.session.startRunning()
-            DispatchQueue.main.async { self?.isSessionRunning = self?.session.isRunning ?? false }
+    private func retryStart() {
+        guard retryCount < maxRetries else {
+            print("[SalmaAI] Camera session failed to start after \(maxRetries) retries")
+            return
+        }
+        retryCount += 1
+        let delay = Double(retryCount) * 0.5
+        print("[SalmaAI] Camera retry \(retryCount)/\(maxRetries) in \(delay)s")
+        sessionQueue.asyncAfter(deadline: .now() + delay) { [weak self] in
+            guard let self = self else { return }
+            self.session.startRunning()
+            let running = self.session.isRunning
+            DispatchQueue.main.async { self.isSessionRunning = running }
+            if !running {
+                self.retryStart()
+            } else {
+                print("[SalmaAI] Camera session started on retry \(self.retryCount)")
+            }
         }
     }
 
@@ -78,7 +120,7 @@ class SelfieCameraSession: NSObject, ObservableObject {
 
     func capturePhoto() {
         let settings = AVCapturePhotoSettings()
-        settings.photoQualityPrioritization = .quality
+        settings.photoQualityPrioritization = photoOutput.maxPhotoQualityPrioritization
         photoOutput.capturePhoto(with: settings, delegate: self)
     }
 }

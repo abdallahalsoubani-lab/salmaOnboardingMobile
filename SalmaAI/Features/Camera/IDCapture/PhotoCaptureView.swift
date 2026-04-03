@@ -71,7 +71,7 @@ struct PhotoCaptureView: View {
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.counterclockwise")
-                            Text(String(localized: "retake"))
+                            Text(L("retake"))
                         }
                         .font(SalmaDesign.Typography.bodyMedium)
                         .foregroundColor(.white)
@@ -92,7 +92,7 @@ struct PhotoCaptureView: View {
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "checkmark")
-                            Text(String(localized: "use_photo"))
+                            Text(L("use_photo"))
                         }
                         .font(SalmaDesign.Typography.bodyMedium)
                         .foregroundColor(.white)

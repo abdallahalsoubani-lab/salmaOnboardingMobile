@@ -15,6 +15,12 @@ class VerificationFlowState: ObservableObject {
     // Submission
     @Published var submissionResult: SubmissionResult?
 
+    // Liveness
+    @Published var livenessSessionId: String?
+    @Published var livenessResult: Bool?
+    @Published var livenessConfidence: Float?
+    @Published var livenessEnabled: Bool = true
+
     // Loading states
     @Published var isLoadingJourney: Bool = false
     @Published var isSubmitting: Bool = false
@@ -107,6 +113,9 @@ class VerificationFlowState: ObservableObject {
         fieldValues.removeAll()
         capturedImages.removeAll()
         submissionResult = nil
+        livenessSessionId = nil
+        livenessResult = nil
+        livenessConfidence = nil
         isLoadingJourney = false
         isSubmitting = false
         journeyError = nil

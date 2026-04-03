@@ -16,6 +16,11 @@ enum APIEndpoint {
     case register
     case refreshToken
 
+    // Liveness
+    case createLivenessSession
+    case verifyLiveness
+    case livenessStatus
+
     var path: String {
         switch self {
         case .getActiveJourney:            return "/journey/active"
@@ -25,14 +30,18 @@ enum APIEndpoint {
         case .login:                       return "/auth/login"
         case .register:                    return "/auth/register"
         case .refreshToken:                return "/auth/refresh-token"
+        case .createLivenessSession:       return "/liveness/session"
+        case .verifyLiveness:              return "/liveness/verify"
+        case .livenessStatus:              return "/liveness/status"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .getActiveJourney, .getSubmissionStatus:
+        case .getActiveJourney, .getSubmissionStatus, .livenessStatus:
             return .get
-        case .createSubmission, .uploadFile, .login, .register, .refreshToken:
+        case .createSubmission, .uploadFile, .login, .register, .refreshToken,
+             .createLivenessSession, .verifyLiveness:
             return .post
         }
     }

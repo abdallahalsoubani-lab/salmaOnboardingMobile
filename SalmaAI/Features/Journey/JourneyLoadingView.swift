@@ -61,7 +61,7 @@ struct JourneyLoadingView: View {
                     }
                 }
 
-            Text(String(localized: "loading_journey"))
+            Text(L("loading_journey"))
                 .font(SalmaDesign.Typography.callout)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
 
@@ -80,20 +80,20 @@ struct JourneyLoadingView: View {
                 .foregroundColor(errorColor(for: error))
                 .padding(.bottom, SalmaDesign.Spacing.sm)
 
-            Text(error.errorDescription ?? String(localized: "error"))
+            Text(error.errorDescription ?? L("error"))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, SalmaDesign.Spacing.xl)
 
             if case .noData = error {
-                Text(String(localized: "try_again_later"))
+                Text(L("try_again_later"))
                     .font(SalmaDesign.Typography.callout)
                     .foregroundColor(SalmaDesign.Colors.textSecondary)
             }
 
             SalmaButton(
-                title: String(localized: "retry"),
+                title: L("retry"),
                 style: .secondary
             ) {
                 loadJourney()

@@ -49,15 +49,15 @@ struct MediaFieldButton: View {
             }
         }
         .accessibilityLabel(label)
-        .accessibilityValue(capturedImage != nil ? String(localized: "captured") : (capturedFileName ?? String(localized: "empty")))
+        .accessibilityValue(capturedImage != nil ? L("captured") : (capturedFileName ?? L("empty")))
         .confirmationDialog(
-            String(localized: "choose_source"),
+            L("choose_source"),
             isPresented: $showSourceSheet,
             titleVisibility: .visible
         ) {
-            Button(String(localized: "take_photo")) { onCapture() }
-            Button(String(localized: "choose_from_gallery")) { onGallery() }
-            Button(String(localized: "cancel"), role: .cancel) {}
+            Button(L("take_photo")) { onCapture() }
+            Button(L("choose_from_gallery")) { onGallery() }
+            Button(L("cancel"), role: .cancel) {}
         }
     }
 
@@ -108,13 +108,13 @@ struct MediaFieldButton: View {
                 // Action bar overlay
                 HStack {
                     Button { handleTap() } label: {
-                        Text(String(localized: "change"))
+                        Text(L("change"))
                             .font(SalmaDesign.Typography.captionMedium)
                             .foregroundColor(.white)
                     }
                     Spacer()
                     Button { onRemove() } label: {
-                        Text(String(localized: "remove"))
+                        Text(L("remove"))
                             .font(SalmaDesign.Typography.captionMedium)
                             .foregroundColor(SalmaDesign.Colors.danger)
                     }
@@ -152,12 +152,12 @@ struct MediaFieldButton: View {
 
                 VStack(spacing: SalmaDesign.Spacing.xs) {
                     Button { handleTap() } label: {
-                        Text(String(localized: "change"))
+                        Text(L("change"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.primary)
                     }
                     Button { onRemove() } label: {
-                        Text(String(localized: "remove"))
+                        Text(L("remove"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.danger)
                     }
@@ -190,10 +190,10 @@ struct MediaFieldButton: View {
 
     private var instructionText: String {
         switch sourceType {
-        case .cameraOnly: return String(localized: "tap_to_capture")
+        case .cameraOnly: return L("tap_to_capture")
         case .galleryOnly:
-            return fieldType == .fileUpload ? String(localized: "tap_to_choose") : String(localized: "choose_from_gallery")
-        case .cameraAndGallery: return String(localized: "tap_to_capture_or_upload")
+            return fieldType == .fileUpload ? L("tap_to_choose") : L("choose_from_gallery")
+        case .cameraAndGallery: return L("tap_to_capture_or_upload")
         case .none: return ""
         }
     }

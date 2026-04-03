@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Configuration {
     static let apiBaseURL: String = {
-        Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String ?? "http://localhost:5001/api/v1"
+        Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String ?? "http://34.41.105.171/api/v1"
     }()
 }
 

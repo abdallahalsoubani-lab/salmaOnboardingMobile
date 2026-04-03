@@ -38,7 +38,7 @@ struct ImagePreviewView: View {
             // Action buttons
             HStack(spacing: SalmaDesign.Spacing.md) {
                 SalmaButton(
-                    title: String(localized: "retake"),
+                    title: L("retake"),
                     style: .secondary
                 ) {
                     flowState.removeCapturedImage(for: fieldId)
@@ -46,7 +46,7 @@ struct ImagePreviewView: View {
                 }
 
                 SalmaButton(
-                    title: String(localized: "use_photo")
+                    title: L("use_photo")
                 ) {
                     router.dismissFullScreen()
                 }

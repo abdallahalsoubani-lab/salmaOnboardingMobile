@@ -14,14 +14,14 @@ struct FileValidator {
         if let maxMB = maxSizeMB {
             let maxBytes = maxMB * 1_048_576
             if document.fileSize > maxBytes {
-                return String(localized: "file_too_large")
+                return L("file_too_large")
             }
         }
 
         // Check format
         if let formats = acceptedFormats, !formats.isEmpty {
             if !formats.contains(document.fileExtension.lowercased()) {
-                return String(localized: "unsupported_format")
+                return L("unsupported_format")
             }
         }
 

@@ -14,7 +14,7 @@ struct ReviewView: View {
             ScrollView {
                 VStack(spacing: SalmaDesign.Spacing.lg) {
                     // Subtitle
-                    Text(String(localized: "review_subtitle"))
+                    Text(L("review_subtitle"))
                         .font(SalmaDesign.Typography.callout)
                         .foregroundColor(SalmaDesign.Colors.textSecondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -41,7 +41,7 @@ struct ReviewView: View {
             bottomBar
         }
         .background(SalmaDesign.Colors.background)
-        .navigationTitle(String(localized: "review_data"))
+        .navigationTitle(L("review_data"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -50,7 +50,7 @@ struct ReviewView: View {
                     HStack(spacing: 4) {
                         Image(systemName: languageManager.currentLanguage == .arabic ? "chevron.right" : "chevron.left")
                             .font(.system(size: 14))
-                        Text(String(localized: "edit"))
+                        Text(L("edit"))
                     }
                     .font(SalmaDesign.Typography.callout)
                     .foregroundColor(SalmaDesign.Colors.primary)
@@ -59,14 +59,14 @@ struct ReviewView: View {
         }
         .onAppear { runValidation() }
         .confirmationDialog(
-            String(localized: "confirm_submit_title"),
+            L("confirm_submit_title"),
             isPresented: $showSubmitConfirm,
             titleVisibility: .visible
         ) {
-            Button(String(localized: "submit")) { submitData() }
-            Button(String(localized: "cancel"), role: .cancel) {}
+            Button(L("submit")) { submitData() }
+            Button(L("cancel"), role: .cancel) {}
         } message: {
-            Text(String(localized: "confirm_submit_message"))
+            Text(L("confirm_submit_message"))
         }
     }
 
@@ -79,17 +79,17 @@ struct ReviewView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 18))
                     .foregroundColor(SalmaDesign.Colors.danger)
-                Text(String(localized: "has_validation_errors"))
+                Text(L("has_validation_errors"))
                     .font(SalmaDesign.Typography.bodyMedium)
                     .foregroundColor(SalmaDesign.Colors.danger)
             }
 
-            Text(String(format: String(localized: "errors_count"), validationErrors.count))
+            Text(String(format: L("errors_count"), validationErrors.count))
                 .font(SalmaDesign.Typography.callout)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
 
             SalmaButton(
-                title: String(localized: "fix_errors"), style: .outline, size: .small,
+                title: L("fix_errors"), style: .outline, size: .small,
                 icon: "arrow.right", action: { navigateToFirstError() }
             )
         }
@@ -112,7 +112,7 @@ struct ReviewView: View {
                     Text(languageManager.localizedTitle(for: page))
                         .font(SalmaDesign.Typography.title3)
                         .foregroundColor(SalmaDesign.Colors.textPrimary)
-                    Text(String(format: String(localized: "page_of"), pageIndex + 1, flowState.totalPages))
+                    Text(String(format: L("page_of"), pageIndex + 1, flowState.totalPages))
                         .font(SalmaDesign.Typography.caption)
                         .foregroundColor(SalmaDesign.Colors.textTertiary)
                 }
@@ -127,7 +127,7 @@ struct ReviewView: View {
                 } label: {
                     HStack(spacing: 4) {
                         Image(systemName: "pencil").font(.system(size: 12))
-                        Text(String(localized: "edit")).font(SalmaDesign.Typography.captionMedium)
+                        Text(L("edit")).font(SalmaDesign.Typography.captionMedium)
                     }
                     .foregroundColor(SalmaDesign.Colors.primary)
                     .padding(.horizontal, 10).padding(.vertical, 5)
@@ -191,7 +191,7 @@ struct ReviewView: View {
     private func textFieldReview(field: PageField, fieldType: FieldType) -> some View {
         let value = flowState.getValue(for: field.id)
         if value.isEmpty {
-            Text(field.isRequired ? String(localized: "not_filled_required") : String(localized: "not_filled"))
+            Text(field.isRequired ? L("not_filled_required") : L("not_filled"))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(field.isRequired ? SalmaDesign.Colors.danger : SalmaDesign.Colors.textTertiary)
                 .italic()
@@ -228,7 +228,7 @@ struct ReviewView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(String(localized: "photo_captured"))
+                    Text(L("photo_captured"))
                         .font(SalmaDesign.Typography.callout)
                         .foregroundColor(SalmaDesign.Colors.success)
                     let kb = captured.imageData.count / 1024
@@ -240,18 +240,18 @@ struct ReviewView: View {
                 if fieldType == .idScan {
                     Spacer()
                     if flowState.getCapturedImage(for: field.id + "_back") != nil {
-                        Text("\u{2713} " + String(localized: "both_sides"))
+                        Text("\u{2713} " + L("both_sides"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.success)
                     } else {
-                        Text(String(localized: "back_side_missing"))
+                        Text(L("back_side_missing"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.warning)
                     }
                 }
             }
         } else {
-            Text(field.isRequired ? String(localized: "not_captured_required") : String(localized: "not_captured"))
+            Text(field.isRequired ? L("not_captured_required") : L("not_captured"))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(field.isRequired ? SalmaDesign.Colors.danger : SalmaDesign.Colors.textTertiary)
                 .italic()
@@ -265,7 +265,7 @@ struct ReviewView: View {
             Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
                 .font(.system(size: 18))
                 .foregroundColor(isChecked ? SalmaDesign.Colors.success : SalmaDesign.Colors.textTertiary)
-            Text(isChecked ? String(localized: "agreed") : String(localized: "not_agreed"))
+            Text(isChecked ? L("agreed") : L("not_agreed"))
                 .font(SalmaDesign.Typography.callout)
                 .foregroundColor(isChecked ? SalmaDesign.Colors.success : SalmaDesign.Colors.textTertiary)
         }
@@ -278,13 +278,13 @@ struct ReviewView: View {
         VStack(spacing: SalmaDesign.Spacing.sm) {
             HStack(spacing: SalmaDesign.Spacing.lg) {
                 summaryItem(icon: "doc.text", count: countFilledFields(), total: countTotalFields(),
-                            label: String(localized: "fields_filled"))
+                            label: L("fields_filled"))
                 summaryItem(icon: "camera", count: flowState.capturedImages.count, total: countMediaFields(),
-                            label: String(localized: "photos_captured"))
+                            label: L("photos_captured"))
             }
 
             SalmaButton(
-                title: String(localized: "submit"), size: .large,
+                title: L("submit"), size: .large,
                 isDisabled: !validationErrors.isEmpty,
                 icon: "paperplane", iconPosition: .trailing,
                 action: { showSubmitConfirm = true }

@@ -21,8 +21,8 @@ class CameraSessionManager: NSObject, ObservableObject {
 
         var errorDescription: String? {
             switch self {
-            case .deviceNotAvailable: return String(localized: "camera_not_available")
-            case .cannotAddInput, .cannotAddOutput: return String(localized: "camera_config_error")
+            case .deviceNotAvailable: return L("camera_not_available")
+            case .cannotAddInput, .cannotAddOutput: return L("camera_config_error")
             case .captureFailed(let e): return e.localizedDescription
             }
         }
@@ -112,7 +112,7 @@ class CameraSessionManager: NSObject, ObservableObject {
 
     func capturePhoto() {
         let settings = AVCapturePhotoSettings()
-        settings.photoQualityPrioritization = .quality
+        settings.photoQualityPrioritization = videoOutput.maxPhotoQualityPrioritization
         if let device = currentDevice, device.hasFlash {
             settings.flashMode = isTorchOn ? .on : .off
         }

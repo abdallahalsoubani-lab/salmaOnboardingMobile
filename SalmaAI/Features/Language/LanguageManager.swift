@@ -18,6 +18,8 @@ class LanguageManager: ObservableObject {
             self.currentLanguage = .arabic
             self.layoutDirection = .rightToLeft
         }
+        UserDefaults.standard.set([currentLanguage.rawValue], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
     }
 
     var isLanguageSelected: Bool {
@@ -28,6 +30,9 @@ class LanguageManager: ObservableObject {
         currentLanguage = language
         layoutDirection = language.layoutDirection
         UserDefaults.standard.set(language.rawValue, forKey: storageKey)
+        UserDefaults.standard.set([language.rawValue], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+        Bundle.resetLocalizedBundle()
     }
 
     func localizedLabel(for field: PageField) -> String {

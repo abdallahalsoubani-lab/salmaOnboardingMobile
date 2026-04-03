@@ -7,6 +7,10 @@ struct SalmaAIApp: App {
     @StateObject private var languageManager = LanguageManager.shared
     @StateObject private var connectivity = ConnectivityMonitor.shared
 
+    init() {
+        AmplifyConfigurator.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()

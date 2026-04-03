@@ -53,18 +53,18 @@ struct IdScanFieldView: View {
     @ViewBuilder
     private var bothCapturedView: some View {
         HStack(spacing: SalmaDesign.Spacing.sm) {
-            idThumbnail(image: capturedImage, sideLabel: String(localized: "front_side"), onTap: onPreview)
-            idThumbnail(image: backImage, sideLabel: String(localized: "back_side"), onTap: {})
+            idThumbnail(image: capturedImage, sideLabel: L("front_side"), onTap: onPreview)
+            idThumbnail(image: backImage, sideLabel: L("back_side"), onTap: {})
         }
 
         HStack(spacing: SalmaDesign.Spacing.sm) {
-            SalmaButton(title: String(localized: "change"), style: .ghost, size: .small,
+            SalmaButton(title: L("change"), style: .ghost, size: .small,
                         icon: "arrow.counterclockwise") {
                 onRemove()
                 flowState.removeCapturedImage(for: field.id + "_back")
                 onCapture()
             }
-            SalmaButton(title: String(localized: "remove"), style: .ghost, size: .small,
+            SalmaButton(title: L("remove"), style: .ghost, size: .small,
                         icon: "trash") {
                 onRemove()
                 flowState.removeCapturedImage(for: field.id + "_back")
@@ -76,7 +76,7 @@ struct IdScanFieldView: View {
     private var frontOnlyView: some View {
         idThumbnail(
             image: capturedImage,
-            sideLabel: String(localized: "front_side") + " \u{2713}",
+            sideLabel: L("front_side") + " \u{2713}",
             onTap: onPreview
         )
 
@@ -86,10 +86,10 @@ struct IdScanFieldView: View {
                     .font(.system(size: 20))
                     .foregroundColor(SalmaDesign.Colors.primary)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(String(localized: "id_capture_back"))
+                    Text(L("id_capture_back"))
                         .font(SalmaDesign.Typography.callout)
                         .foregroundColor(SalmaDesign.Colors.textPrimary)
-                    Text(String(localized: "back_side"))
+                    Text(L("back_side"))
                         .font(SalmaDesign.Typography.caption)
                         .foregroundColor(SalmaDesign.Colors.textSecondary)
                 }

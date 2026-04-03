@@ -113,27 +113,27 @@ struct ResultView: View {
                 Image(systemName: "doc.text.viewfinder")
                     .font(.system(size: 16))
                     .foregroundColor(SalmaDesign.Colors.primary)
-                Text(String(localized: "extracted_data"))
+                Text(L("extracted_data"))
                     .font(SalmaDesign.Typography.title3)
                     .foregroundColor(SalmaDesign.Colors.textPrimary)
             }
 
             VStack(spacing: 1) {
                 if let name = ocr.fullNameAr, !name.isEmpty {
-                    ocrRow(label: String(localized: "full_name"), value: name)
+                    ocrRow(label: L("full_name"), value: name)
                 }
                 if let nid = ocr.nationalId, !nid.isEmpty {
-                    ocrRow(label: String(localized: "national_id"), value: nid)
+                    ocrRow(label: L("national_id"), value: nid)
                 }
                 if let dob = ocr.dateOfBirth, !dob.isEmpty {
-                    ocrRow(label: String(localized: "date_of_birth"), value: dob)
+                    ocrRow(label: L("date_of_birth"), value: dob)
                 }
                 if let gender = ocr.gender, !gender.isEmpty {
-                    ocrRow(label: String(localized: "gender"), value: gender)
+                    ocrRow(label: L("gender"), value: gender)
                 }
                 if let confidence = ocr.confidence {
                     ocrRow(
-                        label: String(localized: "ocr_confidence"),
+                        label: L("ocr_confidence"),
                         value: "\(Int(confidence * 100))%",
                         valueColor: confidence >= 0.8 ? SalmaDesign.Colors.success : SalmaDesign.Colors.warning
                     )
@@ -174,7 +174,7 @@ struct ResultView: View {
     private var submissionIdRow: some View {
         if let id = flowState.submissionResult?.submissionId {
             HStack(spacing: SalmaDesign.Spacing.sm) {
-                Text(String(localized: "submission_id"))
+                Text(L("submission_id"))
                     .font(SalmaDesign.Typography.caption)
                     .foregroundColor(SalmaDesign.Colors.textTertiary)
                 Text(String(id.prefix(8)) + "...")
@@ -203,27 +203,27 @@ struct ResultView: View {
         VStack(spacing: SalmaDesign.Spacing.md) {
             switch status {
             case "Approved":
-                SalmaButton(title: String(localized: "done"), size: .large, icon: "checkmark",
+                SalmaButton(title: L("done"), size: .large, icon: "checkmark",
                             action: { finishFlow() })
 
             case "Rejected":
-                SalmaButton(title: String(localized: "try_again"), size: .large,
+                SalmaButton(title: L("try_again"), size: .large,
                             icon: "arrow.counterclockwise", action: { restartFlow() })
-                SalmaButton(title: String(localized: "done"), style: .ghost, size: .medium,
+                SalmaButton(title: L("done"), style: .ghost, size: .medium,
                             action: { finishFlow() })
 
             default: // Pending, Flagged, InReview
                 if isPolling {
                     HStack(spacing: SalmaDesign.Spacing.sm) {
                         ProgressView().tint(SalmaDesign.Colors.primary)
-                        Text(String(localized: "checking_status"))
+                        Text(L("checking_status"))
                             .font(SalmaDesign.Typography.caption)
                             .foregroundColor(SalmaDesign.Colors.textSecondary)
                     }
                 }
-                SalmaButton(title: String(localized: "check_status"), style: .outline, size: .medium,
+                SalmaButton(title: L("check_status"), style: .outline, size: .medium,
                             isLoading: isPolling, icon: "arrow.clockwise", action: { pollStatusOnce() })
-                SalmaButton(title: String(localized: "done"), size: .large, action: { finishFlow() })
+                SalmaButton(title: L("done"), size: .large, action: { finishFlow() })
             }
         }
         .padding(.horizontal, SalmaDesign.Spacing.md)
@@ -259,21 +259,21 @@ struct ResultView: View {
 
     private var statusTitle: String {
         switch status {
-        case "Approved": return String(localized: "result_approved_title")
-        case "Rejected": return String(localized: "result_rejected_title")
-        case "InReview": return String(localized: "result_in_review_title")
-        case "Flagged": return String(localized: "result_flagged_title")
-        default: return String(localized: "result_pending_title")
+        case "Approved": return L("result_approved_title")
+        case "Rejected": return L("result_rejected_title")
+        case "InReview": return L("result_in_review_title")
+        case "Flagged": return L("result_flagged_title")
+        default: return L("result_pending_title")
         }
     }
 
     private var statusSubtitle: String {
         switch status {
-        case "Approved": return String(localized: "result_approved_subtitle")
-        case "Rejected": return String(localized: "result_rejected_subtitle")
-        case "InReview": return String(localized: "result_in_review_subtitle")
-        case "Flagged": return String(localized: "result_flagged_subtitle")
-        default: return String(localized: "result_pending_subtitle")
+        case "Approved": return L("result_approved_subtitle")
+        case "Rejected": return L("result_rejected_subtitle")
+        case "InReview": return L("result_in_review_subtitle")
+        case "Flagged": return L("result_flagged_subtitle")
+        default: return L("result_pending_subtitle")
         }
     }
 

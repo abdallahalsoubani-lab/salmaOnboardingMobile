@@ -39,11 +39,11 @@ struct PermissionDeniedView: View {
                 .font(.system(size: 56))
                 .foregroundColor(SalmaDesign.Colors.textTertiary)
 
-            Text(String(localized: String.LocalizationValue(permissionType.titleKey)))
+            Text(NSLocalizedString(permissionType.titleKey, bundle: .localized, comment: ""))
                 .font(SalmaDesign.Typography.title2)
                 .foregroundColor(SalmaDesign.Colors.textPrimary)
 
-            Text(String(localized: String.LocalizationValue(permissionType.explanationKey)))
+            Text(NSLocalizedString(permissionType.explanationKey, bundle: .localized, comment: ""))
                 .font(SalmaDesign.Typography.body)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
                 .multilineTextAlignment(.center)
@@ -51,12 +51,12 @@ struct PermissionDeniedView: View {
 
             VStack(spacing: SalmaDesign.Spacing.md) {
                 SalmaButton(
-                    title: String(localized: "go_to_settings"),
+                    title: L("go_to_settings"),
                     action: onOpenSettings
                 )
 
                 SalmaButton(
-                    title: String(localized: "cancel"),
+                    title: L("cancel"),
                     style: .ghost,
                     action: onCancel
                 )

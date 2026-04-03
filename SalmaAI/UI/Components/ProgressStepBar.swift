@@ -26,7 +26,7 @@ struct ProgressStepBar: View {
                 }
             }
         }
-        .accessibilityLabel(String(localized: "step_progress"))
+        .accessibilityLabel(L("step_progress"))
         .accessibilityValue("\(currentStep) / \(totalSteps)")
         .animation(AppAnimations.stateChange, value: currentStep)
     }

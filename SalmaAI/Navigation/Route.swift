@@ -54,6 +54,7 @@ enum SheetRoute: Identifiable, Hashable {
 enum FullScreenRoute: Identifiable {
     case idCapture(fieldId: String, side: IDSide)
     case selfieCapture(fieldId: String)
+    case livenessCheck(fieldId: String)
     case photoCapture(fieldId: String)
     case signaturePad(fieldId: String)
     case imagePreview(fieldId: String, imageData: Data)
@@ -62,6 +63,7 @@ enum FullScreenRoute: Identifiable {
         switch self {
         case .idCapture(let id, let side): return "idCapture_\(id)_\(side.rawValue)"
         case .selfieCapture(let id): return "selfie_\(id)"
+        case .livenessCheck(let id): return "liveness_\(id)"
         case .photoCapture(let id): return "photo_\(id)"
         case .signaturePad(let id): return "signature_\(id)"
         case .imagePreview(let id, _): return "preview_\(id)"

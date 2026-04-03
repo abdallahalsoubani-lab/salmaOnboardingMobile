@@ -60,14 +60,14 @@ struct SelfieFieldView: View {
             .frame(maxWidth: .infinity)
             .onTapGesture { onPreview() }
 
-            Text(String(localized: "selfie_captured"))
+            Text(L("selfie_captured"))
                 .font(SalmaDesign.Typography.captionMedium)
                 .foregroundColor(SalmaDesign.Colors.success)
 
             HStack(spacing: SalmaDesign.Spacing.sm) {
-                SalmaButton(title: String(localized: "change"), style: .ghost, size: .small,
+                SalmaButton(title: L("change"), style: .ghost, size: .small,
                             icon: "arrow.counterclockwise", action: onCapture)
-                SalmaButton(title: String(localized: "remove"), style: .ghost, size: .small,
+                SalmaButton(title: L("remove"), style: .ghost, size: .small,
                             icon: "trash", action: onRemove)
             }
         }

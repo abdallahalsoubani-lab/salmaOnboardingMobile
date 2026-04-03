@@ -153,7 +153,12 @@ struct FormPageView: View {
         let fieldType = FieldType(rawValue: field.type) ?? .photo
         switch fieldType {
         case .idScan: router.presentFullScreen(.idCapture(fieldId: field.id, side: .front))
-        case .selfie: router.presentFullScreen(.selfieCapture(fieldId: field.id))
+        case .selfie:
+            if flowState.livenessEnabled {
+                router.presentFullScreen(.livenessCheck(fieldId: field.id))
+            } else {
+                router.presentFullScreen(.selfieCapture(fieldId: field.id))
+            }
         case .photo: router.presentFullScreen(.photoCapture(fieldId: field.id))
         default: break
         }
@@ -250,14 +255,14 @@ struct FormPageView: View {
         HStack(spacing: SalmaDesign.Spacing.md) {
             if pageIndex > 0 {
                 SalmaButton(
-                    title: String(localized: "previous"), style: .secondary, size: .medium,
+                    title: L("previous"), style: .secondary, size: .medium,
                     icon: languageManager.currentLanguage == .arabic ? "chevron.right" : "chevron.left",
                     iconPosition: .leading, action: { router.pop() }
                 )
             }
 
             SalmaButton(
-                title: isLast ? String(localized: "review_and_submit") : String(localized: "next"),
+                title: isLast ? L("review_and_submit") : L("next"),
                 size: .medium,
                 icon: languageManager.currentLanguage == .arabic ? "chevron.left" : "chevron.right",
                 iconPosition: .trailing, action: { handleNext(isLast: isLast) }

@@ -24,7 +24,7 @@ struct FieldInfoSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "done")) {
+                    Button(L("done")) {
                         dismiss()
                     }
                     .foregroundColor(SalmaDesign.Colors.primary)
