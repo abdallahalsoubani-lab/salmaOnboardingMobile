@@ -14,6 +14,17 @@ actor SubmissionService: SubmissionServiceProtocol {
         images: [CapturedImage]
     ) async throws -> SubmissionResult {
         let files = images.compactMap { image -> MultipartFile? in
+            if image.type == .document {
+                let fileName = image.fileName ?? "\(image.fieldId).bin"
+                let mimeType = image.mimeType ?? "application/octet-stream"
+                return MultipartFile(
+                    fieldName: image.fieldId,
+                    fileName: fileName,
+                    mimeType: mimeType,
+                    data: image.imageData
+                )
+            }
+
             guard let jpegData = compressImage(image.imageData, maxSizeKB: 1024) else { return nil }
             return MultipartFile(
                 fieldName: image.fieldId,
@@ -53,6 +64,9 @@ struct CapturedImage {
     let fieldId: String
     let imageData: Data
     let type: CaptureType
+    var fileName: String?
+    var mimeType: String?
+    var fileSize: Int?
 
     enum CaptureType {
         case idFront

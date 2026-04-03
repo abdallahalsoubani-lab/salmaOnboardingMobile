@@ -21,6 +21,9 @@ enum APIEndpoint {
     case verifyLiveness
     case livenessStatus
 
+    // OCR
+    case extractOcr
+
     var path: String {
         switch self {
         case .getActiveJourney:            return "/journey/active"
@@ -33,6 +36,7 @@ enum APIEndpoint {
         case .createLivenessSession:       return "/liveness/session"
         case .verifyLiveness:              return "/liveness/verify"
         case .livenessStatus:              return "/liveness/status"
+        case .extractOcr:                  return "/ocr/extract"
         }
     }
 
@@ -41,7 +45,7 @@ enum APIEndpoint {
         case .getActiveJourney, .getSubmissionStatus, .livenessStatus:
             return .get
         case .createSubmission, .uploadFile, .login, .register, .refreshToken,
-             .createLivenessSession, .verifyLiveness:
+             .createLivenessSession, .verifyLiveness, .extractOcr:
             return .post
         }
     }

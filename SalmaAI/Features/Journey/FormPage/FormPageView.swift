@@ -53,10 +53,16 @@ struct FormPageView: View {
                             let sortedFields = page.fields.sorted(by: { $0.order < $1.order })
                             ForEach(Array(sortedFields.enumerated()), id: \.element.id) { index, field in
                                 if shouldShowField(field) {
-                                    makeFieldView(for: field)
-                                        .id(field.id)
-                                        .modifier(ShakeEffect(trigger: viewModel.shakeFieldId == field.id))
-                                        .staggeredAppear(index: index)
+                                    VStack(spacing: SalmaDesign.Spacing.md) {
+                                        makeFieldView(for: field)
+                                            .id(field.id)
+                                            .modifier(ShakeEffect(trigger: viewModel.shakeFieldId == field.id))
+                                            .staggeredAppear(index: index)
+
+                                        if FieldType(rawValue: field.type) == .idScan {
+                                            ocrSectionForField(field)
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -140,6 +146,29 @@ struct FormPageView: View {
         )
     }
 
+    // MARK: - OCR Result Card
+
+    @ViewBuilder
+    private func ocrSectionForField(_ field: PageField) -> some View {
+        if flowState.isExtractingOcr {
+            HStack(spacing: SalmaDesign.Spacing.sm) {
+                ProgressView()
+                    .scaleEffect(0.8)
+                Text(L("extracting_id_data"))
+                    .font(SalmaDesign.Typography.caption)
+                    .foregroundColor(SalmaDesign.Colors.textSecondary)
+            }
+            .padding(SalmaDesign.Spacing.md)
+            .transition(.opacity.combined(with: .move(edge: .top)))
+        } else if let ocrResult = flowState.ocrExtractionResult {
+            OcrResultCard(
+                result: ocrResult,
+                confirmed: $flowState.ocrConfirmed
+            )
+            .transition(.opacity.combined(with: .move(edge: .top)))
+        }
+    }
+
     // MARK: - Conditional Visibility
 
     private func shouldShowField(_ field: PageField) -> Bool {
@@ -195,9 +224,15 @@ struct FormPageView: View {
         switch fieldType {
         case .idScan: captureType = .idFront
         case .selfie: captureType = .selfie
+        case .fileUpload: captureType = .document
         default: captureType = .photo
         }
-        let captured = CapturedImage(fieldId: fieldId, imageData: data, type: captureType)
+        var captured = CapturedImage(fieldId: fieldId, imageData: data, type: captureType)
+        if fieldType == .fileUpload {
+            captured.fileName = "\(fieldId).jpg"
+            captured.mimeType = "image/jpeg"
+            captured.fileSize = data.count
+        }
         flowState.setCapturedImage(captured, for: fieldId)
         if viewModel.hasAttemptedNext, let f = findField(by: fieldId) {
             viewModel.validateField(field: f, value: flowState.getValue(for: fieldId),
@@ -207,7 +242,14 @@ struct FormPageView: View {
 
     private func handlePickedDocuments(_ docs: [PickedDocument], fieldId: String) {
         guard let doc = docs.first else { return }
-        let captured = CapturedImage(fieldId: fieldId, imageData: doc.data, type: .document)
+        let captured = CapturedImage(
+            fieldId: fieldId,
+            imageData: doc.data,
+            type: .document,
+            fileName: doc.fileName,
+            mimeType: doc.mimeType,
+            fileSize: doc.fileSize
+        )
         flowState.setCapturedImage(captured, for: fieldId)
         if viewModel.hasAttemptedNext, let f = findField(by: fieldId) {
             viewModel.validateField(field: f, value: flowState.getValue(for: fieldId),

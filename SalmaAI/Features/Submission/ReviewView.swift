@@ -9,6 +9,10 @@ struct ReviewView: View {
     @State private var validationErrors: [String: String] = [:]
     @State private var showSubmitConfirm = false
 
+    private var ocrRequiresConfirmation: Bool {
+        flowState.ocrExtractionResult != nil && !flowState.ocrConfirmed
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
@@ -22,6 +26,14 @@ struct ReviewView: View {
                     // Validation warning
                     if !validationErrors.isEmpty {
                         validationWarningCard
+                    }
+
+                    // OCR confirmation
+                    if flowState.ocrExtractionResult != nil {
+                        OcrResultCard(
+                            result: flowState.ocrExtractionResult!,
+                            confirmed: $flowState.ocrConfirmed
+                        )
                     }
 
                     // Page sections
@@ -285,7 +297,7 @@ struct ReviewView: View {
 
             SalmaButton(
                 title: L("submit"), size: .large,
-                isDisabled: !validationErrors.isEmpty,
+                isDisabled: !validationErrors.isEmpty || ocrRequiresConfirmation,
                 icon: "paperplane", iconPosition: .trailing,
                 action: { showSubmitConfirm = true }
             )

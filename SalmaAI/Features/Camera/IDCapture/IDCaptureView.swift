@@ -7,6 +7,7 @@ struct IDCaptureView: View {
     @StateObject private var viewModel: IDCaptureViewModel
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject var container: DependencyContainer
 
     @State private var focusPoint: CGPoint = .zero
     @State private var showFocusIndicator = false
@@ -205,10 +206,49 @@ struct IDCaptureView: View {
         if let front = images.front { flowState.setCapturedImage(front, for: fieldId) }
         if let back = images.back { flowState.setCapturedImage(back, for: fieldId + "_back") }
         router.dismissFullScreen()
+
+        Task {
+            await extractOcr(frontImage: images.front, backImage: images.back)
+        }
     }
 
     private func dismissCapture() {
         viewModel.stopCamera()
         router.dismissFullScreen()
+    }
+
+    // MARK: - OCR Extraction
+
+    private func extractOcr(frontImage: CapturedImage?, backImage: CapturedImage?) async {
+        await MainActor.run { flowState.isExtractingOcr = true }
+
+        do {
+            var result = OcrExtractionResult.empty
+
+            if let frontData = frontImage?.imageData {
+                let frontResult = try await container.ocrExtractionService.extractFromImage(
+                    imageData: frontData, side: "front"
+                )
+                result = OcrExtractionResult.merged(result, with: frontResult)
+            }
+
+            if let backData = backImage?.imageData {
+                let backResult = try await container.ocrExtractionService.extractFromImage(
+                    imageData: backData, side: "back"
+                )
+                result = OcrExtractionResult.merged(result, with: backResult)
+            }
+
+            await MainActor.run {
+                flowState.ocrExtractionResult = result
+                flowState.isExtractingOcr = false
+                HapticManager.notification(.success)
+            }
+        } catch {
+            await MainActor.run {
+                flowState.isExtractingOcr = false
+                print("[SalmaAI] OCR extraction failed: \(error)")
+            }
+        }
     }
 }

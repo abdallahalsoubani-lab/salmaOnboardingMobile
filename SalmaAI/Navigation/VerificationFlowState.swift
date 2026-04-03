@@ -21,6 +21,11 @@ class VerificationFlowState: ObservableObject {
     @Published var livenessConfidence: Float?
     @Published var livenessEnabled: Bool = true
 
+    // OCR extraction
+    @Published var ocrExtractionResult: OcrExtractionResult?
+    @Published var isExtractingOcr: Bool = false
+    @Published var ocrConfirmed: Bool = false
+
     // Loading states
     @Published var isLoadingJourney: Bool = false
     @Published var isSubmitting: Bool = false
@@ -116,6 +121,9 @@ class VerificationFlowState: ObservableObject {
         livenessSessionId = nil
         livenessResult = nil
         livenessConfidence = nil
+        ocrExtractionResult = nil
+        isExtractingOcr = false
+        ocrConfirmed = false
         isLoadingJourney = false
         isSubmitting = false
         journeyError = nil

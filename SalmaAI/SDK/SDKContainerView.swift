@@ -65,6 +65,7 @@ struct SDKContainerView: View {
                 fullScreenDestination(route)
                     .environmentObject(flowState)
                     .environmentObject(router)
+                    .environmentObject(container)
             }
         }
     }

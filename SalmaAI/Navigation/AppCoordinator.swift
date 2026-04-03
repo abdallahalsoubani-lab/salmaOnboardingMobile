@@ -91,6 +91,7 @@ struct AppCoordinator: View {
             IDCaptureView(fieldId: fieldId, side: side)
                 .environmentObject(flowState)
                 .environmentObject(router)
+                .environmentObject(container)
 
         case .selfieCapture(let fieldId):
             SelfieCaptureView(fieldId: fieldId)
