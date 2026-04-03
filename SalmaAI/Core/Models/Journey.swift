@@ -60,8 +60,22 @@ struct ValidationRules: Codable {
     let consentTextAr: String?
     let consentTextEn: String?
 
+    // Terms & Conditions
+    let terms: TermsConfig?
+
     // Conditional display
     let condition: FieldCondition?
+}
+
+struct TermsConfig: Codable {
+    let isTermsField: Bool?
+    let contentType: String?
+    let contentAr: String?
+    let contentEn: String?
+    let url: String?
+    let mustScrollToBottom: Bool?
+    let linkTextAr: String?
+    let linkTextEn: String?
 }
 
 struct FieldCondition: Codable {

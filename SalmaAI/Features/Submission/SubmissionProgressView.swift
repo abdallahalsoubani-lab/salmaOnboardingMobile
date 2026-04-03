@@ -160,6 +160,15 @@ struct SubmissionProgressView: View {
                     fields["livenessSessionId"] = livenessId
                 }
 
+                for page in journey.pages {
+                    for field in page.fields where field.validationRules?.terms?.isTermsField == true {
+                        if fields[field.id] == "true" {
+                            fields[field.id + "_acceptedAt"] = ISO8601DateFormatter().string(from: Date())
+                            fields[field.id + "_version"] = String(journey.version)
+                        }
+                    }
+                }
+
                 currentStep = .processing
                 progressTask.cancel()
                 await MainActor.run { progress = 0.9 }
