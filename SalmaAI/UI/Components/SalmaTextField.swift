@@ -19,7 +19,6 @@ struct SalmaTextField: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: SalmaDesign.Spacing.xs) {
-            // Label row
             HStack {
                 HStack(spacing: 2) {
                     Text(label)
@@ -41,7 +40,6 @@ struct SalmaTextField: View {
                 }
             }
 
-            // Input field
             HStack(spacing: 0) {
                 if let icon = trailingIcon {
                     Image(systemName: icon)
@@ -75,6 +73,14 @@ struct SalmaTextField: View {
                 .focused($isFocused)
                 .disabled(isDisabled)
                 .padding(.horizontal, prefix != nil || trailingIcon != nil ? SalmaDesign.Spacing.sm : SalmaDesign.Spacing.md)
+                .toolbar {
+                    if needsDoneButton {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button(L("done")) { isFocused = false }
+                        }
+                    }
+                }
                 .onSubmit { onSubmit?() }
                 .onChange(of: text) { newValue in
                     if let max = maxLength, newValue.count > max {
@@ -93,7 +99,6 @@ struct SalmaTextField: View {
             .shake(trigger: shakeError)
             .animation(.easeInOut(duration: 0.2), value: isFocused)
 
-            // Error message
             if let error = errorMessage {
                 HStack(spacing: 4) {
                     Image(systemName: "exclamationmark.circle")
@@ -114,6 +119,10 @@ struct SalmaTextField: View {
                 shakeError.toggle()
             }
         }
+    }
+
+    private var needsDoneButton: Bool {
+        keyboardType == .numberPad || keyboardType == .decimalPad || keyboardType == .phonePad
     }
 
     private var borderColor: Color {

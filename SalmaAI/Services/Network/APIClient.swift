@@ -32,6 +32,12 @@ actor APIClient: NetworkServiceProtocol {
         return try await execute(request)
     }
 
+    func post<T: Codable>(_ endpoint: APIEndpoint) async throws -> T {
+        var request = try await buildRequest(endpoint: endpoint)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        return try await execute(request)
+    }
+
     func post<T: Codable, B: Codable>(_ endpoint: APIEndpoint, body: B) async throws -> T {
         var request = try await buildRequest(endpoint: endpoint)
         request.httpBody = try encoder.encode(body)
@@ -49,6 +55,11 @@ actor APIClient: NetworkServiceProtocol {
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.httpBody = buildMultipartBody(fields: fields, files: files, boundary: boundary)
         request.timeoutInterval = 120
+        return try await execute(request)
+    }
+
+    func delete<T: Codable>(_ endpoint: APIEndpoint) async throws -> T {
+        let request = try await buildRequest(endpoint: endpoint)
         return try await execute(request)
     }
 

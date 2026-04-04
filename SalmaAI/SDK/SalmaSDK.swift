@@ -50,6 +50,7 @@ public struct SalmaConfig {
     public let metadata: [String: String]
     public let requestTimeout: TimeInterval
     public let debugMode: Bool
+    public var journeyCode: String?
 
     public init(
         apiBaseURL: String,
@@ -60,7 +61,8 @@ public struct SalmaConfig {
         theme: SalmaTheme = .default,
         metadata: [String: String] = [:],
         requestTimeout: TimeInterval = 30,
-        debugMode: Bool = false
+        debugMode: Bool = false,
+        journeyCode: String? = nil
     ) {
         self.apiBaseURL = apiBaseURL
         self.apiKey = apiKey
@@ -71,6 +73,7 @@ public struct SalmaConfig {
         self.metadata = metadata
         self.requestTimeout = requestTimeout
         self.debugMode = debugMode
+        self.journeyCode = journeyCode
     }
 }
 

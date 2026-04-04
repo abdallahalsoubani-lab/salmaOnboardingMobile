@@ -3,6 +3,20 @@ import Foundation
 enum APIEndpoint {
     // Journey
     case getActiveJourney
+    case getPublishedJourneys
+
+    // Drafts
+    case startDraft
+    case saveDraftPage
+    case submitDraft(draftId: String)
+    case getDraftStatus(draftId: String)
+    case getActiveDraft
+    case deleteDraft(draftId: String)
+
+    // Resume
+    case resumeDraft
+    case sendResumeOtp
+    case verifyResumeOtp
 
     // Submissions
     case createSubmission
@@ -27,6 +41,16 @@ enum APIEndpoint {
     var path: String {
         switch self {
         case .getActiveJourney:            return "/journey/active"
+        case .getPublishedJourneys:        return "/journeys/published"
+        case .startDraft:                  return "/drafts/start"
+        case .saveDraftPage:               return "/drafts/page"
+        case .submitDraft(let id):         return "/drafts/\(id)/submit"
+        case .getDraftStatus(let id):      return "/drafts/\(id)"
+        case .getActiveDraft:              return "/drafts/active"
+        case .deleteDraft(let id):         return "/drafts/\(id)"
+        case .resumeDraft:                 return "/drafts/resume"
+        case .sendResumeOtp:               return "/drafts/resume/send-otp"
+        case .verifyResumeOtp:             return "/drafts/resume/verify"
         case .createSubmission:            return "/submissions"
         case .getSubmissionStatus(let id): return "/submissions/\(id)/status"
         case .uploadFile:                  return "/files/upload"
@@ -42,11 +66,14 @@ enum APIEndpoint {
 
     var method: HTTPMethod {
         switch self {
-        case .getActiveJourney, .getSubmissionStatus, .livenessStatus:
+        case .getActiveJourney, .getPublishedJourneys, .getSubmissionStatus, .getDraftStatus, .getActiveDraft, .livenessStatus:
             return .get
-        case .createSubmission, .uploadFile, .login, .register, .refreshToken,
+        case .startDraft, .saveDraftPage, .submitDraft, .resumeDraft, .sendResumeOtp, .verifyResumeOtp,
+             .createSubmission, .uploadFile, .login, .register, .refreshToken,
              .createLivenessSession, .verifyLiveness, .extractOcr:
             return .post
+        case .deleteDraft:
+            return .delete
         }
     }
 }

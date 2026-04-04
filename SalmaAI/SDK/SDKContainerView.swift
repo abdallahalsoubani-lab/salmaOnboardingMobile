@@ -24,6 +24,7 @@ struct SDKContainerView: View {
                 .environmentObject(flowState)
                 .environmentObject(router)
                 .environmentObject(connectivity)
+                .environmentObject(container.submissionModeManager)
                 .environment(\.layoutDirection, languageManager.layoutDirection)
                 .environment(\.locale, languageManager.currentLanguage.locale)
 
@@ -56,7 +57,7 @@ struct SDKContainerView: View {
             LanguageSelectionView()
         } else {
             NavigationStack(path: $router.navigationPath) {
-                JourneyLoadingView()
+                ResumeView()
                     .navigationDestination(for: Route.self) { route in
                         routeDestination(route)
                     }
@@ -81,6 +82,9 @@ struct SDKContainerView: View {
         case .submitting: SubmissionProgressView()
         case .result: ResultView()
         case .journeyLoading: JourneyLoadingView()
+        case .resumeStart: ResumeView()
+        case .otpVerification(let identifier, let draftId): OtpVerificationView(identifier: identifier, draftId: draftId)
+        case .journeySelection: JourneySelectionView()
         default: EmptyView()
         }
     }

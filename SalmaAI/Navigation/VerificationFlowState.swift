@@ -26,6 +26,15 @@ class VerificationFlowState: ObservableObject {
     @Published var isExtractingOcr: Bool = false
     @Published var ocrConfirmed: Bool = false
 
+    // Draft / Per-page submission
+    @Published var draftId: String? = nil
+    @Published var submissionMode: SubmissionModeManager.SubmissionMode = .perPage
+    @Published var isSavingPage: Bool = false
+    @Published var pageSaveError: APIError? = nil
+    @Published var serverValidationErrors: [String: String] = [:]
+    @Published var selectedJourneyCode: String? = nil
+    @Published var selectedJourneyId: String? = nil
+
     // Loading states
     @Published var isLoadingJourney: Bool = false
     @Published var isSubmitting: Bool = false
@@ -129,5 +138,11 @@ class VerificationFlowState: ObservableObject {
         journeyError = nil
         submissionError = nil
         uploadProgress = 0.0
+        draftId = nil
+        isSavingPage = false
+        pageSaveError = nil
+        serverValidationErrors.removeAll()
+        selectedJourneyCode = nil
+        selectedJourneyId = nil
     }
 }

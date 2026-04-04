@@ -4,6 +4,13 @@ enum Route: Hashable {
     // Stage 1
     case languageSelection
 
+    // Stage 1.5 — Resume / Start
+    case resumeStart
+    case otpVerification(identifier: String, draftId: String)
+
+    // Stage 1.75 — Journey Selection
+    case journeySelection
+
     // Stage 2
     case journeyLoading
 
@@ -37,7 +44,6 @@ enum IDSide: String, Hashable, Codable {
     }
 }
 
-// Sheet routes (presented as sheets)
 enum SheetRoute: Identifiable, Hashable {
     case languageSwitch
     case fieldInfo(field: String)
@@ -50,7 +56,6 @@ enum SheetRoute: Identifiable, Hashable {
     }
 }
 
-// Full screen routes (camera, signature, preview)
 enum FullScreenRoute: Identifiable {
     case idCapture(fieldId: String, side: IDSide)
     case selfieCapture(fieldId: String)

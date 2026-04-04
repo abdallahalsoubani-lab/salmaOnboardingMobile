@@ -9,6 +9,7 @@ struct JourneyLoadingView: View {
 
     @Environment(\.colorScheme) private var colorScheme
     @State private var spinAngle: Double = 0
+    @State private var hasStartedLoading = false
 
     var body: some View {
         ZStack {
@@ -97,6 +98,7 @@ struct JourneyLoadingView: View {
                 title: L("retry"),
                 style: .secondary
             ) {
+                hasStartedLoading = false
                 loadJourney()
             }
             .padding(.horizontal, SalmaDesign.Spacing.xxl)
@@ -125,16 +127,47 @@ struct JourneyLoadingView: View {
     }
 
     private func loadJourney() {
+        guard !hasStartedLoading else { return }
+        hasStartedLoading = true
+
         Task {
             flowState.isLoadingJourney = true
             flowState.journeyError = nil
 
             do {
-                let journey = try await container.journeyService.getActiveJourney(forceRefresh: false)
+                let journey = try await container.journeyService.getActiveJourney(
+                    code: flowState.selectedJourneyCode,
+                    journeyId: flowState.selectedJourneyId
+                )
                 flowState.journey = journey
                 flowState.isLoadingJourney = false
 
                 ThemeManager.shared.applyTheme(journey.theme)
+
+                container.submissionModeManager.updateMode()
+                flowState.submissionMode = container.submissionModeManager.currentMode
+
+                if flowState.submissionMode == .perPage {
+                    if let activeDraft = try? await container.draftService.getActiveDraft(
+                        journeyId: journey.id,
+                        deviceId: DeviceIdHelper.deviceId
+                    ) {
+                        flowState.draftId = activeDraft.draftId
+                        if let savedValues = activeDraft.fieldValues {
+                            flowState.fieldValues.merge(savedValues) { _, new in new }
+                        }
+                        let resumeIndex = min(activeDraft.currentPageIndex, journey.pages.count - 1)
+                        pushPagesUpTo(resumeIndex)
+                        return
+                    }
+
+                    let draft = try await container.draftService.startDraft(
+                        journeyId: journey.id,
+                        journeyCode: flowState.selectedJourneyCode,
+                        deviceId: DeviceIdHelper.deviceId
+                    )
+                    flowState.draftId = draft.draftId
+                }
 
                 if !journey.pages.isEmpty {
                     router.push(.formPage(pageIndex: 0))
@@ -146,6 +179,12 @@ struct JourneyLoadingView: View {
                 flowState.journeyError = .unknown(error)
                 flowState.isLoadingJourney = false
             }
+        }
+    }
+
+    private func pushPagesUpTo(_ targetIndex: Int) {
+        for i in 0...targetIndex {
+            router.push(.formPage(pageIndex: i))
         }
     }
 }

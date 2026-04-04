@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 struct FormPageView: View {
     let pageIndex: Int
 
+    @EnvironmentObject var container: DependencyContainer
     @EnvironmentObject var flowState: VerificationFlowState
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var languageManager: LanguageManager
@@ -14,6 +15,7 @@ struct FormPageView: View {
     @State private var showDocumentPicker = false
     @State private var showImagePreview = false
     @State private var activeMediaFieldId: String?
+    @State private var showOfflineFallbackAlert = false
 
     init(pageIndex: Int) {
         self.pageIndex = pageIndex
@@ -104,6 +106,17 @@ struct FormPageView: View {
         }
         .sheet(isPresented: $showDocumentPicker) { documentPickerSheet }
         .fullScreenCover(isPresented: $showImagePreview) { imagePreviewCover }
+        .alert(L("connection_lost"), isPresented: $showOfflineFallbackAlert) {
+            Button(L("continue_offline")) {
+                flowState.submissionMode = .batch
+                flowState.draftId = nil
+                navigateToNext()
+            }
+            Button(L("retry")) { savePageToServer() }
+            Button(L("cancel"), role: .cancel) {}
+        } message: {
+            Text(L("connection_lost_message"))
+        }
     }
 
     // MARK: - Field View Builder
@@ -307,8 +320,9 @@ struct FormPageView: View {
             SalmaButton(
                 title: isLast ? L("review_and_submit") : L("next"),
                 size: .medium,
+                isLoading: flowState.isSavingPage,
                 icon: languageManager.currentLanguage == .arabic ? "chevron.left" : "chevron.right",
-                iconPosition: .trailing, action: { handleNext(isLast: isLast) }
+                iconPosition: .trailing, action: { handleNextTapped() }
             )
         }
         .padding(.horizontal, SalmaDesign.Spacing.md)
@@ -320,7 +334,7 @@ struct FormPageView: View {
         )
     }
 
-    private func handleNext(isLast: Bool) {
+    private func handleNextTapped() {
         guard let page = currentPage else { return }
         let isValid = viewModel.validateBeforeNext(
             page: page, fieldValues: flowState.fieldValues,
@@ -328,7 +342,106 @@ struct FormPageView: View {
             language: languageManager.currentLanguage
         )
         guard isValid else { return }
-        if isLast { router.push(.review) }
-        else { router.push(.formPage(pageIndex: pageIndex + 1)) }
+        if flowState.submissionMode == .perPage, flowState.draftId != nil {
+            savePageToServer()
+        } else {
+            navigateToNext()
+        }
+    }
+
+    private func navigateToNext() {
+        let pages = flowState.sortedPages
+        let isLast = pageIndex == pages.count - 1
+        if isLast {
+            router.push(.review)
+        } else {
+            router.push(.formPage(pageIndex: pageIndex + 1))
+        }
+    }
+
+    private func savePageToServer() {
+        guard let page = currentPage, let draftId = flowState.draftId else { return }
+
+        let fieldIds = Set(page.fields.map(\.id))
+        let fieldValuesForPage = flowState.fieldValues.filter { fieldIds.contains($0.key) }
+
+        var files: [MultipartFile] = []
+        for field in page.fields {
+            guard let fieldType = FieldType(rawValue: field.type), fieldType.isMediaField else { continue }
+            if let captured = flowState.getCapturedImage(for: field.id),
+               let file = multipartFile(from: captured) {
+                files.append(file)
+            }
+            if fieldType == .idScan,
+               let back = flowState.getCapturedImage(for: field.id + "_back"),
+               let file = multipartFile(from: back) {
+                files.append(file)
+            }
+        }
+
+        flowState.isSavingPage = true
+        flowState.pageSaveError = nil
+
+        Task { @MainActor in
+            do {
+                let response = try await container.draftService.savePage(
+                    draftId: draftId,
+                    pageIndex: pageIndex,
+                    fieldValues: fieldValuesForPage,
+                    files: files
+                )
+                flowState.isSavingPage = false
+                if let validationErrors = response.validationErrors, !validationErrors.isEmpty {
+                    viewModel.fieldErrors = validationErrors
+                    viewModel.hasAttemptedNext = true
+                } else {
+                    viewModel.fieldErrors = [:]
+                    navigateToNext()
+                }
+            } catch let error as APIError {
+                flowState.isSavingPage = false
+                switch error {
+                case .noInternet, .timeout:
+                    showOfflineFallbackAlert = true
+                default:
+                    flowState.pageSaveError = error
+                }
+            } catch {
+                flowState.isSavingPage = false
+                flowState.pageSaveError = .unknown(error)
+            }
+        }
+    }
+
+    private func multipartFile(from image: CapturedImage) -> MultipartFile? {
+        if image.type == .document {
+            let fileName = image.fileName ?? "\(image.fieldId).bin"
+            let mimeType = image.mimeType ?? "application/octet-stream"
+            return MultipartFile(
+                fieldName: image.fieldId,
+                fileName: fileName,
+                mimeType: mimeType,
+                data: image.imageData
+            )
+        }
+        guard let jpegData = jpegDataForDraftUpload(image.imageData) else { return nil }
+        return MultipartFile(
+            fieldName: image.fieldId,
+            fileName: "\(image.fieldId).jpg",
+            mimeType: "image/jpeg",
+            data: jpegData
+        )
+    }
+
+    private func jpegDataForDraftUpload(_ imageData: Data) -> Data? {
+        guard let uiImage = UIImage(data: imageData) else { return nil }
+        var compression: CGFloat = 0.9
+        var data = uiImage.jpegData(compressionQuality: compression)
+        let maxSizeKB = 1024
+        while let d = data, d.count > maxSizeKB * 1024, compression > 0.1 {
+            compression -= 0.1
+            data = uiImage.jpegData(compressionQuality: compression)
+        }
+        return data
     }
 }

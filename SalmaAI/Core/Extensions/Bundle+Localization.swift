@@ -24,5 +24,7 @@ extension Bundle {
 }
 
 func L(_ key: String) -> String {
-    NSLocalizedString(key, bundle: .localized, comment: "")
+    let value = NSLocalizedString(key, bundle: .localized, comment: "")
+    if value != key { return value }
+    return NSLocalizedString(key, bundle: .main, comment: "")
 }

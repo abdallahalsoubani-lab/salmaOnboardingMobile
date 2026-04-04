@@ -6,6 +6,11 @@ struct ProgressStepBar: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
+        if totalSteps < 1 { EmptyView() }
+        else { content }
+    }
+
+    private var content: some View {
         HStack(spacing: SalmaDesign.Spacing.sm) {
             ForEach(1...totalSteps, id: \.self) { step in
                 HStack(spacing: 0) {
@@ -31,6 +36,7 @@ struct ProgressStepBar: View {
         .animation(AppAnimations.stateChange, value: currentStep)
     }
 }
+
 
 private struct StepDot: View {
     let step: Int

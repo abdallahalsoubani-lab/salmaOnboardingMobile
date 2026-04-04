@@ -48,6 +48,13 @@
 		1BBEBF742F804CBB002C08B2 /* JourneyContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF3D2F804CBB002C08B2 /* JourneyContainerViewModel.swift */; };
 		1BBEBF752F804CBB002C08B2 /* JourneyContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF3C2F804CBB002C08B2 /* JourneyContainerView.swift */; };
 		1BBEBF762F804CBB002C08B2 /* JourneyLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF3E2F804CBB002C08B2 /* JourneyLoadingView.swift */; };
+		E7F8A9B12F904CBB002C08B2 /* JourneySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9B02F904CBB002C08B2 /* JourneySelectionView.swift */; };
+		E7F8A9C12F904CBB002C08B2 /* ResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C02F904CBB002C08B2 /* ResumeView.swift */; };
+		E7F8A9C32F904CBB002C08B2 /* OtpVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C22F904CBB002C08B2 /* OtpVerificationView.swift */; };
+		E7F8A9C52F904CBB002C08B2 /* SubmissionModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C42F904CBB002C08B2 /* SubmissionModeManager.swift */; };
+		E7F8A9C92F904CBB002C08B2 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C82F904CBB002C08B2 /* Draft.swift */; };
+		E7F8A9CB2F904CBB002C08B2 /* DraftService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9CA2F904CBB002C08B2 /* DraftService.swift */; };
+		E7F8A9CD2F904CBB002C08B2 /* DeviceIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9CC2F904CBB002C08B2 /* DeviceIdHelper.swift */; };
 		1BBEBF772F804CBB002C08B2 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF412F804CBB002C08B2 /* LanguageSelectionView.swift */; };
 		1BBEBF782F804CBB002C08B2 /* IDCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF142F804CBB002C08B2 /* IDCardOverlay.swift */; };
 		1BBEBF792F804CBB002C08B2 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF272F804CBB002C08B2 /* DocumentPickerView.swift */; };
@@ -201,6 +208,13 @@
 		1BBEBF3C2F804CBB002C08B2 /* JourneyContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyContainerView.swift; sourceTree = "<group>"; };
 		1BBEBF3D2F804CBB002C08B2 /* JourneyContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyContainerViewModel.swift; sourceTree = "<group>"; };
 		1BBEBF3E2F804CBB002C08B2 /* JourneyLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyLoadingView.swift; sourceTree = "<group>"; };
+		E7F8A9B02F904CBB002C08B2 /* JourneySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneySelectionView.swift; sourceTree = "<group>"; };
+		E7F8A9C02F904CBB002C08B2 /* ResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeView.swift; sourceTree = "<group>"; };
+		E7F8A9C22F904CBB002C08B2 /* OtpVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVerificationView.swift; sourceTree = "<group>"; };
+		E7F8A9C42F904CBB002C08B2 /* SubmissionModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModeManager.swift; sourceTree = "<group>"; };
+		E7F8A9C82F904CBB002C08B2 /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		E7F8A9CA2F904CBB002C08B2 /* DraftService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftService.swift; sourceTree = "<group>"; };
+		E7F8A9CC2F904CBB002C08B2 /* DeviceIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdHelper.swift; sourceTree = "<group>"; };
 		1BBEBF402F804CBB002C08B2 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		1BBEBF412F804CBB002C08B2 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		1BBEBF422F804CBB002C08B2 /* LanguageSwitchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSwitchSheet.swift; sourceTree = "<group>"; };
@@ -425,6 +439,7 @@
 				1BBEBF3C2F804CBB002C08B2 /* JourneyContainerView.swift */,
 				1BBEBF3D2F804CBB002C08B2 /* JourneyContainerViewModel.swift */,
 				1BBEBF3E2F804CBB002C08B2 /* JourneyLoadingView.swift */,
+				E7F8A9B02F904CBB002C08B2 /* JourneySelectionView.swift */,
 			);
 			path = Journey;
 			sourceTree = "<group>";
@@ -477,6 +492,15 @@
 			path = Terms;
 			sourceTree = "<group>";
 		};
+		E7F8A9C62F904CBB002C08B2 /* Resume */ = {
+			isa = PBXGroup;
+			children = (
+				E7F8A9C02F904CBB002C08B2 /* ResumeView.swift */,
+				E7F8A9C22F904CBB002C08B2 /* OtpVerificationView.swift */,
+			);
+			path = Resume;
+			sourceTree = "<group>";
+		};
 		1BBEBF522F804CBB002C08B2 /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +509,7 @@
 				1BBEBF3F2F804CBB002C08B2 /* Journey */,
 				1BBEBF432F804CBB002C08B2 /* Language */,
 				1BBEBF462F804CBB002C08B2 /* Result */,
+				E7F8A9C62F904CBB002C08B2 /* Resume */,
 				1BBEBF482F804CBB002C08B2 /* Splash */,
 				1BBEBF4D2F804CBB002C08B2 /* Submission */,
 				1BBEBF512F804CBB002C08B2 /* Terms */,
@@ -530,6 +555,7 @@
 				1BBEBF862F805775002C08B2 /* OcrExtraction.swift */,
 				71EC00C7FE7904952A780012 /* ApiResponse.swift */,
 				9777948052F981D91B660FCC /* Auth.swift */,
+				E7F8A9C82F904CBB002C08B2 /* Draft.swift */,
 				C63758BD51FC0D079C4C7EFD /* Enums.swift */,
 				DF6E250F2D037210D475E14A /* Journey.swift */,
 				90A01946C3B5229E5AE81C80 /* Submission.swift */,
@@ -557,11 +583,14 @@
 			children = (
 				1BBEBF882F805795002C08B2 /* OcrExtractionService.swift */,
 				44974BAF3277D740BD774086 /* CameraPermissionHandler.swift */,
+				E7F8A9CC2F904CBB002C08B2 /* DeviceIdHelper.swift */,
+				E7F8A9CA2F904CBB002C08B2 /* DraftService.swift */,
 				D1FB2D04297DFF3AEA32BA6A /* FieldValidator.swift */,
 				C8EC9B5204FC11B83123180C /* JourneyService.swift */,
 				3E8E16ADAB609B55FEF13D6A /* PageValidator.swift */,
 				4320132AA03ED813F1FFC37C /* StorageService.swift */,
 				140808F19DB60BAC54DCC423 /* SubmissionService.swift */,
+				E7F8A9C42F904CBB002C08B2 /* SubmissionModeManager.swift */,
 				A1B2C3D4E5F6071809AABBDD /* ThemeManager.swift */,
 				57CAEEF54468FFDB618BECBE /* ValidationSummary.swift */,
 				282B249F2340915D5DA4BBF9 /* Network */,
@@ -889,6 +918,13 @@
 				1BBEBF742F804CBB002C08B2 /* JourneyContainerViewModel.swift in Sources */,
 				1BBEBF752F804CBB002C08B2 /* JourneyContainerView.swift in Sources */,
 				1BBEBF762F804CBB002C08B2 /* JourneyLoadingView.swift in Sources */,
+				E7F8A9B12F904CBB002C08B2 /* JourneySelectionView.swift in Sources */,
+				E7F8A9C12F904CBB002C08B2 /* ResumeView.swift in Sources */,
+				E7F8A9C32F904CBB002C08B2 /* OtpVerificationView.swift in Sources */,
+				E7F8A9C52F904CBB002C08B2 /* SubmissionModeManager.swift in Sources */,
+				E7F8A9C92F904CBB002C08B2 /* Draft.swift in Sources */,
+				E7F8A9CB2F904CBB002C08B2 /* DraftService.swift in Sources */,
+				E7F8A9CD2F904CBB002C08B2 /* DeviceIdHelper.swift in Sources */,
 				1BBEBF772F804CBB002C08B2 /* LanguageSelectionView.swift in Sources */,
 				1BBEBF782F804CBB002C08B2 /* IDCardOverlay.swift in Sources */,
 				1BBEBF792F804CBB002C08B2 /* DocumentPickerView.swift in Sources */,

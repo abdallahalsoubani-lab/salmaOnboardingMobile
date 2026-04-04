@@ -296,6 +296,17 @@ struct ReviewView: View {
                             label: L("photos_captured"))
             }
 
+            if flowState.submissionMode == .perPage {
+                HStack(spacing: 4) {
+                    Image(systemName: "checkmark.icloud")
+                        .font(.system(size: 12))
+                        .foregroundColor(SalmaDesign.Colors.success)
+                    Text(L("data_saved_on_server"))
+                        .font(SalmaDesign.Typography.caption)
+                        .foregroundColor(SalmaDesign.Colors.success)
+                }
+            }
+
             SalmaButton(
                 title: L("submit"), size: .large,
                 isDisabled: !validationErrors.isEmpty || ocrRequiresConfirmation,

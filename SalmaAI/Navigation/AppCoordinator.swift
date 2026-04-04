@@ -25,12 +25,13 @@ struct AppCoordinator: View {
         }
         .environmentObject(flowState)
         .environmentObject(router)
+        .environmentObject(container.submissionModeManager)
     }
 
     @ViewBuilder
     private var mainNavigationView: some View {
         NavigationStack(path: $router.navigationPath) {
-            JourneyLoadingView()
+            ResumeView()
                 .navigationDestination(for: Route.self) { route in
                     routeView(for: route)
                 }
@@ -65,6 +66,13 @@ struct AppCoordinator: View {
 
         case .result:
             ResultView()
+
+        case .resumeStart:
+            ResumeView()
+        case .otpVerification(let identifier, let draftId):
+            OtpVerificationView(identifier: identifier, draftId: draftId)
+        case .journeySelection:
+            JourneySelectionView()
         }
     }
 

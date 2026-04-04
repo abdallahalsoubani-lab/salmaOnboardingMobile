@@ -145,6 +145,19 @@ struct SubmissionProgressView: View {
 
         Task {
             do {
+                if flowState.submissionMode == .perPage, let draftId = flowState.draftId {
+                    currentStep = .processing
+                    let result = try await container.draftService.submitDraft(draftId: draftId)
+                    await MainActor.run {
+                        flowState.submissionResult = result
+                        currentStep = .complete
+                        HapticManager.notification(.success)
+                    }
+                    try? await Task.sleep(nanoseconds: 800_000_000)
+                    await MainActor.run { router.push(.result) }
+                    return
+                }
+
                 currentStep = .uploading
 
                 let progressTask = Task {

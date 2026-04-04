@@ -15,6 +15,8 @@ class DependencyContainer: ObservableObject {
     let submissionService: SubmissionService
     let storageService: StorageService
     let ocrExtractionService: OcrExtractionService
+    let draftService: DraftService
+    let submissionModeManager: SubmissionModeManager
 
     init(baseURL: String? = nil) {
         self.languageManager = LanguageManager.shared
@@ -26,5 +28,7 @@ class DependencyContainer: ObservableObject {
         self.journeyService = JourneyService(apiClient: apiClient)
         self.submissionService = SubmissionService(apiClient: apiClient)
         self.ocrExtractionService = OcrExtractionService(apiClient: apiClient)
+        self.draftService = DraftService(apiClient: apiClient)
+        self.submissionModeManager = SubmissionModeManager()
     }
 }
