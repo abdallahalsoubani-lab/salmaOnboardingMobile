@@ -26,6 +26,11 @@ struct AppCoordinator: View {
         .environmentObject(flowState)
         .environmentObject(router)
         .environmentObject(container.submissionModeManager)
+        .onAppear {
+            if flowState.appTheme == nil, let cached = ThemeManager.shared.appTheme {
+                flowState.appTheme = cached
+            }
+        }
     }
 
     @ViewBuilder

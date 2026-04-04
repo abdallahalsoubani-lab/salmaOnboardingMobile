@@ -44,6 +44,7 @@ struct SDKContainerView: View {
             .padding(.top, SalmaDesign.Spacing.sm)
         }
         .onAppear { applyLanguageConfig() }
+        .task { await loadTheme() }
         .onChange(of: router.navigationPath) { path in
             if path.isEmpty && flowState.submissionResult != nil {
                 deliverResult()
@@ -156,6 +157,23 @@ struct SDKContainerView: View {
 
         if !config.allowLanguageSwitch {
             languageManager.setLanguage(language)
+        }
+    }
+
+    private func loadTheme() async {
+        do {
+            let theme: AppTheme = try await container.apiClient.get(.getTheme)
+            await MainActor.run {
+                flowState.appTheme = theme
+                ThemeManager.shared.applyAppTheme(theme)
+            }
+            #if DEBUG
+            print("[Theme] loaded — logo: \(theme.logoUrl ?? "none"), app: \(theme.appName ?? "none")")
+            #endif
+        } catch {
+            #if DEBUG
+            print("[Theme] failed to load: \(error)")
+            #endif
         }
     }
 

@@ -1,6 +1,9 @@
 import Foundation
 
 enum APIEndpoint {
+    // Theme
+    case getTheme
+
     // Journey
     case getActiveJourney
     case getPublishedJourneys
@@ -40,6 +43,7 @@ enum APIEndpoint {
 
     var path: String {
         switch self {
+        case .getTheme:                    return "/theme"
         case .getActiveJourney:            return "/journey/active"
         case .getPublishedJourneys:        return "/journeys/published"
         case .startDraft:                  return "/drafts/start"
@@ -66,7 +70,7 @@ enum APIEndpoint {
 
     var method: HTTPMethod {
         switch self {
-        case .getActiveJourney, .getPublishedJourneys, .getSubmissionStatus, .getDraftStatus, .getActiveDraft, .livenessStatus:
+        case .getTheme, .getActiveJourney, .getPublishedJourneys, .getSubmissionStatus, .getDraftStatus, .getActiveDraft, .livenessStatus:
             return .get
         case .startDraft, .saveDraftPage, .submitDraft, .resumeDraft, .sendResumeOtp, .verifyResumeOtp,
              .createSubmission, .uploadFile, .login, .register, .refreshToken,

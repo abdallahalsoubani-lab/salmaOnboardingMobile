@@ -53,6 +53,7 @@
 		E7F8A9C32F904CBB002C08B2 /* OtpVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C22F904CBB002C08B2 /* OtpVerificationView.swift */; };
 		E7F8A9C52F904CBB002C08B2 /* SubmissionModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C42F904CBB002C08B2 /* SubmissionModeManager.swift */; };
 		E7F8A9C92F904CBB002C08B2 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9C82F904CBB002C08B2 /* Draft.swift */; };
+		A1B2C3D42F904CBB002C08B2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D32F904CBB002C08B2 /* AppTheme.swift */; };
 		E7F8A9CB2F904CBB002C08B2 /* DraftService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9CA2F904CBB002C08B2 /* DraftService.swift */; };
 		E7F8A9CD2F904CBB002C08B2 /* DeviceIdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F8A9CC2F904CBB002C08B2 /* DeviceIdHelper.swift */; };
 		1BBEBF772F804CBB002C08B2 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBEBF412F804CBB002C08B2 /* LanguageSelectionView.swift */; };
@@ -213,6 +214,7 @@
 		E7F8A9C22F904CBB002C08B2 /* OtpVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVerificationView.swift; sourceTree = "<group>"; };
 		E7F8A9C42F904CBB002C08B2 /* SubmissionModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionModeManager.swift; sourceTree = "<group>"; };
 		E7F8A9C82F904CBB002C08B2 /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		A1B2C3D32F904CBB002C08B2 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E7F8A9CA2F904CBB002C08B2 /* DraftService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftService.swift; sourceTree = "<group>"; };
 		E7F8A9CC2F904CBB002C08B2 /* DeviceIdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdHelper.swift; sourceTree = "<group>"; };
 		1BBEBF402F804CBB002C08B2 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				71EC00C7FE7904952A780012 /* ApiResponse.swift */,
 				9777948052F981D91B660FCC /* Auth.swift */,
 				E7F8A9C82F904CBB002C08B2 /* Draft.swift */,
+				A1B2C3D32F904CBB002C08B2 /* AppTheme.swift */,
 				C63758BD51FC0D079C4C7EFD /* Enums.swift */,
 				DF6E250F2D037210D475E14A /* Journey.swift */,
 				90A01946C3B5229E5AE81C80 /* Submission.swift */,
@@ -923,6 +926,7 @@
 				E7F8A9C32F904CBB002C08B2 /* OtpVerificationView.swift in Sources */,
 				E7F8A9C52F904CBB002C08B2 /* SubmissionModeManager.swift in Sources */,
 				E7F8A9C92F904CBB002C08B2 /* Draft.swift in Sources */,
+				A1B2C3D42F904CBB002C08B2 /* AppTheme.swift in Sources */,
 				E7F8A9CB2F904CBB002C08B2 /* DraftService.swift in Sources */,
 				E7F8A9CD2F904CBB002C08B2 /* DeviceIdHelper.swift in Sources */,
 				1BBEBF772F804CBB002C08B2 /* LanguageSelectionView.swift in Sources */,

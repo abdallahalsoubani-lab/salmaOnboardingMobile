@@ -24,6 +24,7 @@ struct SalmaAIApp: App {
 }
 
 struct RootView: View {
+    @EnvironmentObject var container: DependencyContainer
     @State private var showSplash = true
 
     var body: some View {
@@ -36,12 +37,29 @@ struct RootView: View {
                     .transition(.opacity)
             }
         }
+        .task { await loadTheme() }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 withAnimation(.easeInOut(duration: 0.3)) {
                     showSplash = false
                 }
             }
+        }
+    }
+
+    private func loadTheme() async {
+        do {
+            let theme: AppTheme = try await container.apiClient.get(.getTheme)
+            await MainActor.run {
+                ThemeManager.shared.applyAppTheme(theme)
+            }
+            #if DEBUG
+            print("[Theme] loaded — logo: \(theme.logoUrl ?? "none"), app: \(theme.appName ?? "none")")
+            #endif
+        } catch {
+            #if DEBUG
+            print("[Theme] failed to load: \(error)")
+            #endif
         }
     }
 }

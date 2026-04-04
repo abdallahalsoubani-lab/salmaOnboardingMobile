@@ -38,6 +38,9 @@ class VerificationFlowState: ObservableObject {
     /// When true, `JourneyLoadingView` skips restoring `getActiveDraft` and starts a new draft (and deletes server active draft if any).
     @Published var startJourneyFresh: Bool = false
 
+    // App theme (loaded during splash)
+    @Published var appTheme: AppTheme? = nil
+
     // Loading states
     @Published var isLoadingJourney: Bool = false
     @Published var isSubmitting: Bool = false
@@ -164,5 +167,6 @@ class VerificationFlowState: ObservableObject {
         selectedJourneyCode = nil
         selectedJourneyId = nil
         startJourneyFresh = false
+        appTheme = nil
     }
 }

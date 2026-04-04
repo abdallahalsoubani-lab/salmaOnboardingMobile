@@ -146,8 +146,6 @@ struct JourneyLoadingView: View {
                 flowState.journey = journey
                 flowState.isLoadingJourney = false
 
-                ThemeManager.shared.applyTheme(journey.theme)
-
                 container.submissionModeManager.updateMode()
                 flowState.submissionMode = container.submissionModeManager.currentMode
 

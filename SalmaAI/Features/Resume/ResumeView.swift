@@ -57,20 +57,37 @@ struct ResumeView: View {
         .onAppear {
             withAnimation(AppAnimations.fadeIn) { appeared = true }
         }
+        .task { await loadThemeIfNeeded() }
     }
 
     // MARK: - Header
 
     private var headerSection: some View {
         VStack(spacing: SalmaDesign.Spacing.sm) {
-            Image(systemName: "shield.checkered")
-                .font(.system(size: 44, weight: .medium))
-                .foregroundColor(ThemedColors.primary)
-                .padding(.top, SalmaDesign.Spacing.xxl)
+            Group {
+                if let logoUrlString = flowState.appTheme?.logoUrl ?? ThemeManager.shared.appTheme?.logoUrl,
+                   !logoUrlString.isEmpty,
+                   let url = URL(string: logoUrlString) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        default:
+                            defaultShieldIcon()
+                        }
+                    }
+                    .frame(height: 60)
+                } else {
+                    defaultShieldIcon()
+                }
+            }
+            .padding(.top, SalmaDesign.Spacing.xxl)
 
-            Text(L("welcome"))
-                .font(SalmaDesign.Typography.largeTitle)
-                .foregroundColor(ThemedColors.textPrimary(for: colorScheme))
+//            Text(flowState.appTheme?.appName ?? ThemeManager.shared.appTheme?.appName ?? L("welcome"))
+//                .font(SalmaDesign.Typography.largeTitle)
+//                .foregroundColor(ThemedColors.textPrimary(for: colorScheme))
 
             Text(L("get_started_subtitle"))
                 .font(SalmaDesign.Typography.callout)
@@ -272,6 +289,36 @@ struct ResumeView: View {
     }
 
     // MARK: - Actions
+
+    @ViewBuilder
+    private func defaultShieldIcon() -> some View {
+        Image(systemName: "shield.checkered")
+            .font(.system(size: 44, weight: .medium))
+            .foregroundColor(ThemedColors.primary)
+    }
+
+    private func loadThemeIfNeeded() async {
+        guard flowState.appTheme == nil, ThemeManager.shared.appTheme == nil else {
+            if flowState.appTheme == nil, let cached = ThemeManager.shared.appTheme {
+                flowState.appTheme = cached
+            }
+            return
+        }
+        do {
+            let theme: AppTheme = try await container.apiClient.get(.getTheme)
+            await MainActor.run {
+                flowState.appTheme = theme
+                ThemeManager.shared.applyAppTheme(theme)
+            }
+            #if DEBUG
+            print("[Theme] ResumeView fallback loaded — logo: \(theme.logoUrl ?? "none")")
+            #endif
+        } catch {
+            #if DEBUG
+            print("[Theme] ResumeView fallback failed: \(error)")
+            #endif
+        }
+    }
 
     private func searchDraft() {
         guard !identifier.trimmingCharacters(in: .whitespaces).isEmpty else { return }

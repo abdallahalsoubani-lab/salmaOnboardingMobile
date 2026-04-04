@@ -16,9 +16,30 @@ class ThemeManager: ObservableObject {
     @Published var logoUrl: String? = nil
     @Published var showPoweredBy: Bool = true
     @Published var hasCustomTheme: Bool = false
+    @Published var appTheme: AppTheme? = nil
 
     private init() {}
 
+    func applyAppTheme(_ theme: AppTheme?) {
+        guard let theme = theme else {
+            resetToDefaults()
+            return
+        }
+
+        appTheme = theme
+        hasCustomTheme = true
+
+        if let hex = theme.primaryColor { primaryColor = Color(hex: hex) }
+        if let hex = theme.primaryDarkColor { primaryDarkColor = Color(hex: hex) }
+        if let hex = theme.primaryLightColor { primaryLightColor = Color(hex: hex) }
+        if let hex = theme.backgroundColor { backgroundColor = Color(hex: hex) }
+        if let hex = theme.backgroundDarkColor { backgroundDarkColor = Color(hex: hex) }
+        if let hex = theme.textColor { textColor = Color(hex: hex) }
+        if let hex = theme.textDarkColor { textDarkColor = Color(hex: hex) }
+        logoUrl = theme.logoUrl
+    }
+
+    @available(*, deprecated, message: "Use applyAppTheme(_:) with the new /theme endpoint")
     func applyTheme(_ theme: JourneyTheme?) {
         guard let theme = theme else {
             resetToDefaults()
@@ -27,39 +48,22 @@ class ThemeManager: ObservableObject {
 
         hasCustomTheme = true
 
-        if let hex = theme.primaryColor {
-            primaryColor = Color(hex: hex)
-        }
-        if let hex = theme.primaryDarkColor {
-            primaryDarkColor = Color(hex: hex)
-        }
-        if let hex = theme.primaryLightColor {
-            primaryLightColor = Color(hex: hex)
-        }
-        if let hex = theme.backgroundColor {
-            backgroundColor = Color(hex: hex)
-        }
-        if let hex = theme.backgroundDarkColor {
-            backgroundDarkColor = Color(hex: hex)
-        }
-        if let hex = theme.textColor {
-            textColor = Color(hex: hex)
-        }
-        if let hex = theme.textDarkColor {
-            textDarkColor = Color(hex: hex)
-        }
-        if let radius = theme.buttonRadius {
-            buttonRadius = CGFloat(radius)
-        }
-        if let radius = theme.cardRadius {
-            cardRadius = CGFloat(radius)
-        }
+        if let hex = theme.primaryColor { primaryColor = Color(hex: hex) }
+        if let hex = theme.primaryDarkColor { primaryDarkColor = Color(hex: hex) }
+        if let hex = theme.primaryLightColor { primaryLightColor = Color(hex: hex) }
+        if let hex = theme.backgroundColor { backgroundColor = Color(hex: hex) }
+        if let hex = theme.backgroundDarkColor { backgroundDarkColor = Color(hex: hex) }
+        if let hex = theme.textColor { textColor = Color(hex: hex) }
+        if let hex = theme.textDarkColor { textDarkColor = Color(hex: hex) }
+        if let radius = theme.buttonRadius { buttonRadius = CGFloat(radius) }
+        if let radius = theme.cardRadius { cardRadius = CGFloat(radius) }
         logoUrl = theme.logoUrl
         showPoweredBy = theme.showPoweredBy ?? true
     }
 
     func resetToDefaults() {
         hasCustomTheme = false
+        appTheme = nil
         primaryColor = SalmaDesign.Colors.primary
         primaryDarkColor = SalmaDesign.Colors.primaryDark
         primaryLightColor = SalmaDesign.Colors.primaryLight
