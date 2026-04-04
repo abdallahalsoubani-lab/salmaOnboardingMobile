@@ -148,14 +148,18 @@ struct ResumeView: View {
 
     // MARK: - Resume Section
 
+    @FocusState private var identifierFocused: Bool
+    @State private var shakeIdentifier = false
+
     private var resumeSection: some View {
         VStack(spacing: SalmaDesign.Spacing.md) {
-            SalmaTextField(
+            IdentifierField(
                 label: L("phone_or_national_id"),
-                text: $identifier,
                 placeholder: L("enter_identifier_placeholder"),
+                text: $identifier,
                 errorMessage: searchError,
-                keyboardType: .numberPad
+                isFocused: $identifierFocused,
+                shakeError: $shakeIdentifier
             )
 
             SalmaButton(
@@ -350,5 +354,136 @@ struct ResumeView: View {
         searchError = nil
         isSearching = false
         isSendingOtp = false
+    }
+}
+
+// MARK: - LTR Identifier Input (UIKit-backed)
+
+private struct IdentifierField: View {
+    let label: String
+    let placeholder: String
+    @Binding var text: String
+    let errorMessage: String?
+    var isFocused: FocusState<Bool>.Binding
+    @Binding var shakeError: Bool
+
+    private var borderColor: Color {
+        if errorMessage != nil { return SalmaDesign.Colors.danger }
+        if isFocused.wrappedValue { return ThemedColors.primary }
+        return SalmaDesign.Colors.border
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: SalmaDesign.Spacing.xs) {
+            HStack(spacing: 2) {
+                Text(label)
+                    .font(SalmaDesign.Typography.callout)
+                    .foregroundColor(SalmaDesign.Colors.textSecondary)
+            }
+
+            IdentifierUITextField(
+                text: $text,
+                placeholder: placeholder,
+                isFocused: isFocused
+            )
+            .frame(height: 52)
+            .background(SalmaDesign.Colors.backgroundSecondary)
+            .cornerRadius(SalmaDesign.Radius.md)
+            .overlay(
+                RoundedRectangle(cornerRadius: SalmaDesign.Radius.md)
+                    .stroke(borderColor, lineWidth: 1.5)
+            )
+            .shake(trigger: shakeError)
+            .animation(.easeInOut(duration: 0.2), value: isFocused.wrappedValue)
+
+            if let error = errorMessage {
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle")
+                        .font(.system(size: 12))
+                    Text(error)
+                        .font(SalmaDesign.Typography.caption)
+                }
+                .foregroundColor(SalmaDesign.Colors.danger)
+                .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
+        .animation(AppAnimations.fadeIn, value: errorMessage)
+        .onChange(of: errorMessage) { newValue in
+            if newValue != nil { shakeError.toggle() }
+        }
+    }
+}
+
+private struct IdentifierUITextField: UIViewRepresentable {
+    @Binding var text: String
+    let placeholder: String
+    var isFocused: FocusState<Bool>.Binding
+
+    func makeUIView(context: Context) -> UITextField {
+        let tf = UITextField()
+        tf.textAlignment = .left
+        tf.semanticContentAttribute = .forceLeftToRight
+        tf.keyboardType = .numberPad
+        tf.placeholder = placeholder
+        tf.font = .systemFont(ofSize: 17)
+        tf.textColor = UIColor.label
+        tf.delegate = context.coordinator
+        tf.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        tf.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        let hPad = SalmaDesign.Spacing.md
+        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: hPad, height: 1))
+        tf.leftViewMode = .always
+        tf.rightView = UIView(frame: CGRect(x: 0, y: 0, width: hPad, height: 1))
+        tf.rightViewMode = .always
+
+        tf.addTarget(context.coordinator, action: #selector(Coordinator.textChanged(_:)), for: .editingChanged)
+        tf.addTarget(context.coordinator, action: #selector(Coordinator.editingDidBegin(_:)), for: .editingDidBegin)
+        tf.addTarget(context.coordinator, action: #selector(Coordinator.editingDidEnd(_:)), for: .editingDidEnd)
+        tf.inputAccessoryView = makeDoneToolbar(target: context.coordinator)
+        return tf
+    }
+
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        if uiView.text != text { uiView.text = text }
+        if uiView.placeholder != placeholder { uiView.placeholder = placeholder }
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    private func makeDoneToolbar(target: Coordinator) -> UIToolbar {
+        let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        bar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: L("done"), style: .done, target: target, action: #selector(Coordinator.doneTapped))
+        ]
+        bar.sizeToFit()
+        return bar
+    }
+
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: IdentifierUITextField
+        init(_ parent: IdentifierUITextField) { self.parent = parent }
+
+        @objc func doneTapped() {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+
+        @objc func textChanged(_ tf: UITextField) {
+            parent.text = tf.text ?? ""
+        }
+
+        @objc func editingDidBegin(_ tf: UITextField) {
+            parent.isFocused.wrappedValue = true
+        }
+
+        @objc func editingDidEnd(_ tf: UITextField) {
+            parent.isFocused.wrappedValue = false
+        }
+
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let allowed = CharacterSet.decimalDigits
+            return string.unicodeScalars.allSatisfy { allowed.contains($0) }
+        }
     }
 }

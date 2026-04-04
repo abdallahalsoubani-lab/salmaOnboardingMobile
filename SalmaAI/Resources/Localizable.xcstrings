@@ -105,6 +105,23 @@
         }
       }
     },
+    "application_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لقينا طلبك السابق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We found your previous application"
+          }
+        }
+      }
+    },
     "approved" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -135,6 +152,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arabic"
+          }
+        }
+      }
+    },
+    "attempts_remaining" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "محاولات متبقية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "attempts remaining"
           }
         }
       }
@@ -517,6 +551,23 @@
         }
       }
     },
+    "choose_journey" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر الرحلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose journey"
+          }
+        }
+      }
+    },
     "choose_language" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -657,19 +708,36 @@
         }
       }
     },
-    "choose_journey" : {
+    "connection_lost" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اختر الرحلة"
+            "value" : "انقطع الاتصال"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choose journey"
+            "value" : "Connection Lost"
+          }
+        }
+      }
+    },
+    "connection_lost_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انقطع الاتصال بالإنترنت. يمكنك المتابعة بدون اتصال وإرسال البيانات لاحقاً"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Internet connection lost. You can continue offline and submit later"
           }
         }
       }
@@ -691,6 +759,57 @@
         }
       }
     },
+    "continue_application" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متابعة الطلب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue Application"
+          }
+        }
+      }
+    },
+    "continue_offline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متابعة بدون اتصال"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue Offline"
+          }
+        }
+      }
+    },
+    "continue_previous" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متابعة طلب سابق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue Previous"
+          }
+        }
+      }
+    },
     "copy_submission_id" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -704,6 +823,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copy submission ID"
+          }
+        }
+      }
+    },
+    "data_saved_on_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البيانات محفوظة على الخادم"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data saved on server"
           }
         }
       }
@@ -827,6 +963,91 @@
         }
       }
     },
+    "draft_expired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انتهت صلاحية المسودة. يرجى البدء من جديد"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draft expired. Please start over"
+          }
+        }
+      }
+    },
+    "draft_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لقينا طلب سابق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous application found"
+          }
+        }
+      }
+    },
+    "draft_found_detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاسم: %@ — صفحة %d من %d"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name: %@ — Page %d of %d"
+          }
+        }
+      }
+    },
+    "draft_not_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ما في طلب سابق مرتبط بهاد الرقم"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No previous application found for this number"
+          }
+        }
+      }
+    },
+    "draft_resumed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم استئناف البيانات من آخر نقطة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data resumed from where you left off"
+          }
+        }
+      }
+    },
     "edit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -891,6 +1112,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "English"
+          }
+        }
+      }
+    },
+    "enter_identifier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل رقم هاتفك أو رقمك الوطني"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your phone or national ID"
+          }
+        }
+      }
+    },
+    "enter_identifier_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل رقم هاتفك أو رقمك الوطني"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your phone or national ID"
+          }
+        }
+      }
+    },
+    "enter_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل رمز التحقق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Verification Code"
           }
         }
       }
@@ -1154,6 +1426,23 @@
         }
       }
     },
+    "get_started_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحقق من هويتك بسرعة وأمان"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify your identity quickly and securely"
+          }
+        }
+      }
+    },
     "go_to_settings" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1184,6 +1473,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "There are errors in your data"
+          }
+        }
+      }
+    },
+    "have_previous_application" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عندك طلب سابق؟"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Have a previous application?"
           }
         }
       }
@@ -1307,6 +1613,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image is too dark. Check the lighting"
+          }
+        }
+      }
+    },
+    "incorrect_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرمز غير صحيح"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect code"
           }
         }
       }
@@ -1608,6 +1931,23 @@
       "comment" : "A text label displaying the maximum file size allowed for a file upload field. The argument is the maximum file size in megabytes.",
       "isCommentAutoGenerated" : true
     },
+    "max_attempts_reached" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم تجاوز الحد الأقصى للمحاولات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum attempts exceeded"
+          }
+        }
+      }
+    },
     "max_length_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1693,6 +2033,23 @@
         }
       }
     },
+    "no_application_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ما لقينا طلب مرتبط بهاد الرقم"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No application found for this number"
+          }
+        }
+      }
+    },
     "no_data_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1757,6 +2114,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No verification journey available"
+          }
+        }
+      }
+    },
+    "no_journeys" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا توجد رحلات متاحة حالياً"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No journeys available"
           }
         }
       }
@@ -2122,6 +2496,108 @@
       "comment" : "A description of the onboarding feature.",
       "isCommentAutoGenerated" : true
     },
+    "or" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أو"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or"
+          }
+        }
+      }
+    },
+    "otp_demo_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "للتجربة: أدخل 000000"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo: enter 000000"
+          }
+        }
+      }
+    },
+    "otp_incorrect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرمز غير صحيح"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorrect code"
+          }
+        }
+      }
+    },
+    "otp_max_attempts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم تجاوز الحد الأقصى للمحاولات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum attempts exceeded"
+          }
+        }
+      }
+    },
+    "otp_send_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل إرسال رمز التحقق، حاول مرة ثانية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to send verification code, please try again"
+          }
+        }
+      }
+    },
+    "otp_sent_to" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أرسلنا رمز من 6 أرقام لـ %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We sent a 6-digit code to %@"
+          }
+        }
+      }
+    },
     "page_of" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2135,6 +2611,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Page %d of %d"
+          }
+        }
+      }
+    },
+    "page_progress" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصفحة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page"
+          }
+        }
+      }
+    },
+    "page_saved" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم حفظ البيانات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data saved"
           }
         }
       }
@@ -2186,6 +2696,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phone number must contain digits only"
+          }
+        }
+      }
+    },
+    "phone_or_national_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رقم الهاتف أو الرقم الوطني"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone or National ID"
           }
         }
       }
@@ -2343,6 +2870,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove"
+          }
+        }
+      }
+    },
+    "resend_after" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكنك إعادة الإرسال بعد %d ثانية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can resend after %d seconds"
+          }
+        }
+      }
+    },
+    "resend_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة إرسال الرمز"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resend Code"
+          }
+        }
+      }
+    },
+    "resend_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة إرسال الرمز"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resend Code"
           }
         }
       }
@@ -2517,6 +3095,23 @@
         }
       }
     },
+    "resuming_draft" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري استئناف البيانات المحفوظة..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resuming saved data..."
+          }
+        }
+      }
+    },
     "retake" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2605,6 +3200,91 @@
     "Salma AI" : {
       "comment" : "The title of the app.",
       "isCommentAutoGenerated" : true
+    },
+    "saving_page" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري حفظ البيانات..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving data..."
+          }
+        }
+      }
+    },
+    "search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "search_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل البحث، حاول مرة ثانية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search failed, please try again"
+          }
+        }
+      }
+    },
+    "searching" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري البحث..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Searching..."
+          }
+        }
+      }
+    },
+    "seconds_short" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ثانية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "s"
+          }
+        }
+      }
     },
     "select" : {
       "extractionState" : "manual",
@@ -2899,6 +3579,23 @@
         }
       }
     },
+    "start_new_journey" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بدء رحلة جديدة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start New Journey"
+          }
+        }
+      }
+    },
     "step_of" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2929,6 +3626,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Step %@ of %@"
+          }
+        }
+      }
+    },
+    "steps_count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d خطوات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d steps"
           }
         }
       }
@@ -2980,23 +3694,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your application was submitted successfully"
-          }
-        }
-      }
-    },
-    "steps_count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d خطوات"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d steps"
           }
         }
       }
@@ -3392,482 +4089,26 @@
         }
       }
     },
-    "اختر اللغة" : {
-      "comment" : "A title for the language selection screen.",
-      "isCommentAutoGenerated" : true
-    },
-    "start_new_journey" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "بدء رحلة جديدة" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Start New Journey" }
-        }
-      }
-    },
-    "have_previous_application" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "عندك طلب سابق؟" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Have a previous application?" }
-        }
-      }
-    },
-    "continue_previous" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "متابعة طلب سابق" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Continue Previous" }
-        }
-      }
-    },
-    "enter_identifier" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "أدخل رقم هاتفك أو رقمك الوطني" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Enter your phone or national ID" }
-        }
-      }
-    },
-    "search" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "بحث" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Search" }
-        }
-      }
-    },
-    "searching" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "جاري البحث..." }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Searching..." }
-        }
-      }
-    },
-    "draft_found" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "لقينا طلب سابق" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Previous application found" }
-        }
-      }
-    },
-    "draft_found_detail" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "الاسم: %@ — صفحة %d من %d" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Name: %@ — Page %d of %d" }
-        }
-      }
-    },
-    "draft_not_found" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "ما في طلب سابق مرتبط بهاد الرقم" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "No previous application found for this number" }
-        }
-      }
-    },
-    "continue_application" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "متابعة الطلب" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Continue Application" }
-        }
-      }
-    },
-    "enter_otp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "أدخل رمز التحقق" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Enter Verification Code" }
-        }
-      }
-    },
-    "otp_sent_to" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "أرسلنا رمز من 6 أرقام لـ %@" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "We sent a 6-digit code to %@" }
-        }
-      }
-    },
-    "resend_after" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "يمكنك إعادة الإرسال بعد %d ثانية" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "You can resend after %d seconds" }
-        }
-      }
-    },
-    "resend_otp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "إعادة إرسال الرمز" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Resend Code" }
-        }
-      }
-    },
     "verify" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "تحقق" }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحقق"
+          }
         },
         "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Verify" }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify"
+          }
         }
       }
     },
-    "otp_incorrect" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "الرمز غير صحيح" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Incorrect code" }
-        }
-      }
-    },
-    "otp_max_attempts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "تم تجاوز الحد الأقصى للمحاولات" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Maximum attempts exceeded" }
-        }
-      }
-    },
-    "saving_page" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "جاري حفظ البيانات..." }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Saving data..." }
-        }
-      }
-    },
-    "page_saved" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "تم حفظ البيانات" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Data saved" }
-        }
-      }
-    },
-    "connection_lost" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "انقطع الاتصال" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Connection Lost" }
-        }
-      }
-    },
-    "connection_lost_message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "انقطع الاتصال بالإنترنت. يمكنك المتابعة بدون اتصال وإرسال البيانات لاحقاً" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Internet connection lost. You can continue offline and submit later" }
-        }
-      }
-    },
-    "continue_offline" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "متابعة بدون اتصال" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Continue Offline" }
-        }
-      }
-    },
-    "data_saved_on_server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "البيانات محفوظة على الخادم" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Data saved on server" }
-        }
-      }
-    },
-    "draft_expired" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "انتهت صلاحية المسودة. يرجى البدء من جديد" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Draft expired. Please start over" }
-        }
-      }
-    },
-    "resuming_draft" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "جاري استئناف البيانات المحفوظة..." }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Resuming saved data..." }
-        }
-      }
-    },
-    "draft_resumed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "تم استئناف البيانات من آخر نقطة" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Data resumed from where you left off" }
-        }
-      }
-    },
-    "choose_journey" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "اختر نوع الطلب" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Choose Application Type" }
-        }
-      }
-    },
-    "steps_count" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "%d خطوات" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "%d steps" }
-        }
-      }
-    },
-    "no_journeys" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "لا توجد رحلات متاحة حالياً" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "No journeys available" }
-        }
-      }
-    },
-    "or" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "أو" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Or" }
-        }
-      }
-    },
-    "phone_or_national_id" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "رقم الهاتف أو الرقم الوطني" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Phone or National ID" }
-        }
-      }
-    },
-    "enter_identifier_placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "أدخل رقم هاتفك أو رقمك الوطني" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Enter your phone or national ID" }
-        }
-      }
-    },
-    "application_found" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "لقينا طلبك السابق" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "We found your previous application" }
-        }
-      }
-    },
-    "page_progress" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "الصفحة" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Page" }
-        }
-      }
-    },
-    "no_application_found" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "ما لقينا طلب مرتبط بهاد الرقم" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "No application found for this number" }
-        }
-      }
-    },
-    "search_failed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "فشل البحث، حاول مرة ثانية" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Search failed, please try again" }
-        }
-      }
-    },
-    "otp_send_failed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "فشل إرسال رمز التحقق، حاول مرة ثانية" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Failed to send verification code, please try again" }
-        }
-      }
-    },
-    "resend_code" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "إعادة إرسال الرمز" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Resend Code" }
-        }
-      }
-    },
-    "seconds_short" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : " ثانية" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "s" }
-        }
-      }
-    },
-    "max_attempts_reached" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "تم تجاوز الحد الأقصى للمحاولات" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Maximum attempts exceeded" }
-        }
-      }
-    },
-    "incorrect_otp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "الرمز غير صحيح" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Incorrect code" }
-        }
-      }
-    },
-    "attempts_remaining" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "محاولات متبقية" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "attempts remaining" }
-        }
-      }
-    },
-    "otp_demo_hint" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : { "state" : "translated", "value" : "للتجربة: أدخل 000000" }
-        },
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "Demo: enter 000000" }
-        }
-      }
+    "اختر اللغة" : {
+      "comment" : "A title for the language selection screen.",
+      "isCommentAutoGenerated" : true
     }
   },
   "version" : "1.1"
