@@ -179,13 +179,13 @@ struct SDKContainerView: View {
         case "Rejected":
             completion(.rejected(SalmaRejectionData(
                 submissionId: result.submissionId,
-                reason: result.message,
+                reason: result.message ?? "",
                 rawResponse: nil
             )))
         default:
             completion(.pending(SalmaPendingData(
                 submissionId: result.submissionId,
-                message: result.message,
+                message: result.message ?? "",
                 estimatedWaitTime: nil
             )))
         }

@@ -147,7 +147,17 @@ struct SubmissionProgressView: View {
             do {
                 if flowState.submissionMode == .perPage, let draftId = flowState.draftId {
                     currentStep = .processing
+
+                    #if DEBUG
+                    print("[Submit] Submitting draft: \(draftId)")
+                    #endif
+
                     let result = try await container.draftService.submitDraft(draftId: draftId)
+
+                    #if DEBUG
+                    print("[Submit] Result — submissionId: \(result.submissionId), status: \(result.status), message: \(result.message ?? "nil")")
+                    #endif
+
                     await MainActor.run {
                         flowState.submissionResult = result
                         currentStep = .complete

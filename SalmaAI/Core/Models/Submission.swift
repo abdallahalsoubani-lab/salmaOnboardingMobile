@@ -3,7 +3,7 @@ import Foundation
 struct SubmissionResult: Codable, Hashable {
     let submissionId: String
     let status: String
-    let message: String
+    let message: String?
     let ocrData: OcrData?
 }
 

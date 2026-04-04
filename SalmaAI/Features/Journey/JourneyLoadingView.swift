@@ -135,6 +135,10 @@ struct JourneyLoadingView: View {
             flowState.journeyError = nil
 
             do {
+                if flowState.startJourneyFresh {
+                    await container.journeyService.clearCache()
+                }
+
                 let journey = try await container.journeyService.getActiveJourney(
                     code: flowState.selectedJourneyCode,
                     journeyId: flowState.selectedJourneyId
@@ -148,6 +152,28 @@ struct JourneyLoadingView: View {
                 flowState.submissionMode = container.submissionModeManager.currentMode
 
                 if flowState.submissionMode == .perPage {
+                    if flowState.startJourneyFresh {
+                        if let activeDraft = try? await container.draftService.getActiveDraft(
+                            journeyId: journey.id,
+                            deviceId: DeviceIdHelper.deviceId
+                        ) {
+                            try? await container.draftService.deleteDraft(draftId: activeDraft.draftId)
+                        }
+                        let draft = try await container.draftService.startDraft(
+                            journeyId: journey.id,
+                            journeyCode: flowState.selectedJourneyCode,
+                            deviceId: DeviceIdHelper.deviceId
+                        )
+                        await MainActor.run {
+                            flowState.startJourneyFresh = false
+                            flowState.draftId = draft.draftId
+                        }
+                        if !journey.pages.isEmpty {
+                            router.push(.formPage(pageIndex: 0))
+                        }
+                        return
+                    }
+
                     if let activeDraft = try? await container.draftService.getActiveDraft(
                         journeyId: journey.id,
                         deviceId: DeviceIdHelper.deviceId
@@ -168,6 +194,8 @@ struct JourneyLoadingView: View {
                     )
                     flowState.draftId = draft.draftId
                 }
+
+                await MainActor.run { flowState.startJourneyFresh = false }
 
                 if !journey.pages.isEmpty {
                     router.push(.formPage(pageIndex: 0))

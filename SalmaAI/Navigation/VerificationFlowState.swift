@@ -35,6 +35,9 @@ class VerificationFlowState: ObservableObject {
     @Published var selectedJourneyCode: String? = nil
     @Published var selectedJourneyId: String? = nil
 
+    /// When true, `JourneyLoadingView` skips restoring `getActiveDraft` and starts a new draft (and deletes server active draft if any).
+    @Published var startJourneyFresh: Bool = false
+
     // Loading states
     @Published var isLoadingJourney: Bool = false
     @Published var isSubmitting: Bool = false
@@ -119,6 +122,22 @@ class VerificationFlowState: ObservableObject {
         capturedImages.removeValue(forKey: fieldId)
     }
 
+    /// Call before navigating to journey load when the user explicitly chooses a new journey (not resume).
+    func prepareForNewJourney() {
+        journey = nil
+        currentPageIndex = 0
+        fieldValues.removeAll()
+        capturedImages.removeAll()
+        draftId = nil
+        serverValidationErrors.removeAll()
+        pageSaveError = nil
+        ocrExtractionResult = nil
+        ocrConfirmed = false
+        isExtractingOcr = false
+        submissionResult = nil
+        startJourneyFresh = true
+    }
+
     // MARK: - Reset
 
     func reset() {
@@ -144,5 +163,6 @@ class VerificationFlowState: ObservableObject {
         serverValidationErrors.removeAll()
         selectedJourneyCode = nil
         selectedJourneyId = nil
+        startJourneyFresh = false
     }
 }

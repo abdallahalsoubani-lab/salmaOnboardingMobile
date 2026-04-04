@@ -93,6 +93,7 @@ struct ResumeView: View {
             fullWidth: true
         ) {
             HapticManager.impact(.medium)
+            flowState.prepareForNewJourney()
             if flowState.selectedJourneyCode != nil || flowState.selectedJourneyId != nil {
                 router.push(.journeyLoading)
             } else {
@@ -249,6 +250,7 @@ struct ResumeView: View {
                 style: .secondary,
                 size: .medium
             ) {
+                flowState.prepareForNewJourney()
                 if flowState.selectedJourneyCode != nil || flowState.selectedJourneyId != nil {
                     router.push(.journeyLoading)
                 } else {

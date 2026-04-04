@@ -93,8 +93,8 @@ struct ResultView: View {
 
     @ViewBuilder
     private var messageSection: some View {
-        if let result = flowState.submissionResult, !result.message.isEmpty {
-            Text(result.message)
+        if let result = flowState.submissionResult, let msg = result.message, !msg.isEmpty {
+            Text(msg)
                 .font(SalmaDesign.Typography.callout)
                 .foregroundColor(SalmaDesign.Colors.textSecondary)
                 .multilineTextAlignment(.center)

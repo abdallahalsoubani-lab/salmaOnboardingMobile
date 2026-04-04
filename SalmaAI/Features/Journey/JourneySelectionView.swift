@@ -138,6 +138,7 @@ struct JourneySelectionView: View {
     }
 
     private func select(_ journey: PublishedJourney) {
+        flowState.prepareForNewJourney()
         selectedJourneyId = journey.id
         flowState.selectedJourneyId = journey.id
         HapticManager.notification(.success)
@@ -151,6 +152,7 @@ struct JourneySelectionView: View {
         do {
             let list = try await container.journeyService.getPublishedJourneys()
             if list.count == 1, let only = list.first {
+                flowState.prepareForNewJourney()
                 flowState.selectedJourneyId = only.id
                 isLoading = false
                 router.push(.journeyLoading)
